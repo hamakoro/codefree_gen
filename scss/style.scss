@@ -1,0 +1,1318 @@
+@charset "UTF-8";
+@use "reset";
+
+//サイトカラー
+$main_color: #530700;
+$sub_color: rgb(83, 7, 0, 0.1);
+
+//ブレイクポイント
+$sm: 767px;
+
+@mixin mq($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+// -----------------------------------共通パーツ------------------------------------//
+
+body {
+  font-family: "Zen Old Mincho";
+  line-height: 1.8;
+  margin: 0;
+  // デフォルト（PCを基準）
+  .pc_only {
+    display: block;
+  }
+  .sp_only {
+    display: none;
+  }
+
+  // 768px以下（SP）
+  @media screen and (max-width: 768px) {
+    .pc_only {
+      display: none;
+    }
+    .sp_only {
+      display: block;
+    }
+  }
+}
+img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.inner {
+  max-width: 920px;
+  margin: auto;
+  .section_title {
+    text-align: center;
+    h2 {
+      font-size: 30px;
+      letter-spacing: 0.5625rem;
+      line-height: 1.1;
+      color: $main_color;
+      font-family: "Zen Old Mincho";
+      margin-bottom: 6px;
+      @include mq($sm) {
+      }
+    }
+    p {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.25rem;
+      line-height: 1.65;
+      font-family: "EB Garamond", serif;
+      @include mq($sm) {
+        letter-spacing: 0.25rem;
+      }
+    }
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.to-top {
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  width: 50px;
+  height: 50px;
+  display: none; // 初期は非表示
+  z-index: 999;
+  cursor: pointer;
+  @include mq($sm) {
+    right: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    min-width: 1080px;
+  }
+}
+
+// -----------------------------------ヘッダー--------------------------------------//
+
+header {
+  position: relative;
+}
+
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 29px 80px;
+  position: fixed;
+  z-index: 100;
+  color: #fff;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  @include mq($sm) {
+    padding: 8px 0 6px 22px;
+  }
+
+  &.scrolled {
+    background-color: rgb(83, 7, 0);
+  }
+}
+
+a {
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.6;
+  }
+
+  h1.header_logo {
+    font-size: 20px;
+  }
+}
+.header_list {
+  display: flex;
+  gap: 22px;
+  font-size: 18px;
+}
+
+.header_item a {
+  position: relative;
+  transition: opacity 0.3s ease;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    bottom: -1px;
+    transform: scale(0, 1);
+    transform-origin: center top;
+    transition: transform 0.3s;
+  }
+  &:hover {
+    opacity: 1;
+
+    &::after {
+      transform: scale(1, 1);
+    }
+  }
+}
+// -------------------------------SP版ハンバーガー-----------------------------------//
+
+@media screen and (max-width: 767px) {
+  header .toggle_menu {
+    display: inline-block;
+    width: 72px;
+    height: 50px;
+    position: absolute;
+    z-index: 1001;
+    top: 0;
+    right: 0;
+    background: #fff;
+    transition: 0.2s;
+  }
+
+  header .open {
+    background: #fff;
+  }
+
+  header .toggle_menu .toggle_line {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    text-indent: -9999px;
+    width: 32px;
+    height: 4px;
+    background-color: $main_color;
+  }
+
+  header .toggle_menu .toggle_line::before {
+    top: -12px;
+    -webkit-animation: menu-barTop 0.6s forwards;
+    animation: menu-barTop 0.6s forwards;
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 4px;
+    background-color: $main_color;
+    transition: all 0.4s ease;
+  }
+
+  header .toggle_menu .toggle_line::after {
+    top: 12px;
+    -webkit-animation: menu-barBottom 0.6s forwards;
+    animation: menu-barBottom 0.6s forwards;
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 4px;
+    background-color: $main_color;
+    transition: all 0.4s ease;
+  }
+
+  header.open .toggle_menu .toggle_line {
+    height: 0;
+  }
+
+  header.open .toggle_menu .toggle_line::before {
+    transform: rotate(-45deg);
+    transition: 0.4s;
+    top: -2px;
+    width: 26px;
+  }
+
+  header.open .toggle_menu .toggle_line::after {
+    transform: rotate(45deg);
+    transition: 0.4s;
+    top: -2px;
+    width: 26px;
+  }
+  .header_nav {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #4b0000;
+    width: 300px;
+    padding: 12px 0 13px 0px;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+  }
+
+  header.open .header_nav {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .header_list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+  }
+
+  .header_item {
+    transform: translateX(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  header.open .header_item {
+    transform: translateX(0);
+  }
+
+  // 遅延フェード（必要に応じて）
+  header.open .header_item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  header.open .header_item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  header.open .header_item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  header.open .header_item:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+  header.open .header_item:nth-child(5) {
+    transition-delay: 0.5s;
+  }
+  header.open .header_item:nth-child(6) {
+    transition-delay: 0.6s;
+  }
+
+  .header_item a {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 230px 15px 20px;
+    white-space: nowrap;
+
+    &::after {
+      display: none;
+    }
+
+    &.selected {
+      background-color: #000;
+      padding: 15px 230px 15px 20px;
+    }
+  }
+}
+//---------------------------------ここまで ----------------------------------------//
+
+.fv_title {
+  position: absolute;
+  top: 340px;
+  left: 62px;
+  @include mq($sm) {
+    top: 240px;
+    left: 76px;
+  }
+  h2 {
+    font-size: 40px;
+    text-shadow: 5px 5px 5px #000;
+    line-height: 1.75;
+    letter-spacing: 0.75rem;
+    color: #fff;
+    @include mq($sm) {
+      font-size: 30px;
+      text-align: center;
+      line-height: 2;
+      letter-spacing: 0.5625rem;
+    }
+  }
+}
+
+// ----------------------------------コンセプト-------------------------------------//
+
+section#about.fv_sec2 {
+  background-image: url(../img/section-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 134px 0 116px;
+  @include mq($sm) {
+    padding: 60px 0 56px;
+  }
+  div.inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 270px;
+    @include mq($sm) {
+      margin: 0 30px;
+      padding: 0px;
+    }
+    div.fv_textbox {
+      writing-mode: vertical-rl;
+      @include mq($sm) {
+        display: flex;
+        align-items: center;
+        margin: auto;
+      }
+      div.fv_concept {
+        h2 {
+          font-size: 30px;
+          font-weight: 500;
+          color: $main_color;
+          margin-left: 34px;
+          letter-spacing: 0.3rem;
+          @include mq($sm) {
+            font-size: 25px;
+            margin-left: 0px;
+            padding-bottom: 42px;
+            line-height: 2.1;
+          }
+        }
+      }
+      div.textbox {
+        line-height: 2.7;
+        @include mq($sm) {
+          line-height: 1.6;
+        }
+        p {
+          font-size: 18px;
+          letter-spacing: 0.439rem;
+          font-weight: 500;
+          padding-left: 2px;
+          @include mq($sm) {
+            font-size: 16px;
+            padding-left: 0px;
+            letter-spacing: 0.37rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ---------------------------------いちおし----------------------------------------//
+
+section#recommend.sec1 {
+  padding: 83px 0 127px;
+  background-color: $sub_color;
+  @include mq($sm) {
+    padding: 50px 0 0;
+  }
+  .inner {
+    @include mq($sm) {
+      margin: 0 30px;
+    }
+    .fade-in-up {
+      .section_title {
+        p {
+          padding-bottom: 61px;
+          @include mq($sm) {
+            padding-bottom: 38px;
+          }
+        }
+      }
+      div.section_title p {
+        letter-spacing: 0.375rem;
+        @include mq($sm) {
+          letter-spacing: 0.25rem;
+        }
+      }
+      .recommend {
+        display: flex;
+        position: relative;
+        @include mq($sm) {
+          flex-direction: column;
+          gap: 6px;
+          padding-bottom: 49px;
+        }
+
+        .recommend_img {
+          max-width: 600px;
+          margin: 0;
+          @include mq($sm) {
+            max-width: 100%;
+          }
+          p.text13 {
+            padding: 11px 0 140px;
+            @include mq($sm) {
+              padding: 1px 0 0 0;
+            }
+          }
+          p.text20 {
+            padding-top: 20px;
+            @include mq($sm) {
+              padding-top: 2px;
+            }
+          }
+        }
+        .recommend_title {
+          position: absolute;
+          background-color: $main_color;
+          width: 500px;
+          height: 250px;
+          color: #fff;
+          top: 148px;
+          right: 0;
+          z-index: -1;
+          padding-left: 220px;
+          @include mq($sm) {
+            position: static;
+            width: 100%;
+            height: auto;
+            padding: 23px 0 12px 20px;
+            top: 0px;
+          }
+          h2 {
+            font-size: 25px;
+            font-weight: 600;
+            padding-top: 50px;
+            line-height: 1.32;
+            @include mq($sm) {
+              font-size: 20px;
+              font-weight: 600;
+              padding-top: 0px;
+              line-height: 1.32;
+            }
+          }
+          p.recommend_textbox {
+            padding-top: 17px;
+            line-height: 1.563;
+            @include mq($sm) {
+              padding-top: 8px;
+            }
+          }
+        }
+      }
+      .recommend_list_reverse {
+        display: flex;
+        flex-direction: row-reverse;
+        position: relative;
+        @include mq($sm) {
+          position: static;
+          flex-direction: column;
+          gap: 6px;
+          padding-bottom: 52px;
+        }
+        .recommend_img {
+          max-width: 600px;
+          margin: 0;
+          @include mq($sm) {
+            max-width: 100%;
+          }
+          p.text20 {
+            text-align: right;
+            padding: 18px 0 126px;
+            @include mq($sm) {
+              text-align: left;
+              padding: 4px 0 0 0;
+            }
+          }
+        }
+        .recommend_title {
+          position: absolute;
+          background-color: $main_color;
+          width: 500px;
+          height: 250px;
+          color: #fff;
+          top: 145px;
+          left: 0;
+          z-index: -1;
+          padding-left: 40px;
+          @include mq($sm) {
+            position: static;
+            width: 100%;
+            height: auto;
+            color: #fff;
+            top: 260px;
+            left: 0;
+            padding-left: 0px;
+            padding: 20px 20px 10px 20px;
+          }
+          h2 {
+            font-size: 25px;
+            font-weight: 600;
+            padding-right: 220px;
+            padding-top: 50px;
+            line-height: 1.32;
+            @include mq($sm) {
+              font-size: 20px;
+              padding-right: 0px;
+              padding-top: 0px;
+              line-height: 1.32;
+            }
+          }
+          p.recommend_textbox {
+            padding-top: 17px;
+            line-height: 1.563;
+            @include mq($sm) {
+              padding-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// -----------------------------------コース----------------------------------------//
+
+section.sec2 {
+  padding: 80px 30px 97px;
+  background-image: url(../img/section-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include mq($sm) {
+    padding: 50px 30px 60px;
+  }
+  .sec2_modal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-top: 68px;
+    @include mq($sm) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding-top: 38px;
+    }
+    .modal_item {
+      p.text1 {
+        text-align: center;
+        padding-top: 19px;
+        line-height: 1.563;
+        @include mq($sm) {
+          text-align: left;
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+}
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 15px 15px 9px 15px;
+  max-width: 450px;
+  text-align: center;
+  position: relative;
+  @include mq($sm) {
+    margin: 0 30px;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background: transparent;
+  width: 15px;
+  border: none;
+  cursor: pointer;
+  color: #000;
+}
+
+.modal-text1,
+.modal-text2 {
+  text-align: left;
+  margin-left: 0; /* 必要に応じて調整 */
+}
+
+// ----------------------------------お知らせ---------------------------------------//
+
+section.sec3 {
+  padding: 78px 0 80px;
+  background-color: $sub_color;
+  @include mq($sm) {
+    padding: 51px 30px;
+  }
+  .news_card_box {
+    display: flex;
+    gap: 60px;
+    padding-top: 70px;
+    @include mq($sm) {
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      padding-top: 37px;
+    }
+    .news_textbox {
+      width: 430px;
+      background-color: #fff;
+      @include mq($sm) {
+        width: 100%;
+        height: auto;
+      }
+      h2.news_title {
+        font-size: 20px;
+        color: #fff;
+        background-color: $main_color;
+        line-height: 1.65;
+        padding: 8px 0 9px 20px;
+      }
+      ul.news_list {
+        font-size: 18px;
+        padding: 0 20px;
+        line-height: 1.38;
+        li.news_item {
+          border-bottom: 1px solid $main_color;
+          a {
+            display: flex;
+            gap: 59px;
+            @include mq($sm) {
+              gap: 9px;
+            }
+            p.news_text1_23 {
+              font-size: 16px;
+              padding: 27px 0 37px;
+            }
+            p.news_text2_30 {
+              padding: 30px 0 12px;
+            }
+            p.news_text1 {
+              padding: 18px 0 37px;
+              font-size: 16px;
+            }
+            p.news_text2 {
+              padding: 20px 0 13px;
+            }
+          }
+        }
+      }
+      @keyframes shakeRight {
+        0% {
+          transform: translateX(0);
+        }
+        30% {
+          transform: translateX(5px);
+        }
+        60% {
+          transform: translateX(-3px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      .btn {
+        font-size: 20px;
+        font-family: "EB Garamond", serif;
+        display: flex;
+        justify-content: flex-end;
+        padding: 16px 56px 22px;
+        position: relative;
+        @include mq($sm) {
+          padding: 17px 56px 21px;
+        }
+        a.btn2 {
+          position: relative;
+          &:hover {
+            .text,
+            .arrow {
+              animation: shakeRight 0.4s ease;
+            }
+          }
+          span.text {
+            position: relative;
+            display: inline-block; // ← これ追加！
+          }
+          span.arrow {
+            position: absolute;
+            top: 1px;
+            right: -38px;
+            img {
+              width: 80px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// --------------------------------アクセス----------------------------------------//
+
+section#access.sec4 {
+  padding: 82px 0 140px;
+  background-image: url(../img/section-bg.jpg);
+  background-repeat: no-repeat;
+  @include mq($sm) {
+    padding: 49px 30px 35px;
+  }
+  .sec4_access {
+    .access {
+      position: relative;
+      display: flex;
+      padding-top: 68px;
+      @include mq($sm) {
+        position: static;
+        flex-direction: column;
+        gap: 18px;
+        padding-top: 40px;
+      }
+      iframe {
+        width: 600px;
+        height: 400px;
+        @include mq($sm) {
+          width: 100%;
+          height: 300px;
+        }
+      }
+      .store_name {
+        position: absolute;
+        width: 500px;
+        height: 262px;
+        background-color: $main_color;
+        right: 0;
+        top: 266px;
+        z-index: -1;
+        padding-left: 220px;
+        padding-top: 49px;
+        color: #fff;
+        line-height: 1.563;
+        @include mq($sm) {
+          position: static;
+          width: 100%;
+          height: auto;
+          color: #fff;
+          top: 260px;
+          left: 0;
+          padding-left: 0px;
+          padding: 19px 0 17px 20px;
+        }
+        h1 {
+          font-size: 20px;
+        }
+        address {
+          padding: 7px 0 13px;
+          @include mq($sm) {
+            padding: 9px 0 13px;
+          }
+          span {
+            font-family: "EB Garamond", serif;
+            @include mq($sm) {
+              font-family: sans-serif;
+            }
+          }
+        }
+        p.store_tel {
+          padding-bottom: 19px;
+          @include mq($sm) {
+            padding-bottom: 10px;
+          }
+          a.tel_link {
+            span {
+              font-size: 20px;
+              line-height: 1;
+              @include mq($sm) {
+                font-size: 23px;
+              }
+            }
+          }
+        }
+        p.store_mail {
+          padding-bottom: 42px;
+          font-family: "EB Garamond", serif;
+          @include mq($sm) {
+            padding-bottom: 0px;
+            font-family: "Zen Old Mincho";
+            font-size: 19px;
+            line-height: 1.316;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ---------------------------------お問い合わせ-------------------------------------//
+
+section.sec5 {
+  padding: 80px 0;
+  background-color: $sub_color;
+  @include mq($sm) {
+    padding: 50px 30px 48px;
+  }
+  .inner {
+    max-width: 800px;
+    div.section_title h2 {
+      @include mq($sm) {
+        letter-spacing: 0;
+      }
+    }
+    .contact_text {
+      padding: 31px 0 35px;
+      font-size: 20px;
+      @include mq($sm) {
+        padding: 35px 0 30px;
+        line-height: 1.65;
+      }
+    }
+    .contactbox {
+      display: flex;
+      padding-bottom: 49px;
+      align-items: center;
+      font-size: 20px;
+      @include mq($sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 29px;
+      }
+      .label_title {
+        width: 170px;
+        @include mq($sm) {
+        }
+      }
+      .input_text {
+        font-size: 16px;
+        background: #fff;
+        width: 630px;
+        padding: 13px 0 12px 20px;
+        line-height: 1.563;
+        @include mq($sm) {
+          width: 100%;
+        }
+      }
+      p {
+        padding-right: 133px;
+      }
+      label.type1 {
+        padding-right: 56px;
+        font-size: 18px;
+        @include mq($sm) {
+          padding-right: 0;
+        }
+        span {
+          padding-left: 22px;
+          @include mq($sm) {
+            padding-left: 19px;
+            padding-right: 12px;
+          }
+        }
+        input[type="radio"] {
+          position: relative;
+          width: 20px;
+          height: 20px;
+          border: 1px solid #fff;
+          border-radius: 50%;
+          vertical-align: -2px;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background: #fff;
+        }
+
+        input[type="radio"]:checked:before {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #000;
+          content: "";
+        }
+      }
+      label.type2 {
+        font-size: 18px;
+        span {
+          padding-left: 19px;
+        }
+        input[type="radio"] {
+          position: relative;
+          width: 20px;
+          height: 20px;
+          border: 1px solid #fff;
+          border-radius: 50%;
+          vertical-align: -2px;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background: #fff;
+        }
+
+        input[type="radio"]:checked:before {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #000;
+          content: "";
+        }
+      }
+      label.email {
+        padding-right: 19px;
+      }
+    }
+
+    .contactbox.form-type {
+      @include mq($sm) {
+        flex-direction: row;
+        align-items: center;
+        gap: 0px;
+        .label_title {
+          width: 20%;
+        }
+      }
+    }
+    .form-Course {
+      position: relative;
+      select {
+        appearance: none;
+        background-color: #fff;
+        color: #333;
+        padding: 10px 20px;
+        width: 100%;
+        font-size: 18px;
+        cursor: pointer;
+        margin-left: 40px;
+        @include mq($sm) {
+          margin-left: 0px;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 20px;
+        top: 28%;
+        transform: translateY(-50%);
+        width: 19px;
+        height: 11px;
+        background-color: $main_color;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        pointer-events: none;
+        @include mq($sm) {
+          top: 52%;
+        }
+      }
+    }
+    label {
+      font-size: 20px;
+      line-height: 1.65;
+      padding-top: 3px;
+      @include mq($sm) {
+        padding-top: 0;
+      }
+    }
+    .form-Content {
+      padding: 10px 0 50px;
+      @include mq($sm) {
+        padding: 0px 0px 32px;
+      }
+      textarea {
+        background: #fff;
+        width: 800px;
+        height: 200px;
+        @include mq($sm) {
+          width: 100%;
+        }
+      }
+    }
+    .form-checkbox {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 6px;
+        padding-top: 6px;
+        @include mq($sm) {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(4, auto);
+          row-gap: 3px;
+          padding-top: 6px;
+        }
+        li {
+          label.check {
+            display: flex;
+            align-items: center;
+            input {
+              display: none;
+            }
+
+            .checkbox-style {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              margin-right: 8px;
+              position: relative;
+              background: #fff;
+              @include mq($sm) {
+                margin-right: 0;
+              }
+
+              &::before {
+                content: "";
+                position: absolute;
+                top: 3px;
+                left: 7px;
+                width: 6px;
+                height: 12px;
+                border: solid #000;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+                opacity: 0;
+                transition: opacity 0.2s ease;
+              }
+            }
+            input:checked + .checkbox-style::before {
+              opacity: 1;
+            }
+            span.check_text {
+              font-size: 18px;
+              padding-left: 14px;
+              @include mq($sm) {
+                font-size: 16px;
+                padding-left: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .privacy {
+      padding: 46px 0 80px;
+      @include mq($sm) {
+        padding: 30px 0 51px;
+      }
+      h2 {
+        font-size: 20px;
+        padding-bottom: 6px;
+        @include mq($sm) {
+          padding-bottom: 0px;
+        }
+      }
+      .privacy_box {
+        padding: 10px;
+        background: #fff;
+        @include mq($sm) {
+          padding: 10px 10px 20px;
+        }
+        .privacy_textbox {
+          overflow-y: scroll;
+          height: 280px;
+          padding: 30px 40px 30px 30px;
+          @include mq($sm) {
+            padding: 20px 30px 20px 20px;
+            height: 290px;
+          }
+          &::-webkit-scrollbar {
+            width: 10px;
+            background-color: #e3e3e3;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: #9b9b9b;
+            @include mq($sm) {
+              height: 30px;
+            }
+          }
+          .privacy_text {
+            font-size: 18px;
+            line-height: 1.722;
+            @include mq($sm) {
+              font-size: 16px;
+              line-height: 2.063;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+    .btn {
+      text-align: center;
+      .btn2 {
+        padding: 7px 59px;
+        background: $main_color;
+        font-size: 20px;
+        color: #fff;
+        width: 300px;
+        transition: 0.5s;
+        border: 1px solid $main_color;
+        position: relative;
+        @include mq($sm) {
+          width: 315px;
+        }
+        &::before {
+          content: "";
+          display: none;
+          width: 24px;
+          height: 34px;
+          background-image: url(../img/icon/finger.svg);
+          background-repeat: no-repeat;
+          background-size: cover;
+          vertical-align: middle;
+          position: absolute;
+          top: 110%;
+          right: 5px;
+          transform: translate(0, -50%);
+          transition: 0.5s;
+        }
+        &:hover {
+          color: $main_color;
+          background-color: #fff;
+          &::before {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------フッター-------------------------------------//
+
+footer {
+  text-align: center;
+  background-image: url(../img/section-bg.jpg);
+  background-repeat: no-repeat;
+  .inner {
+    max-width: 722px;
+    .footer_container {
+      padding: 80px 0 82px;
+      @include mq($sm) {
+        padding: 50px 30px;
+      }
+      h1.footer_ {
+        font-size: 20px;
+        border-bottom: 1px solid #000;
+        padding-bottom: 23px;
+        @include mq($sm) {
+          padding-bottom: 17px;
+        }
+        a {
+          padding-bottom: 28px;
+        }
+      }
+      nav.footer_nav {
+        font-size: 20px;
+        @include mq($sm) {
+          font-size: 18px;
+        }
+        ul.footer_list1,
+        ul.footer_list2,
+        ul.footer_list3 {
+          display: none;
+
+          @include mq($sm) {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            justify-content: center;
+            text-align: center;
+            a {
+              display: block;
+              width: 100%;
+            }
+          }
+        }
+
+        ul.footer_list1 {
+          @include mq($sm) {
+            padding-top: 20px;
+            gap: 24px;
+          }
+        }
+
+        ul.footer_list2 {
+          @include mq($sm) {
+            display: flex;
+            justify-content: center;
+            padding-top: 5px;
+            li {
+              width: 30.33%;
+            }
+          }
+        }
+
+        ul.footer_list3 {
+          @include mq($sm) {
+            display: flex;
+            justify-content: center;
+            padding-top: 5px;
+            li {
+              width: 100%;
+            }
+          }
+        }
+        ul.footer_list {
+          &.pc_only {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            padding-top: 30px;
+            line-height: 1.833;
+            font-size: 18px;
+          }
+          &.sp_only {
+            display: none;
+          }
+          @include mq($sm) {
+            &.pc_only {
+              display: none;
+            }
+          }
+        }
+        ul.footer_sns {
+          display: flex;
+          gap: 30px;
+          justify-content: center;
+          padding-top: 17px;
+          @include mq($sm) {
+            padding-top: 22px;
+          }
+          li {
+            a {
+              img {
+                width: 28px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .copyright {
+    background: $main_color;
+    p {
+      padding: 30px 0;
+      color: #fff;
+      font-size: 21px;
+      line-height: 1.65;
+      font-family: "EB Garamond", serif;
+      @include mq($sm) {
+        padding: 21px 0 23px;
+        line-height: 1.4;
+      }
+    }
+  }
+}
