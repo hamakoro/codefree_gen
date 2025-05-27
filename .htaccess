@@ -1,0 +1,5 @@
+
+AuthUserFile "/home/hamakoro0222/hamakoro-i.com/htpasswd/codefree_gen/.htpasswd"
+AuthName "Member Site"
+AuthType BASIC
+require valid-user
