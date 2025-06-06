@@ -20,6 +20,8 @@ body {
   font-family: "Zen Old Mincho";
   line-height: 1.8;
   margin: 0;
+  font-weight: 500;
+  font-size: 1.6rem;
   // デフォルト（PCを基準）
   .pc_only {
     display: block;
@@ -28,8 +30,14 @@ body {
     display: none;
   }
 
+  @media screen and (min-width: 767px) and (max-width: 813px) {
+    .tb_only {
+      display: none; /* この範囲で改行を無効にする */
+    }
+  }
+
   // 768px以下（SP）
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     .pc_only {
       display: none;
     }
@@ -44,24 +52,25 @@ img {
   max-width: 100%;
 }
 .inner {
-  max-width: 920px;
+  max-width: 98rem;
   margin: auto;
+  padding-inline: 3rem;
   .section_title {
     text-align: center;
     h2 {
-      font-size: 30px;
+      font-size: 3rem;
       letter-spacing: 0.5625rem;
       line-height: 1.1;
       color: $main_color;
       font-family: "Zen Old Mincho";
-      margin-bottom: 6px;
+      margin-bottom: 0.6rem;
       @include mq($sm) {
       }
     }
     p {
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 500;
-      letter-spacing: 0.25rem;
+      letter-spacing: 0.6rem;
       line-height: 1.65;
       font-family: "EB Garamond", serif;
       @include mq($sm) {
@@ -72,6 +81,7 @@ img {
 }
 html {
   scroll-behavior: smooth;
+  font-size: 62.5%;
 }
 
 .fade-in-up {
@@ -86,65 +96,72 @@ html {
   transform: translateY(0);
 }
 
-.to-top {
-  position: fixed;
-  bottom: 60px;
-  right: 60px;
-  width: 50px;
-  height: 50px;
-  display: none; // 初期は非表示
-  z-index: 999;
-  cursor: pointer;
-  @include mq($sm) {
-    right: 20px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  body {
-    min-width: 1080px;
-  }
-}
-
-// -----------------------------------ヘッダー--------------------------------------//
+// -----------------------------------ヘッダー------------------------------------//
 
 header {
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  height: 8rem;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  background-color: transparent; // 初期状態の背景色
+
+  &.scrolled {
+    background-color: rgb(83, 7, 0); // スクロール後の背景色
+  }
 }
 
 .header_container {
+  max-width: 108rem;
+  margin: 0 auto;
   display: flex;
+  padding-inline: 8rem;
+  height: 100%;
   justify-content: space-between;
-  width: 100%;
-  padding: 29px 80px;
-  position: fixed;
-  z-index: 100;
   color: #fff;
-  background-color: transparent;
-  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  padding-top: 0.5rem;
+  @media screen and (max-width: 1000px) {
+    padding-inline: 2rem;
+  }
   @include mq($sm) {
-    padding: 8px 0 6px 22px;
+    padding-left: 2.2rem;
+    height: 5rem;
+    justify-content: flex-start;
+    align-items: center;
   }
+  a {
+    display: inline-block;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    @include mq($sm) {
+      height: 5.8rem;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
 
-  &.scrolled {
-    background-color: rgb(83, 7, 0);
+    h1.header_logo {
+      font-size: 2rem;
+    }
   }
 }
 
-a {
-  transition: 0.3s;
-  &:hover {
-    opacity: 0.6;
-  }
-
-  h1.header_logo {
-    font-size: 20px;
-  }
-}
 .header_list {
   display: flex;
-  gap: 22px;
-  font-size: 18px;
+  gap: 2.2rem;
+  font-size: 1.8rem;
+  @media screen and (max-width: 1000px) {
+    gap: 1rem;
+  }
+  @include mq($sm) {
+    gap: 0;
+  }
 }
 
 .header_item a {
@@ -158,10 +175,13 @@ a {
     width: 100%;
     height: 1px;
     background-color: #fff;
-    bottom: -1px;
+    bottom: 25px;
     transform: scale(0, 1);
     transform-origin: center top;
     transition: transform 0.3s;
+    @include mq($sm) {
+      height: 50px;
+    }
   }
   &:hover {
     opacity: 0.6;
@@ -201,6 +221,7 @@ a {
     text-indent: -9999px;
     width: 32px;
     height: 4px;
+    border-radius: 5px;
     background-color: $main_color;
   }
 
@@ -213,6 +234,7 @@ a {
     left: 0;
     width: 32px;
     height: 4px;
+    border-radius: 5px;
     background-color: $main_color;
     transition: all 0.4s ease;
   }
@@ -226,6 +248,7 @@ a {
     left: 0;
     width: 32px;
     height: 4px;
+    border-radius: 5px;
     background-color: $main_color;
     transition: all 0.4s ease;
   }
@@ -238,14 +261,14 @@ a {
     transform: rotate(-45deg);
     transition: 0.4s;
     top: -2px;
-    width: 26px;
+    width: 32px;
   }
 
   header.open .toggle_menu .toggle_line::after {
     transform: rotate(45deg);
     transition: 0.4s;
     top: -2px;
-    width: 26px;
+    width: 32px;
   }
   .header_nav {
     display: block;
@@ -254,17 +277,21 @@ a {
     right: 0;
     background-color: #4b0000;
     width: 300px;
-    padding: 12px 0 13px 0px;
     text-align: center;
     opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
     transform: translateX(100px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s 0.5s;
     z-index: 1000;
   }
 
   header.open .header_nav {
     opacity: 1;
     transform: translateX(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
   .header_list {
@@ -272,6 +299,9 @@ a {
     flex-direction: column;
     align-items: flex-start;
     gap: 26px;
+    @include mq($sm) {
+      gap: 0;
+    }
   }
 
   .header_item {
@@ -304,127 +334,142 @@ a {
   }
 
   .header_item a {
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #fff;
     text-decoration: none;
     padding: 15px 230px 15px 20px;
     white-space: nowrap;
+    transition: all 0.4s ease;
 
     &::after {
       display: none;
     }
 
-    &.selected {
+    &:hover {
       background-color: #000;
-      padding: 15px 230px 15px 20px;
       opacity: 1;
     }
   }
 }
-//---------------------------------ここまで ----------------------------------------//
-
-.fv_title {
-  position: absolute;
-  top: 340px;
-  left: 62px;
-  @include mq($sm) {
-    top: 240px;
-    left: 76px;
+// -----------------------------ファーストビュー-----------------------------------//
+section.fv_sec1 {
+  picture {
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
   }
-  h2 {
-    font-size: 40px;
-    text-shadow: 5px 5px 5px #000;
-    line-height: 1.75;
-    letter-spacing: 0.75rem;
-    color: #fff;
+  div.fv_title {
+    position: absolute;
+    top: 340px;
+    left: 62px;
     @include mq($sm) {
-      font-size: 30px;
-      text-align: center;
-      line-height: 2;
-      letter-spacing: 0.5625rem;
+      top: 240px;
+      left: 76px;
+    }
+    h2 {
+      font-size: 4rem;
+      text-shadow: 5px 5px 5px #000;
+      line-height: 1.75;
+      letter-spacing: 1.2rem;
+      color: #fff;
+      @include mq($sm) {
+        font-size: 3rem;
+        text-align: center;
+        line-height: 2;
+        letter-spacing: 0.5625rem;
+      }
     }
   }
 }
-
-// ----------------------------------コンセプト-------------------------------------//
-
+/*============================
+#about
+============================*/
 section#about.fv_sec2 {
   background-image: url(../img/section-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 134px 0 116px;
+  padding: 13.4rem 0 12rem;
   @include mq($sm) {
     padding: 60px 0 56px;
   }
   div.inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 270px;
+    max-width: 50rem;
+    padding-inline: unset;
     @include mq($sm) {
       margin: 0 30px;
       padding: 0px;
     }
     div.fv_textbox {
       writing-mode: vertical-rl;
+      margin: auto;
       @include mq($sm) {
         display: flex;
         align-items: center;
-        margin: auto;
       }
       div.fv_concept {
+        line-height: 1.18;
+        padding-left: 5rem;
         h2 {
-          font-size: 30px;
+          font-size: 3rem;
           font-weight: 500;
           color: $main_color;
-          margin-left: 34px;
-          letter-spacing: 0.3rem;
+          letter-spacing: 0.5rem;
           @include mq($sm) {
-            font-size: 25px;
+            font-size: 2.5rem;
             margin-left: 0px;
             padding-bottom: 42px;
             line-height: 2.1;
           }
+          span.fv_concept_indent {
+            padding-left: 2rem;
+            display: inline-block;
+          }
         }
       }
       div.textbox {
-        line-height: 2.7;
+        line-height: 1.37;
         @include mq($sm) {
           line-height: 1.6;
         }
         p {
-          font-size: 18px;
-          letter-spacing: 0.439rem;
+          font-size: 1.8rem;
           font-weight: 500;
-          padding-left: 2px;
+          letter-spacing: 0.69rem;
           @include mq($sm) {
-            font-size: 16px;
+            font-size: 1.6rem;
             padding-left: 0px;
             letter-spacing: 0.37rem;
+          }
+          .fv_textbox__indent {
+            padding-left: 2.3rem;
+            display: inline-block;
+            letter-spacing: 0.69rem;
           }
         }
       }
     }
   }
-}
-
-// ---------------------------------いちおし----------------------------------------//
-
+} /*============================
+#recommend
+============================*/
 section#recommend.sec1 {
-  padding: 83px 0 127px;
+  padding-top: 8.3rem;
   background-color: $sub_color;
   @include mq($sm) {
-    padding: 50px 0 0;
+    padding: 5rem 0 0;
   }
   .inner {
     @include mq($sm) {
-      margin: 0 30px;
+      margin: 0 3rem;
     }
     .fade-in-up {
       .section_title {
         p {
-          padding-bottom: 61px;
+          padding-bottom: 6.1rem;
           @include mq($sm) {
-            padding-bottom: 38px;
+            padding-bottom: 3.8rem;
           }
         }
       }
@@ -439,39 +484,50 @@ section#recommend.sec1 {
         position: relative;
         @include mq($sm) {
           flex-direction: column;
-          gap: 6px;
-          padding-bottom: 49px;
+          gap: 0.6rem;
+          padding-bottom: 4.9rem;
         }
 
         .recommend_img {
-          max-width: 600px;
+          max-width: 65.3%;
           margin: 0;
+          @media screen and (max-width: 942px) {
+          }
           @include mq($sm) {
             max-width: 100%;
           }
           p.text13 {
-            padding: 11px 0 140px;
+            padding-block: 2rem 13rem;
+            @media screen and (max-width: 942px) {
+              padding-block: 2rem 6rem;
+            }
             @include mq($sm) {
-              padding: 1px 0 0 0;
+              padding: 0.1rem 0 0 0;
             }
           }
           p.text20 {
-            padding-top: 20px;
+            padding-block: 2rem 13rem;
+            @media screen and (max-width: 942px) {
+              padding-block: 2rem 6rem;
+            }
             @include mq($sm) {
-              padding-top: 2px;
+              padding-top: 0.2rem;
             }
           }
         }
         .recommend_title {
           position: absolute;
           background-color: $main_color;
-          width: 500px;
-          height: 250px;
+          width: 54%;
+          height: auto;
           color: #fff;
-          top: 148px;
+          top: 30%;
           right: 0;
           z-index: -1;
-          padding-left: 220px;
+          padding-left: 23.6%;
+          @media screen and (max-width: 942px) {
+            padding-left: 20%;
+          }
           @include mq($sm) {
             position: static;
             width: 100%;
@@ -482,8 +538,12 @@ section#recommend.sec1 {
           h2 {
             font-size: 25px;
             font-weight: 600;
-            padding-top: 50px;
+            padding-top: 5rem;
             line-height: 1.32;
+            @media screen and (max-width: 942px) {
+              padding-top: 3rem;
+              font-size: 2rem;
+            }
             @include mq($sm) {
               font-size: 20px;
               font-weight: 600;
@@ -492,8 +552,12 @@ section#recommend.sec1 {
             }
           }
           p.recommend_textbox {
-            padding-top: 17px;
+            padding-block: 1.7rem 4.2rem;
             line-height: 1.563;
+            font-weight: 400;
+            @media screen and (max-width: 942px) {
+              padding-block: 1.7rem 3rem;
+            }
             @include mq($sm) {
               padding-top: 8px;
             }
@@ -511,14 +575,17 @@ section#recommend.sec1 {
           padding-bottom: 52px;
         }
         .recommend_img {
-          max-width: 600px;
+          max-width: 65.3%;
           margin: 0;
           @include mq($sm) {
             max-width: 100%;
           }
           p.text20 {
             text-align: right;
-            padding: 18px 0 126px;
+            padding-block: 2rem 13rem;
+            @media screen and (max-width: 942px) {
+              padding-block: 2rem 6rem;
+            }
             @include mq($sm) {
               text-align: left;
               padding: 4px 0 0 0;
@@ -528,13 +595,16 @@ section#recommend.sec1 {
         .recommend_title {
           position: absolute;
           background-color: $main_color;
-          width: 500px;
-          height: 250px;
+          width: 54%;
+          height: auto;
           color: #fff;
-          top: 145px;
+          top: 30%;
           left: 0;
           z-index: -1;
-          padding-left: 40px;
+          padding-left: 4.5%;
+          @media screen and (max-width: 942px) {
+            padding-left: 1%;
+          }
           @include mq($sm) {
             position: static;
             width: 100%;
@@ -551,6 +621,11 @@ section#recommend.sec1 {
             padding-right: 220px;
             padding-top: 50px;
             line-height: 1.32;
+            white-space: nowrap;
+            @media screen and (max-width: 942px) {
+              padding-top: 3rem;
+              font-size: 2rem;
+            }
             @include mq($sm) {
               font-size: 20px;
               padding-right: 0px;
@@ -559,8 +634,12 @@ section#recommend.sec1 {
             }
           }
           p.recommend_textbox {
-            padding-top: 17px;
+            padding-block: 1.7rem 4.2rem;
             line-height: 1.563;
+            font-weight: 400;
+            @media screen and (max-width: 942px) {
+              padding-block: 1.7rem 3rem;
+            }
             @include mq($sm) {
               padding-top: 10px;
             }
@@ -570,39 +649,58 @@ section#recommend.sec1 {
     }
   }
 }
-// -----------------------------------コース----------------------------------------//
-
-section.sec2 {
+/*============================
+#course
+============================*/
+section#course.sec2 {
   padding: 80px 30px 97px;
-  background-image: url(../img/section-bg.jpg);
+  background-image: url(../img/course-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   @include mq($sm) {
     padding: 50px 30px 60px;
   }
-  .sec2_modal {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    padding-top: 68px;
-    @include mq($sm) {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      padding-top: 38px;
-    }
-    .modal_item {
-      p.text1 {
-        text-align: center;
-        padding-top: 19px;
-        line-height: 1.563;
+  div.inner {
+    div.fade-in-up {
+      div.section_title {
+        h2 {
+        }
+        p {
+        }
+      }
+      div.sec2_modal {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        padding-top: 68px;
         @include mq($sm) {
-          text-align: left;
-          padding-top: 10px;
+          grid-template-columns: 1fr;
+          gap: 20px;
+          padding-top: 38px;
+        }
+        div.modal_item {
+          cursor: pointer;
+          picture {
+            source {
+            }
+            img.modal {
+            }
+          }
+          p.text1 {
+            text-align: center;
+            padding-top: 19px;
+            line-height: 1.563;
+            @include mq($sm) {
+              text-align: left;
+              padding-top: 10px;
+            }
+          }
         }
       }
     }
   }
 }
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -610,7 +708,7 @@ section.sec2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
   z-index: 999;
@@ -642,485 +740,584 @@ section.sec2 {
   color: #000;
 }
 
-.modal-text1,
-.modal-text2 {
+.modal-text1 {
   text-align: left;
-  margin-left: 0; /* 必要に応じて調整 */
+  padding-top: 9px;
+  line-height: 1.563;
+  margin-left: 0;
 }
 
-// ----------------------------------お知らせ---------------------------------------//
+body.no-scroll {
+  overflow: hidden;
+}
 
-section.sec3 {
+/*============================
+#news
+============================*/
+section#news.sec3 {
   padding: 78px 0 80px;
   background-color: $sub_color;
   @include mq($sm) {
     padding: 51px 30px;
   }
-  .news_card_box {
-    display: flex;
-    gap: 60px;
-    padding-top: 70px;
-    @include mq($sm) {
-      flex-direction: column;
-      align-items: center;
-      gap: 50px;
-      padding-top: 37px;
-    }
-    .news_textbox {
-      width: 430px;
-      background-color: #fff;
-      @include mq($sm) {
-        width: 100%;
-        height: auto;
-      }
-      h2.news_title {
-        font-size: 20px;
-        color: #fff;
-        background-color: $main_color;
-        line-height: 1.65;
-        padding: 8px 0 9px 20px;
-      }
-      ul.news_list {
-        font-size: 18px;
-        padding: 0 20px;
-        line-height: 1.38;
-        li.news_item {
-          border-bottom: 1px solid $main_color;
-          a {
-            display: flex;
-            gap: 59px;
-            @include mq($sm) {
-              gap: 9px;
-            }
-            p.news_text1_23 {
-              font-size: 16px;
-              padding: 27px 0 37px;
-            }
-            p.news_text2_30 {
-              padding: 30px 0 12px;
-            }
-            p.news_text1 {
-              padding: 18px 0 37px;
-              font-size: 16px;
-            }
-            p.news_text2 {
-              padding: 20px 0 13px;
-            }
-          }
+  div.inner {
+    div.fade-in-up {
+      div.section_title {
+        h2 {
+        }
+        p {
         }
       }
-      @keyframes shakeRight {
-        0% {
-          transform: translateX(0);
-        }
-        30% {
-          transform: translateX(5px);
-        }
-        60% {
-          transform: translateX(-3px);
-        }
-        100% {
-          transform: translateX(0);
-        }
-      }
-      .btn {
-        font-size: 20px;
-        font-family: "EB Garamond", serif;
+      div.news_card_box {
         display: flex;
-        justify-content: flex-end;
-        padding: 16px 56px 22px;
-        position: relative;
+        gap: 60px;
+        padding-top: 70px;
         @include mq($sm) {
-          padding: 17px 56px 21px;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+          padding-top: 37px;
         }
-        a.btn2 {
-          position: relative;
-          &:hover {
-            .text,
-            .arrow {
-              animation: shakeRight 0.4s ease;
-            }
-          }
-          span.text {
-            position: relative;
-            display: inline-block; // ← これ追加！
-          }
-          span.arrow {
-            position: absolute;
-            top: 1px;
-            right: -38px;
-            img {
-              width: 80px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-// --------------------------------アクセス----------------------------------------//
-
-section#access.sec4 {
-  padding: 82px 0 140px;
-  background-image: url(../img/section-bg.jpg);
-  background-repeat: no-repeat;
-  @include mq($sm) {
-    padding: 49px 30px 35px;
-  }
-  .sec4_access {
-    .access {
-      position: relative;
-      display: flex;
-      padding-top: 68px;
-      @include mq($sm) {
-        position: static;
-        flex-direction: column;
-        gap: 18px;
-        padding-top: 40px;
-      }
-      iframe {
-        width: 600px;
-        height: 400px;
-        @include mq($sm) {
-          width: 100%;
-          height: 300px;
-        }
-      }
-      .store_name {
-        position: absolute;
-        width: 500px;
-        height: 262px;
-        background-color: $main_color;
-        right: 0;
-        top: 266px;
-        z-index: -1;
-        padding-left: 220px;
-        padding-top: 49px;
-        color: #fff;
-        line-height: 1.563;
-        @include mq($sm) {
-          position: static;
-          width: 100%;
-          height: auto;
-          color: #fff;
-          top: 260px;
-          left: 0;
-          padding-left: 0px;
-          padding: 19px 0 17px 20px;
-        }
-        h1 {
-          font-size: 20px;
-        }
-        address {
-          padding: 7px 0 13px;
+        div.news_textbox {
+          width: 430px;
+          background-color: #fff;
           @include mq($sm) {
-            padding: 9px 0 13px;
+            width: 100%;
+            height: auto;
           }
-          span {
+          h3.news_title {
+            font-size: 2rem;
+            color: #fff;
+            background-color: $main_color;
+            line-height: 1.65;
+            padding: 8px 0 9px 20px;
+          }
+          ul.news_list {
+            font-size: 1.8rem;
+            padding: 0 20px;
+            line-height: 1.38;
+            li.news_item {
+              border-bottom: 1px solid $main_color;
+              a {
+                display: flex;
+                gap: 59px;
+                @include mq($sm) {
+                  gap: 9px;
+                }
+                p.news_text1_23 {
+                  font-size: 1.6rem;
+                  padding: 27px 0 37px;
+                }
+                p.news_text2_30 {
+                  padding: 30px 0 12px;
+                }
+                p.news_text1 {
+                  padding: 18px 0 37px;
+                  font-size: 1.6rem;
+                }
+                p.news_text2 {
+                  padding: 20px 0 13px;
+                }
+              }
+            }
+          }
+
+          @keyframes shakeRight {
+            0% {
+              transform: translateX(0);
+            }
+            30% {
+              transform: translateX(5px);
+            }
+            60% {
+              transform: translateX(-3px);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+          div.btn {
+            font-size: 2rem;
             font-family: "EB Garamond", serif;
+            display: flex;
+            justify-content: flex-end;
+            padding: 16px 56px 22px;
+            position: relative;
             @include mq($sm) {
-              font-family: sans-serif;
+              padding: 17px 56px 21px;
             }
-          }
-        }
-        p.store_tel {
-          padding-bottom: 19px;
-          @include mq($sm) {
-            padding-bottom: 10px;
-          }
-          a.tel_link {
-            span {
-              font-size: 20px;
-              line-height: 1;
-              @include mq($sm) {
-                font-size: 23px;
+            a.btn2 {
+              position: relative;
+              &:hover {
+                .text,
+                .arrow {
+                  animation: shakeRight 0.4s ease;
+                }
+              }
+              span.text {
+                position: relative;
+                display: inline-block; // ← これ追加！
+                color: $main_color;
+              }
+              span.arrow {
+                position: absolute;
+                top: 1px;
+                right: -38px;
+                img {
+                  width: 80px;
+                }
               }
             }
           }
         }
-        p.store_mail {
-          padding-bottom: 42px;
-          font-family: "EB Garamond", serif;
+      }
+    }
+  }
+}
+/*============================
+#access
+============================*/
+section#access.sec4 {
+  padding: 82px 0 140px;
+  background-image: url(../img/access-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include mq($sm) {
+    padding: 49px 30px 35px;
+  }
+  div.inner {
+    div.fade-in-up {
+      div.section_title {
+        h2 {
+        }
+        p {
+        }
+      }
+      div.sec4_access {
+        div.access {
+          position: relative;
+          display: flex;
+          padding-top: 68px;
           @include mq($sm) {
-            padding-bottom: 0px;
-            font-family: "Zen Old Mincho";
-            font-size: 19px;
-            line-height: 1.316;
+            position: static;
+            flex-direction: column;
+            gap: 18px;
+            padding-top: 40px;
+          }
+          .map {
+            width: 600px;
+            height: 400px;
+            @include mq($sm) {
+              width: 100%;
+              height: auto;
+              aspect-ratio: 315 / 300;
+            }
+            iframe {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          div.store_name {
+            position: absolute;
+            width: 500px;
+            height: 262px;
+            background-color: $main_color;
+            right: 0;
+            top: 266px;
+            padding-left: 220px;
+            padding-top: 49px;
+            color: #fff;
+            line-height: 1.563;
+            z-index: -1;
+            @include mq($sm) {
+              position: static;
+              width: 100%;
+              height: auto;
+              color: #fff;
+              top: 260px;
+              left: 0;
+              padding-left: 0px;
+              padding: 19px 0 17px 20px;
+            }
+            p {
+              font-size: 2rem;
+            }
+            address {
+              padding: 7px 0 13px;
+              @include mq($sm) {
+                padding: 9px 0 13px;
+              }
+              span {
+                font-family: "Noto Serif JP", serif;
+              }
+            }
+            p.store_tel {
+              padding-bottom: 19px;
+              font-family: "Noto Serif JP", serif;
+              @include mq($sm) {
+                padding-bottom: 10px;
+              }
+              a.tel_link {
+                span {
+                  font-size: 2.5rem;
+                  line-height: 1;
+                  @include mq($sm) {
+                    font-size: 2.3rem;
+                  }
+                }
+              }
+            }
+            p.store_mail {
+              padding-bottom: 42px;
+              font-size: 1.6rem;
+              font-family: "Noto Serif JP", serif;
+              @include mq($sm) {
+                padding-bottom: 0px;
+                font-size: 1.9rem;
+                line-height: 1.316;
+              }
+              a {
+              }
+            }
           }
         }
       }
     }
   }
 }
-
-// ---------------------------------お問い合わせ-------------------------------------//
-
-section.sec5 {
+/*============================
+#contact
+============================*/
+section#contact.sec5 {
   padding: 80px 0;
   background-color: $sub_color;
   @include mq($sm) {
     padding: 50px 30px 48px;
   }
-  .inner {
+  div.inner {
     max-width: 800px;
+    padding-inline: unset;
     div.section_title h2 {
       @include mq($sm) {
         letter-spacing: 0;
       }
     }
-    .contact_text {
-      padding: 31px 0 35px;
-      font-size: 20px;
-      @include mq($sm) {
-        padding: 35px 0 30px;
-        line-height: 1.65;
-      }
-    }
-    .contactbox {
-      display: flex;
-      padding-bottom: 49px;
-      align-items: center;
-      font-size: 20px;
-      @include mq($sm) {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-bottom: 29px;
-      }
-      .label_title {
-        width: 170px;
+    div.fade-in-up {
+      p.contact_text {
+        padding: 31px 0 35px;
+        font-size: 2rem;
         @include mq($sm) {
+          padding: 35px 0 30px;
+          line-height: 1.65;
         }
-      }
-      .input_text {
-        font-size: 16px;
-        background: #fff;
-        width: 630px;
-        padding: 13px 0 12px 20px;
-        line-height: 1.563;
-        @include mq($sm) {
-          width: 100%;
-        }
-      }
-      p {
-        padding-right: 133px;
-      }
-      label.type1 {
-        padding-right: 56px;
-        font-size: 18px;
-        @include mq($sm) {
-          padding-right: 0;
-        }
-        span {
-          padding-left: 22px;
-          @include mq($sm) {
-            padding-left: 19px;
-            padding-right: 12px;
-          }
-        }
-        input[type="radio"] {
-          position: relative;
-          width: 20px;
-          height: 20px;
-          border: 1px solid #fff;
-          border-radius: 50%;
-          vertical-align: -2px;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          background: #fff;
-        }
-
-        input[type="radio"]:checked:before {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #000;
-          content: "";
-        }
-      }
-      label.type2 {
-        font-size: 18px;
-        span {
-          padding-left: 19px;
-        }
-        input[type="radio"] {
-          position: relative;
-          width: 20px;
-          height: 20px;
-          border: 1px solid #fff;
-          border-radius: 50%;
-          vertical-align: -2px;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          background: #fff;
-        }
-
-        input[type="radio"]:checked:before {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #000;
-          content: "";
-        }
-      }
-      label.email {
-        padding-right: 19px;
-      }
-    }
-
-    .contactbox.form-type {
-      @include mq($sm) {
-        flex-direction: row;
+      } // 共通フォームボックス
+      .contactbox {
+        display: flex;
         align-items: center;
-        gap: 0px;
+        font-size: 2rem;
+        padding-bottom: 49px;
+
+        @include mq($sm) {
+          flex-direction: column;
+          align-items: flex-start;
+          padding-bottom: 29px;
+        }
+
         .label_title {
-          width: 20%;
+          width: 170px;
         }
-      }
-    }
-    .form-Course {
-      position: relative;
-      select {
-        appearance: none;
-        background-color: #fff;
-        color: #333;
-        padding: 10px 20px;
-        width: 100%;
-        font-size: 18px;
-        cursor: pointer;
-        margin-left: 40px;
-        @include mq($sm) {
-          margin-left: 0px;
+
+        .input_text {
+          font-size: 1.6rem;
+          background: #fff;
+          width: 630px;
+          padding: 13px 0 12px 20px;
+          line-height: 1.563;
+
+          @include mq($sm) {
+            width: 100%;
+          }
+
+          &::placeholder {
+            color: #a0a0a0;
+          }
+        }
+
+        p {
+          padding-right: 133px;
+        }
+
+        // ラジオボタン type1
+        label.type1 {
+          padding-right: 56px;
+          font-size: 1.8rem;
+          display: inline-flex;
+          align-items: center;
+          cursor: pointer;
+
+          @include mq($sm) {
+            padding-right: 0;
+          }
+
+          span {
+            padding-left: 22px;
+
+            @include mq($sm) {
+              padding-left: 19px;
+              padding-right: 12px;
+            }
+          }
+
+          input[type="radio"] {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            vertical-align: -2px;
+            appearance: none;
+            background: #fff;
+          }
+
+          input[type="radio"]:checked:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #000;
+          }
+        }
+
+        // ラジオボタン type2
+        label.type2 {
+          font-size: 1.8rem;
+          display: inline-flex;
+          align-items: center;
+          cursor: pointer;
+
+          span {
+            padding-left: 19px;
+          }
+
+          input[type="radio"] {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            vertical-align: -2px;
+            appearance: none;
+            background: #fff;
+          }
+
+          input[type="radio"]:checked:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #000;
+          }
+        }
+
+        label.email {
+          padding-right: 19px;
         }
       }
 
-      &::after {
-        content: "";
-        position: absolute;
-        right: 20px;
-        top: 28%;
-        transform: translateY(-50%);
-        width: 19px;
-        height: 11px;
-        background-color: $main_color;
-        clip-path: polygon(0 0, 100% 0, 50% 100%);
-        pointer-events: none;
+      // ラジオボタンカーソル設定
+      .contactbox.form-type {
+        label.type1,
+        label.type2,
+        label.type1 span,
+        label.type2 span {
+          cursor: pointer;
+        }
+
         @include mq($sm) {
-          top: 52%;
+          flex-direction: row;
+          align-items: center;
+          gap: 0;
+
+          .label_title {
+            width: 20%;
+          }
         }
       }
-    }
-    label {
-      font-size: 20px;
-      line-height: 1.65;
-      padding-top: 3px;
-      @include mq($sm) {
-        padding-top: 0;
-      }
-    }
-    .form-Content {
-      padding: 10px 0 50px;
-      @include mq($sm) {
-        padding: 0px 0px 32px;
-      }
-      textarea {
-        background: #fff;
-        width: 800px;
-        height: 200px;
-        @include mq($sm) {
+
+      // セレクトボックス（コース）
+      .form-Course {
+        position: relative;
+
+        select {
+          appearance: none;
+          background-color: #fff;
+          color: #333;
+          padding: 10px 20px;
           width: 100%;
+          font-size: 1.8rem;
+          cursor: pointer;
+          margin-left: 40px;
+
+          @include mq($sm) {
+            margin-left: 0;
+          }
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          right: 20px;
+          top: 28%;
+          transform: translateY(-50%);
+          width: 19px;
+          height: 11px;
+          background-color: $main_color;
+          clip-path: polygon(0 0, 100% 0, 50% 100%);
+          pointer-events: none;
+
+          @include mq($sm) {
+            top: 52%;
+          }
         }
       }
-    }
-    .form-checkbox {
-      ul {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        row-gap: 6px;
-        padding-top: 6px;
+
+      // ラベル共通
+      label {
+        font-size: 2rem;
+        line-height: 1.65;
+        padding-top: 3px;
+
         @include mq($sm) {
-          grid-template-columns: repeat(2, 1fr);
-          grid-template-rows: repeat(4, auto);
-          row-gap: 3px;
-          padding-top: 6px;
+          padding-top: 0;
         }
-        li {
-          label.check {
-            display: flex;
-            align-items: center;
-            input {
-              display: none;
+      }
+
+      // 内容入力欄
+      .form-Content {
+        padding: 10px 0 50px;
+
+        @include mq($sm) {
+          padding: 0 0 32px;
+        }
+
+        textarea {
+          background: #fff;
+          width: 100%;
+          max-width: 800px;
+          height: 200px;
+          padding: 20px;
+
+          @include mq($sm) {
+            width: 100%;
+          }
+        }
+      }
+
+      // チェックボックス
+      .form-checkbox {
+        ul {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          row-gap: 6px;
+          padding-top: 6px;
+
+          @include mq($sm) {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(4, auto);
+            row-gap: 3px;
+            padding-top: 6px;
+          }
+
+          li {
+            label.check {
+              display: inline-flex;
+              align-items: center;
+              cursor: pointer;
+
+              input {
+                display: none;
+              }
+
+              .checkbox-style {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-right: 8px;
+                background: #fff;
+                position: relative;
+
+                @include mq($sm) {
+                  margin-right: 0;
+                }
+
+                &::before {
+                  content: "";
+                  position: absolute;
+                  top: 3px;
+                  left: 7px;
+                  width: 6px;
+                  height: 12px;
+                  border: solid #000;
+                  border-width: 0 2px 2px 0;
+                  transform: rotate(45deg);
+                  opacity: 0;
+                  transition: opacity 0.2s ease;
+                }
+              }
+
+              input:checked + .checkbox-style::before {
+                opacity: 1;
+              }
+
+              span.check_text {
+                font-size: 1.8rem;
+                padding-left: 14px;
+
+                @include mq($sm) {
+                  font-size: 1.6rem;
+                  padding-left: 10px;
+                }
+              }
             }
 
-            .checkbox-style {
-              display: inline-block;
-              width: 20px;
-              height: 20px;
-              margin-right: 8px;
-              position: relative;
-              background: #fff;
-              @include mq($sm) {
-                margin-right: 0;
-              }
-
-              &::before {
-                content: "";
-                position: absolute;
-                top: 3px;
-                left: 7px;
-                width: 6px;
-                height: 12px;
-                border: solid #000;
-                border-width: 0 2px 2px 0;
-                transform: rotate(45deg);
-                opacity: 0;
-                transition: opacity 0.2s ease;
-              }
-            }
-            input:checked + .checkbox-style::before {
-              opacity: 1;
-            }
-            span.check_text {
-              font-size: 18px;
-              padding-left: 14px;
-              @include mq($sm) {
-                font-size: 16px;
-                padding-left: 10px;
-              }
+            // チェックボックスのカーソル
+            label.check,
+            label.check .check_text,
+            label.check .checkbox-style {
+              cursor: pointer;
             }
           }
         }
       }
     }
-    .privacy {
+    div.privacy {
       padding: 46px 0 80px;
       @include mq($sm) {
         padding: 30px 0 51px;
       }
-      h2 {
-        font-size: 20px;
+      h3 {
+        font-size: 2rem;
         padding-bottom: 6px;
         @include mq($sm) {
           padding-bottom: 0px;
         }
       }
-      .privacy_box {
+      div.privacy_box {
         padding: 10px;
         background: #fff;
         @include mq($sm) {
           padding: 10px 10px 20px;
         }
-        .privacy_textbox {
+        div.privacy_textbox {
           overflow-y: scroll;
           height: 280px;
           padding: 30px 40px 30px 30px;
@@ -1138,52 +1335,51 @@ section.sec5 {
               height: 30px;
             }
           }
-          .privacy_text {
-            font-size: 18px;
+          div.privacy_text {
+            font-size: 1.8rem;
             line-height: 1.722;
             @include mq($sm) {
-              font-size: 16px;
+              font-size: 1.6rem;
               line-height: 2.063;
               font-weight: 500;
+            }
+            h3 {
+            }
+            p {
+            }
+            ul {
+              li {
+              }
+            }
+            address {
+              p {
+                a {
+                }
+              }
             }
           }
         }
       }
-    }
-    .btn {
-      text-align: center;
-      .btn2 {
-        padding: 7px 59px;
-        background: $main_color;
-        font-size: 20px;
-        color: #fff;
-        width: 300px;
-        transition: 0.5s;
-        border: 1px solid $main_color;
-        position: relative;
-        @include mq($sm) {
-          width: 315px;
-        }
-        &::before {
-          content: "";
-          display: none;
-          width: 24px;
-          height: 34px;
-          background-image: url(../img/icon/finger.svg);
-          background-repeat: no-repeat;
-          background-size: cover;
-          vertical-align: middle;
-          position: absolute;
-          top: 110%;
-          right: 5px;
-          transform: translate(0, -50%);
+      div.btn {
+        text-align: center;
+        padding-top: 80px;
+        button.btn2 {
+          background: $main_color;
+          font-size: 2rem;
+          color: #fff;
+          height: 50px;
+          width: 100%; // ← 親幅に合わせる
+          max-width: 300px; // ← 大きい画面では300pxまで
           transition: 0.5s;
-        }
-        &:hover {
-          color: $main_color;
-          background-color: #fff;
-          &::before {
-            display: inline-block;
+          border: 1px solid $main_color;
+          @include mq($sm) {
+          }
+          &:hover {
+            color: $main_color;
+            background-color: #fff;
+            &::before {
+              display: inline-block;
+            }
           }
         }
       }
@@ -1191,35 +1387,48 @@ section.sec5 {
   }
 }
 
-// ------------------------------------フッター-------------------------------------//
-
 footer {
   text-align: center;
-  background-image: url(../img/section-bg.jpg);
+  background-image: url(../img/footer-bg.jpg);
+  background-size: cover;
   background-repeat: no-repeat;
-  .inner {
+  height: 338px;
+
+  div.inner {
     max-width: 722px;
-    .footer_container {
-      padding: 80px 0 82px;
+
+    div.footer_container {
+      padding: 80px 0 67px;
+
       @include mq($sm) {
         padding: 50px 30px;
       }
-      h1.footer_ {
-        font-size: 20px;
+
+      p.footer_ {
+        font-size: 2rem;
         border-bottom: 1px solid #000;
         padding-bottom: 23px;
+
         @include mq($sm) {
           padding-bottom: 17px;
         }
+
         a {
-          padding-bottom: 28px;
+          transition: 0.3s;
+
+          &:hover {
+            opacity: 0.6;
+          }
         }
       }
+
       nav.footer_nav {
-        font-size: 20px;
+        font-size: 2rem;
+
         @include mq($sm) {
-          font-size: 18px;
+          font-size: 1.8rem;
         }
+
         ul.footer_list1,
         ul.footer_list2,
         ul.footer_list3 {
@@ -1230,6 +1439,7 @@ footer {
             grid-template-columns: repeat(3, auto);
             justify-content: center;
             text-align: center;
+
             a {
               display: block;
               width: 100%;
@@ -1240,18 +1450,15 @@ footer {
         ul.footer_list1 {
           @include mq($sm) {
             padding-top: 20px;
-            gap: 24px;
+            gap: 20px;
           }
         }
 
         ul.footer_list2 {
           @include mq($sm) {
-            display: flex;
-            justify-content: center;
             padding-top: 5px;
-            li {
-              width: 30.33%;
-            }
+            gap: 20px;
+            padding-left: 20px;
           }
         }
 
@@ -1260,41 +1467,66 @@ footer {
             display: flex;
             justify-content: center;
             padding-top: 5px;
+
             li {
               width: 100%;
             }
           }
         }
-        ul.footer_list {
-          &.pc_only {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            padding-top: 30px;
-            line-height: 1.833;
-            font-size: 18px;
-          }
-          &.sp_only {
-            display: none;
-          }
+
+        ul.footer_list.pc_only {
+          display: flex;
+          gap: 24px;
+          justify-content: center;
+          padding: 30px 0 11px;
+          line-height: 1.833;
+          font-size: 1.8rem;
+
           @include mq($sm) {
             &.pc_only {
               display: none;
             }
           }
+
+          li.footer_item {
+            a.scroll-link {
+              transition: 0.3s;
+
+              &:hover {
+                opacity: 0.6;
+              }
+            }
+          }
         }
+
+        ul.footer_list1.sp_only,
+        ul.footer_list2.sp_only,
+        ul.footer_list3.sp_only {
+          li.footer_item {
+            a.scroll-link {
+              transition: 0.3s;
+
+              &:hover {
+                opacity: 0.6;
+              }
+            }
+          }
+        }
+
         ul.footer_sns {
           display: flex;
-          gap: 30px;
+          align-items: center;
           justify-content: center;
-          padding-top: 17px;
-          @include mq($sm) {
-            padding-top: 22px;
-          }
           li {
             a {
+              transition: 0.3s;
+
+              &:hover {
+                opacity: 0.6;
+              }
+
               img {
-                width: 28px;
+                padding: 15px;
               }
             }
           }
@@ -1302,18 +1534,40 @@ footer {
       }
     }
   }
-  .copyright {
+
+  div.copyright {
     background: $main_color;
+
     p {
       padding: 30px 0;
       color: #fff;
-      font-size: 21px;
+      font-size: 2.1rem;
       line-height: 1.65;
       font-family: "EB Garamond", serif;
+
       @include mq($sm) {
         padding: 21px 0 23px;
         line-height: 1.4;
       }
+    }
+  }
+}
+
+.scroll-btn {
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  @include mq($sm) {
+    right: 20px;
+  }
+
+  .to-top {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 68px;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.6;
     }
   }
 }

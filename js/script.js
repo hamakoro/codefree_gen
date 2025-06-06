@@ -6,26 +6,35 @@ document.querySelector('.toggle_menu').addEventListener('click', function () {
   document.querySelector('header').classList.toggle('open');
 });
 
-// 選択状態の切り替え
+// 選択状態の切り替え & メニュー閉じる処理を追加
 document.querySelectorAll('.header_item a').forEach(link => {
   link.addEventListener('click', function () {
+    // 選択状態切り替え
     document.querySelectorAll('.header_item a').forEach(l => l.classList.remove('selected'));
     this.classList.add('selected');
+
+    // ハンバーガーメニューを閉じる
+    document.querySelector('.toggle_menu').classList.remove('open');
+    document.querySelector('header').classList.remove('open');
   });
 });
 
+
+
 //ファーストビュースライダー
-$(".fv").slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 3000,
-  speed: 6000, //画像が切り替わるまでの時間 今回の場合は難病で1枚分動くか
-  arrows: false, //左右に出る矢印を非表示
+$(function(){
+  $(".fv").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 3000,
+    arrows: false,
+  });
 });
 
 
-//モーダル
+// モーダル関連の要素
 const modal = document.getElementById('modal');
 const modalImage = document.getElementById('modalImage');
 const modalText1 = document.getElementById('modalText1');
@@ -34,58 +43,91 @@ const closeBtn = document.getElementById('closeModal');
 
 const modalItems = document.querySelectorAll('.modal_item');
 
+// body要素を取得しておく
+const body = document.body;
+
 modalItems.forEach(item => {
-  item.addEventListener('click', () => {
-    // HTML内のdata属性から取得
-    const fullSrc = item.getAttribute('data-full');
-    const title = item.getAttribute('data-title');
-    const price = item.getAttribute('data-price');
+    item.addEventListener('click', () => {
+        // HTML内のdata属性から取得
+        const fullSrc = item.getAttribute('data-full');
+        const title = item.getAttribute('data-title');
+        const price = item.getAttribute('data-price');
 
-    // モーダルにセット
-    modalImage.src = fullSrc;
-    modalImage.alt = title;
-    modalText1.textContent = title;
-    modalText2.textContent = price;
+        // モーダルにセット
+        modalImage.src = fullSrc;
+        modalImage.alt = title;
+        modalText1.textContent = title;
+        modalText2.textContent = price;
 
-    // モーダルを表示
-    modal.classList.add('active');
-  });
+        // モーダルを表示
+        modal.classList.add('active');
+
+        // ★追加: モーダル表示時にbodyにno-scrollクラスを追加
+        body.classList.add('no-scroll');
+    });
 });
 
 // 閉じるボタン
 closeBtn.addEventListener('click', () => {
-  modal.classList.remove('active');
+    modal.classList.remove('active');
+    // ★追加: モーダル非表示時にbodyからno-scrollクラスを削除
+    body.classList.remove('no-scroll');
 });
 
 // 背景クリックでも閉じる
 modal.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.classList.remove('active');
-  }
+    if (e.target === modal) {
+        modal.classList.remove('active');
+        // ★追加: モーダル非表示時にbodyからno-scrollクラスを削除
+        body.classList.remove('no-scroll');
+    }
 });
 
 $("a.scroll-link").on("click", function (e) {
-  e.preventDefault();
+  e.preventDefault(); // デフォルトのリンク動作をキャンセル
+
+  // 現在のウィンドウ幅を取得
+  const windowWidth = $(window).width();
+
+  // PCとスマホのブレイクポイントを定義（例: 767px以下をスマホ、768px以上をPC）
+  const breakpoint = 767;
+
+  let headerHeight; // ヘッダーの高さ（スクロールオフセット）を格納する変数
+
+  if (windowWidth > breakpoint) {
+    // PCの場合（768px以上）
+    headerHeight = 80; // PCのオフセットは80px
+  } else {
+    // スマホの場合（767px以下）
+    headerHeight = 50; // スマホのオフセットは50px
+  }
+
+  // リンクのhref属性からターゲットとなる要素を取得
   var target = $($(this).attr("href"));
+
+  // ターゲット要素が存在する場合のみ処理を実行
   if (target.length) {
     $("html, body").animate(
       {
-        scrollTop: target.offset().top,
+        // ターゲット要素のトップ位置からheaderHeightを引いてスクロール
+        scrollTop: target.offset().top - headerHeight,
       },
-      300
-    ); // スクロール時間（ミリ秒）
+      300 // スクロールアニメーションの速度（ミリ秒）
+    );
   }
 });
 
 //ヘッダー背景
 $(window).on("scroll", function () {
   const aboutOffset = $("#about").offset().top;
+  const triggerPosition = aboutOffset - 130;
+
   const scroll = $(window).scrollTop();
 
-  if (scroll >= aboutOffset) {
-    $(".header_container").addClass("scrolled");
+  if (scroll >= triggerPosition) {
+    $("header").addClass("scrolled");
   } else {
-    $(".header_container").removeClass("scrolled");
+    $("header").removeClass("scrolled");
   }
 });
 
@@ -102,43 +144,35 @@ $(window).on("scroll", function () {
   });
 });
 
-
-//トップに戻るボタン
-let isBackClicked = false;
+// トップに戻るボタン
+// トップに戻るボタン
+let isToTopVisible = false; // 現在の表示状態を記録
 
 $(window).on('scroll', function () {
   const scrollY = $(this).scrollTop();
-  const footerOffset = $('footer').offset().top;
-  const windowHeight = $(window).height();
-  const scrollBottom = scrollY + windowHeight;
+  const fvHeight = $('.fv_sec1').outerHeight(); // ファーストビューセクションの高さ
 
-  if (isBackClicked) {
-    // トップに戻ったあと：フッターに来たときだけ表示
-    if (scrollBottom >= footerOffset) {
-      $('.to-top').fadeIn();
-    } else {
-      $('.to-top').fadeOut();
-    }
-  } else {
-    // 通常時：FVを超えたら表示
-    const fvHeight = $('.fv_sec1').outerHeight();
-    if (scrollY > fvHeight) {
-      $('.to-top').fadeIn();
-    } else {
-      $('.to-top').fadeOut();
-    }
+  // スクロール位置がファーストビューの高さより大きければ表示、そうでなければ非表示
+  const shouldShow = scrollY > fvHeight;
+
+  if (shouldShow && !isToTopVisible) {
+    $('.to-top').stop(true, true).fadeIn(400);
+    isToTopVisible = true;
+  } else if (!shouldShow && isToTopVisible) {
+    $('.to-top').stop(true, true).fadeOut(400);
+    isToTopVisible = false;
   }
 });
 
 $('.to-top').on('click', function (e) {
   e.preventDefault();
-  isBackClicked = true; // フラグON
-  $(this).fadeOut();
+  // isBackClicked のフラグは不要になるため削除
+  isToTopVisible = false; // クリックで隠すのでfalseにする
+  $(this).fadeOut(400); // ボタン自体を隠す
   $('html, body').animate({ scrollTop: 0 }, 1200, function () {
+    // スクロール完了後に再度スクロールイベントをトリガーし、表示条件を再評価させる
     $(window).trigger('scroll');
   });
 });
-
-
 
 
