@@ -796,6 +796,10 @@ section#news.sec3 {
               a {
                 display: flex;
                 gap: 5.9rem;
+                transition: all 0.3s ease;
+                &:hover{
+                  opacity: 0.6;
+                }
                 @media screen and (max-width: 942px) {
                   gap: 2rem;
                 }
@@ -918,11 +922,11 @@ section#access.sec4 {
             background-color: $main_color;
             right: 0;
             top: 56.9%;
-            padding-left: 22rem;
-            padding-top: 4.9rem;
             color: #fff;
             line-height: 1.563;
             z-index: -1;
+            padding-block: 4.9rem 4.2rem;
+            padding-inline: 22rem 0.5rem;
             @media screen and (max-width: 942px) {
               padding-left: 17.5rem;
               padding-top: 3rem;
@@ -963,7 +967,6 @@ section#access.sec4 {
               }
             }
             p.store_mail {
-              padding-bottom: 4.2rem;
               font-size: 1.6rem;
               font-family: "Noto Serif JP", serif;
               @include mq($sm) {
@@ -1043,7 +1046,7 @@ section#contact.sec5 {
             width: 100%;
           }
           &::placeholder {
-            color: #A0A0A0;
+            color: #a0a0a0;
           }
         }
 
