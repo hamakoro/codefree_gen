@@ -83,7 +83,7 @@ modal.addEventListener("click", (e) => {
 });
 
 //スクロールリンク
-$("a.scroll-link").on("click", function (e) {
+$("a.scroll-link[href^='#']").on("click", function (e) {
   e.preventDefault();
 
   const windowWidth = $(window).width();

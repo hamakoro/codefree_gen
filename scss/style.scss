@@ -64,7 +64,8 @@ img {
       color: $main_color;
       font-family: "Zen Old Mincho";
       margin-bottom: 0.6rem;
-      @include mq($sm) {
+      @media screen and (max-width: 345px) {
+        font-size: 2.5rem;
       }
     }
     p {
@@ -75,6 +76,9 @@ img {
       font-family: "EB Garamond", serif;
       @include mq($sm) {
         letter-spacing: 0.4rem;
+        @media screen and (max-width: 345px) {
+          font-size: 1.8rem;
+        }
       }
     }
   }
@@ -107,7 +111,9 @@ header {
   text-align: center;
   transition: background-color 0.3s ease;
   background-color: transparent; // 初期状態の背景色
-
+  @include mq($sm) {
+    height: 5rem;
+  }
   &.scrolled {
     background-color: rgb(83, 7, 0); // スクロール後の背景色
   }
@@ -363,14 +369,13 @@ section.fv_sec1 {
   }
   div.fv_title {
     position: absolute;
-    top: 34rem;
-    left: 6.2rem;
+    top: 42.7%;
+    left: 5.8%;
     @include mq($sm) {
-      top: 24rem;
-      left: 7.6rem;
+      top: 40%;
+      left: 20%;
       @media screen and (max-width: 345px) {
-        top: 20rem;
-        left: 5rem;
+        left: 10%;
       }
     }
     h2 {
@@ -669,12 +674,6 @@ section#course.sec2 {
   }
   div.inner {
     div.fade-in-up {
-      div.section_title {
-        h2 {
-        }
-        p {
-        }
-      }
       div.sec2_modal {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -687,12 +686,6 @@ section#course.sec2 {
         }
         div.modal_item {
           cursor: pointer;
-          picture {
-            source {
-            }
-            img.modal {
-            }
-          }
           p.text1 {
             text-align: center;
             padding-top: 1.9rem;
@@ -770,12 +763,6 @@ section#news.sec3 {
   }
   div.inner {
     div.fade-in-up {
-      div.section_title {
-        h2 {
-        }
-        p {
-        }
-      }
       div.news_card_box {
         display: flex;
         gap: 6rem;
@@ -898,12 +885,6 @@ section#access.sec4 {
   }
   div.inner {
     div.fade-in-up {
-      div.section_title {
-        h2 {
-        }
-        p {
-        }
-      }
       div.sec4_access {
         div.access {
           position: relative;
@@ -990,8 +971,6 @@ section#access.sec4 {
                 font-size: 1.6rem;
                 line-height: 1.316;
               }
-              a {
-              }
             }
           }
         }
@@ -1026,6 +1005,9 @@ section#contact.sec5 {
         @include mq($sm) {
           padding: 3.5rem 0 3rem;
           line-height: 1.65;
+          @media screen and (max-width: 345px) {
+            font-size: 1.8rem;
+          }
         }
       } // 共通フォームボックス
       .contactbox {
@@ -1054,18 +1036,14 @@ section#contact.sec5 {
           font-size: 1.6rem;
           background: #fff;
           width: 78.8%;
-          padding: 1.3rem 0 1.2rem 20rem;
+          padding: 1.3rem 0 1.2rem 2rem;
           line-height: 1.563;
 
           @include mq($sm) {
             width: 100%;
-            padding: 1.4rem 0 1.2rem 2rem;
-          }
-          @media screen and (max-width: 345px) {
-            padding: 1.3rem 0 1.2rem 1rem;
           }
           &::placeholder {
-            color: #a0a0a0;
+            color: #A0A0A0;
           }
         }
 
@@ -1229,6 +1207,9 @@ section#contact.sec5 {
 
         @include mq($sm) {
           padding-top: 0;
+          @media screen and (max-width: 345px) {
+            font-size: 1.7rem;
+          }
         }
       }
 
@@ -1315,7 +1296,10 @@ section#contact.sec5 {
 
                 @include mq($sm) {
                   font-size: 1.6rem;
-                  padding-left: 10px;
+                  padding-left: 1rem;
+                  @media screen and (max-width: 345px) {
+                    padding-left: 0.5rem;
+                  }
                 }
               }
             }
@@ -1373,20 +1357,6 @@ section#contact.sec5 {
               font-size: 1.6rem;
               line-height: 2.063;
               font-weight: 500;
-            }
-            h3 {
-            }
-            p {
-            }
-            ul {
-              li {
-              }
-            }
-            address {
-              p {
-                a {
-                }
-              }
             }
           }
         }
