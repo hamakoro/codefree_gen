@@ -1031,9 +1031,9 @@ section#contact.sec5 {
         @include mq($sm) {
           padding: 3.5rem 0 3rem;
           line-height: 1.65;
-          @media screen and (max-width: 345px) {
-            font-size: 1.8rem;
-          }
+        }
+        @media screen and (max-width: 374px) {
+          font-size: 1.8rem;
         }
       } // 共通フォームボックス
       .contactbox {
@@ -1098,8 +1098,9 @@ section#contact.sec5 {
             @include mq($sm) {
               padding-left: 1.9rem;
               padding-right: 1.2rem;
-              @media screen and (max-width: 345px) {
+              @media screen and (max-width: 374px) {
                 padding-left: 0rem;
+                font-size: 1.6rem;
               }
             }
           }
@@ -1238,7 +1239,7 @@ section#contact.sec5 {
 
         @include mq($sm) {
           padding-top: 0;
-          @media screen and (max-width: 345px) {
+          @media screen and (max-width: 374px) {
             font-size: 1.7rem;
           }
         }
