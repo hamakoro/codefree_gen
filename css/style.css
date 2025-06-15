@@ -1624,7 +1624,7 @@ section#contact.sec5 div.inner div.fade-in-up p.contact_text {
     line-height: 1.65;
   }
 }
-@media screen and (max-width: 767px) and (max-width: 345px) {
+@media screen and (max-width: 374px) {
   section#contact.sec5 div.inner div.fade-in-up p.contact_text {
     font-size: 1.8rem;
   }
@@ -1728,9 +1728,10 @@ section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 span {
     padding-right: 1.2rem;
   }
 }
-@media screen and (max-width: 767px) and (max-width: 345px) {
+@media screen and (max-width: 767px) and (max-width: 374px) {
   section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 span {
     padding-left: 0rem;
+    font-size: 1.6rem;
   }
 }
 section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 input[type=radio] {
@@ -1872,7 +1873,7 @@ section#contact.sec5 div.inner div.fade-in-up label {
     padding-top: 0;
   }
 }
-@media screen and (max-width: 767px) and (max-width: 345px) {
+@media screen and (max-width: 767px) and (max-width: 374px) {
   section#contact.sec5 div.inner div.fade-in-up label {
     font-size: 1.7rem;
   }
