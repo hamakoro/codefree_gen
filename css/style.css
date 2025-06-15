@@ -418,7 +418,10 @@ body .pc_only {
 body .sp_only {
   display: none;
 }
-@media screen and (min-width: 767px) and (max-width: 813px) {
+body .sm_only {
+  display: none;
+}
+@media screen and (min-width: 768px) and (max-width: 950px) {
   body .tb_only {
     display: none; /* この範囲で改行を無効にする */
   }
@@ -462,7 +465,7 @@ img {
 .inner .section_title p {
   font-size: 2rem;
   font-weight: 500;
-  letter-spacing: 0.6rem;
+  letter-spacing: 0.4rem;
   line-height: 1.65;
   font-family: "EB Garamond", serif;
 }
@@ -532,7 +535,6 @@ header.scrolled {
           justify-content: space-between;
   color: #fff;
   white-space: nowrap;
-  padding-top: 0.5rem;
 }
 @media screen and (max-width: 1000px) {
   .header_container {
@@ -832,7 +834,7 @@ section.fv_sec1 div.fv_title {
 }
 @media screen and (max-width: 767px) and (max-width: 345px) {
   section.fv_sec1 div.fv_title {
-    left: 10%;
+    left: 15%;
   }
 }
 section.fv_sec1 div.fv_title h2 {
@@ -858,11 +860,14 @@ section#about.fv_sec2 {
   background-image: url(../img/section-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 13.4rem 0 12rem;
+  padding: 13.4rem 0 11.3rem;
 }
 @media screen and (max-width: 767px) {
   section#about.fv_sec2 {
     padding: 6rem 0 5.6rem;
+    background-image: url(../img/sp/section-sp_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 section#about.fv_sec2 div.inner {
@@ -957,94 +962,74 @@ section#recommend.sec1 {
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 {
-    padding: 5rem 0 0;
+    padding: 5rem 0 0.5rem;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .section_title p {
+section#recommend.sec1 div.inner div.fade-in-up div.section_title p {
   padding-bottom: 6.1rem;
+  letter-spacing: 0.6rem;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .section_title p {
+  section#recommend.sec1 div.inner div.fade-in-up div.section_title p {
+    letter-spacing: 0.4rem;
     padding-bottom: 3.8rem;
   }
 }
-section#recommend.sec1 .inner .fade-in-up div.section_title p {
-  letter-spacing: 0.375rem;
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
+  padding-bottom: 13rem;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up div.section_title p {
-    letter-spacing: 0.4rem;
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
+    padding-bottom: 5rem;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend {
   position: relative;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 0.6rem;
-    padding-bottom: 5rem;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img {
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_img {
   max-width: 65.3%;
   margin: 0;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_img {
     max-width: 100%;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img p.text13 {
-  padding-block: 2rem 13rem;
-}
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img p.text13 {
-    padding-block: 2rem 6rem;
-  }
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_img p {
+  padding-top: 2rem;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img p.text13 {
-    padding: 0.1rem 0 0 0;
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_img p {
+    padding: 0.1rem 0 0.5rem 0;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img p.text20 {
-  padding-block: 2rem 13rem;
-}
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img p.text20 {
-    padding-block: 2rem 6rem;
-  }
-}
-@media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_img p.text20 {
-    padding-block: 0.4rem 0rem;
-  }
-}
-section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title {
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title {
   position: absolute;
   background-color: #530700;
   width: 54.35%;
   height: auto;
   color: #fff;
-  top: 30%;
+  top: 43%;
   right: 0;
   z-index: -1;
-  padding-left: 24%;
+  padding: 5rem 0.5rem 4.2rem 22rem;
 }
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title {
-    padding-left: 20%;
+@media screen and (max-width: 865px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title {
+    padding: 4.5rem 0.5rem 3rem 16.5rem;
   }
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title {
     position: static;
     width: 100%;
     height: auto;
@@ -1052,42 +1037,40 @@ section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title {
     top: 0px;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title h2 {
+@media screen and (max-width: 340px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title {
+    padding: 1.5rem 0.5rem 1rem 1rem;
+  }
+}
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title h3 {
   font-size: 2.5rem;
   font-weight: 600;
-  padding-top: 5rem;
   line-height: 1.32;
 }
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title h2 {
-    padding-top: 3rem;
-    font-size: 2rem;
+@media screen and (max-width: 865px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title h3 {
+    font-size: 2.2rem;
   }
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title h2 {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title h3 {
     font-size: 2rem;
     font-weight: 600;
     padding-top: 0px;
     line-height: 1.32;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title p.recommend_textbox {
-  padding-block: 2rem 4.2rem;
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title p.recommend_textbox {
+  padding-top: 1.7rem;
   line-height: 1.563;
   font-weight: 400;
 }
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title p.recommend_textbox {
-    padding-block: 1.7rem 3rem;
-  }
-}
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend .recommend_title p.recommend_textbox {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title p.recommend_textbox {
     padding-block: 0.8rem 0rem;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse {
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1098,58 +1081,52 @@ section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse {
   position: relative;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse {
     position: static;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 6px;
-    padding-bottom: 5rem;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_img {
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_img {
   max-width: 65.3%;
   margin: 0;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_img {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_img {
     max-width: 100%;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_img p.text20 {
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_img p {
   text-align: right;
-  padding-block: 2rem 12.5rem;
-}
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_img p.text20 {
-    padding-block: 2rem 6rem;
-  }
+  padding-top: 2rem;
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_img p.text20 {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_img p {
     text-align: left;
     padding: 4px 0 0 0;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title {
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title {
   position: absolute;
   background-color: #530700;
   width: 54%;
   height: auto;
   color: #fff;
-  top: 31%;
+  top: 42%;
   left: 0;
   z-index: -1;
-  padding-left: 4.5%;
+  padding: 5rem 18.5rem 4.2rem 4rem;
 }
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title {
-    padding-left: 1%;
+@media screen and (max-width: 898px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title {
+    padding: 4.5rem 12.5rem 3rem 2rem;
   }
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title {
     position: static;
     width: 100%;
     height: auto;
@@ -1160,41 +1137,38 @@ section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_tit
     padding: 2rem 2rem 1rem 2rem;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title h2 {
+@media screen and (max-width: 340px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title {
+    padding: 1.5rem 0.5rem 1rem 1rem;
+  }
+}
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title h3 {
   font-size: 2.5rem;
   font-weight: 600;
-  padding-right: 22rem;
-  padding-top: 5rem;
   line-height: 1.32;
   white-space: nowrap;
 }
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title h2 {
-    padding-top: 3rem;
-    font-size: 2rem;
+@media screen and (max-width: 865px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title h3 {
+    font-size: 2.2rem;
   }
 }
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title h2 {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title h3 {
     font-size: 2rem;
     padding-right: 0px;
     padding-top: 0px;
     line-height: 1.32;
   }
 }
-section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title p.recommend_textbox {
-  padding-block: 1.7rem 4.2rem;
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title p.recommend_textbox {
+  padding-top: 1.7rem;
   line-height: 1.563;
   font-weight: 400;
 }
-@media screen and (max-width: 942px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title p.recommend_textbox {
-    padding-block: 1.7rem 3rem;
-  }
-}
 @media screen and (max-width: 767px) {
-  section#recommend.sec1 .inner .fade-in-up .recommend_list_reverse .recommend_title p.recommend_textbox {
-    padding-block: 1rem 0rem;
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title p.recommend_textbox {
+    padding-top: 1rem;
   }
 }
 
@@ -1210,6 +1184,9 @@ section#course.sec2 {
 @media screen and (max-width: 767px) {
   section#course.sec2 {
     padding: 5rem 0px 6rem;
+    background-image: url(../img/sp/course-sp-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 section#course.sec2 div.inner div.fade-in-up div.sec2_modal {
@@ -1227,6 +1204,13 @@ section#course.sec2 div.inner div.fade-in-up div.sec2_modal {
 }
 section#course.sec2 div.inner div.fade-in-up div.sec2_modal div.modal_item {
   cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+section#course.sec2 div.inner div.fade-in-up div.sec2_modal div.modal_item:hover {
+  opacity: 0.7;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
 }
 section#course.sec2 div.inner div.fade-in-up div.sec2_modal div.modal_item p.text1 {
   text-align: center;
@@ -1478,6 +1462,9 @@ section#access.sec4 {
 @media screen and (max-width: 767px) {
   section#access.sec4 {
     padding: 4.9rem 0px 3.5rem;
+    background-image: url(../img/sp/access-sp-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access {
@@ -1560,21 +1547,37 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.stor
   font-family: "Noto Serif JP", serif;
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel {
-  padding-bottom: 1.9rem;
+  padding-bottom: 1.4rem;
   font-family: "Noto Serif JP", serif;
+  pointer-events: auto;
+  font-size: 1.6rem;
 }
 @media screen and (max-width: 767px) {
   section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel {
     padding-bottom: 1rem;
   }
 }
-section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel a.tel_link span {
+section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel a.tel_link {
   font-size: 2.5rem;
   line-height: 1;
+  display: inline-block;
+}
+@media screen and (max-width: 767px) {
+  section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel a.tel_link {
+    pointer-events: auto;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    cursor: pointer;
+  }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_mail {
   font-size: 1.6rem;
   font-family: "Noto Serif JP", serif;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_mail:hover {
+  opacity: 0.7;
 }
 @media screen and (max-width: 767px) {
   section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_mail {
@@ -1593,7 +1596,7 @@ section#contact.sec5 {
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 {
-    padding: 5rem 3rem 4.8rem;
+    padding: 5.5rem 3rem 4.8rem;
   }
 }
 @media screen and (max-width: 767px) and (max-width: 345px) {
@@ -1690,8 +1693,18 @@ section#contact.sec5 div.inner div.fade-in-up .contactbox .input_text::placehold
 section#contact.sec5 div.inner div.fade-in-up .contactbox p {
   padding-right: 13.3rem;
 }
+section#contact.sec5 div.inner div.fade-in-up .contactbox .radio_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 56px;
+}
+@media screen and (max-width: 767px) {
+  section#contact.sec5 div.inner div.fade-in-up .contactbox .radio_btn {
+    gap: 0px;
+  }
+}
 section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 {
-  padding-right: 5.6rem;
   font-size: 1.8rem;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1699,7 +1712,6 @@ section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  cursor: pointer;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 {
@@ -2061,6 +2073,13 @@ footer {
   background-repeat: no-repeat;
   height: 338px;
 }
+@media screen and (max-width: 767px) {
+  footer {
+    background-image: url(../img/sp/footer-sp-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
 footer div.inner {
   max-width: 722px;
   padding-inline: 0rem;
@@ -2246,7 +2265,6 @@ footer div.copyright p {
   width: 68px;
   border-radius: 50%;
   cursor: pointer;
-  opacity: 1;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
   outline: none;

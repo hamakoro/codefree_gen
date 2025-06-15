@@ -131,72 +131,80 @@
               <p>Recommendation</p>
             </div>
             <div class="fade-in-up">
-              <div class="recommend">
-                <div class="recommend_img">
-                  <picture>
-                    <source
-                      srcset="img/sp/recommend1-sp.jpg"
-                      media="(max-width: 767px)"
-                    />
-                    <img src="img/recommend1.jpg" alt="食材" loading="lazy" />
-                  </picture>
-                  <p class="text13">厳選した食材</p>
-                </div>
-                <div class="recommend_title">
-                  <h2>日本全国<br class="pc_only" />旬の素材を使用</h2>
-                  <p class="recommend_textbox">
-                    全国から厳選直送した<br />
-                    旬の素材を使用した料理を<br />
-                    楽しんでいただけます
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="fade-in-up">
-              <div class="recommend_list_reverse">
-                <div class="recommend_img">
-                  <picture>
-                    <source
-                      srcset="img/sp/recommend2-sp.jpg"
-                      media="(max-width: 767px)"
-                    />
-                    <img src="img/recommend2.jpg" alt="お酒" loading="lazy" />
-                  </picture>
-                  <p class="text20">こだわりの徳利とおちょこ</p>
-                </div>
-                <div class="recommend_title">
-                  <h2>日本酒ソムリエが<br />提案するペアリング</h2>
-                  <p class="recommend_textbox">
-                    10,000種類以上ある日本酒から<br />
-                    ソムリエがお料理に合わせて<br />
-                    ペアリングを提案いたします。
-                  </p>
+              <div class="recommend_container">
+                <div class="recommend">
+                  <div class="recommend_img">
+                    <picture>
+                      <source
+                        srcset="img/sp/recommend1-sp.jpg"
+                        media="(max-width: 767px)"
+                      />
+                      <img src="img/recommend1.jpg" alt="食材" loading="lazy" />
+                    </picture>
+                    <p>厳選した食材</p>
+                  </div>
+                  <div class="recommend_title">
+                    <h3>日本全国<br class="pc_only" />旬の素材を使用</h3>
+                    <p class="recommend_textbox">
+                      全国から厳選直送した<br />
+                      旬の素材を使用した料理を<br />
+                      楽しんでいただけます
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="fade-in-up">
-              <div class="recommend">
-                <div class="recommend_img">
-                  <picture>
-                    <source
-                      srcset="img/sp/recommend3-sp.jpg"
-                      media="(max-width: 767px)"
-                    />
-                    <img
-                      src="img/recommend3.jpg"
-                      alt="食事風景"
-                      loading="lazy"
-                    />
-                  </picture>
-                  <p class="text20">２名席【桜】</p>
+              <div class="recommend_container">
+                <div class="recommend_list_reverse">
+                  <div class="recommend_img">
+                    <picture>
+                      <source
+                        srcset="img/sp/recommend2-sp.jpg"
+                        media="(max-width: 767px)"
+                      />
+                      <img src="img/recommend2.jpg" alt="お酒" loading="lazy" />
+                    </picture>
+                    <p>こだわりの徳利とおちょこ</p>
+                  </div>
+                  <div class="recommend_title">
+                    <h3>日本酒ソムリエが<br />提案するペアリング</h3>
+                    <p class="recommend_textbox">
+                      10,000種類以上ある日本酒から<br>
+                      ソムリエがお料理に合わせて<br>
+                      ペアリングを提案いたします。
+                    </p>
+                  </div>
                 </div>
-                <div class="recommend_title">
-                  <h2>季節を感じるお部屋で<br />特別な空間を</h2>
-                  <p class="recommend_textbox">
-                    四季折々の植物が楽しめるお部屋で<br class="tb_only" />
-                    ワンランク上の特別な空間を<br class="tb_only" />
-                    ご提供いたします。
-                  </p>
+              </div>
+            </div>
+            <div class="fade-in-up">
+              <div class="recommend_container">
+                <div class="recommend">
+                  <div class="recommend_img">
+                    <picture>
+                      <source
+                        srcset="img/sp/recommend3-sp.jpg"
+                        media="(max-width: 767px)"
+                      />
+                      <img
+                        src="img/recommend3.jpg"
+                        alt="食事風景"
+                        loading="lazy"
+                      />
+                    </picture>
+                    <p>２名席【桜】</p>
+                  </div>
+                  <div class="recommend_title">
+                    <h3>
+                      季節を感じるお部屋で<br class="tb_only">特別な空間を
+                    </h3>
+                    <p class="recommend_textbox">
+                      四季折々の植物が楽しめるお部屋で<br class="tb_only sm_only">
+                      ワンランク上の特別な空間を<br class="tb_only sm_only">
+                      ご提供いたします。
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -397,9 +405,7 @@
                   </address>
                   <p class="store_tel">
                     TEL
-                    <a class="tel_link" href="tel:+00000000000"
-                      ><span>000-000-0000</span></a
-                    >
+                    <a href="tel:+0000000000" class="tel_link">000-000-0000</a>
                   </p>
                   <p class="store_mail">
                     Mail　<a href="mailto:info@example.com">info@example.com</a>
@@ -436,16 +442,20 @@
               </div>
               <div class="contactbox form-type">
                 <label class="label_title">種別</label>
-                <label class="type1"
-                  ><input type="radio" name="type" value="ご予約" /><span
-                    >ご予約</span
-                  ></label
-                >
-                <label class="type2"
-                  ><input type="radio" name="type" value="お問い合わせ" /><span
-                    >お問い合わせ</span
-                  ></label
-                >
+                <div class="radio_btn">
+                  <label class="type1"
+                    ><input type="radio" name="type" value="ご予約" /><span
+                      >ご予約</span
+                    ></label
+                  >
+                  <label class="type2"
+                    ><input
+                      type="radio"
+                      name="type"
+                      value="お問い合わせ"
+                    /><span>お問い合わせ</span></label
+                  >
+                </div>
               </div>
               <div class="contactbox form-mail">
                 <label class="label_title" for="email">メールアドレス *</label>
@@ -585,7 +595,6 @@
                         <li>
                           ・その他お客さまから寄せられたご意見、ご要望にお応えするため、及び弊社が取扱う商品、サービス等の向上を図るため
                         </li>
-                        <br />
                       </ul>
 
                       <h4>保有個人データ利用目的(法24条1項2号)</h4>
@@ -605,7 +614,6 @@
                         </li>
                         <li>・必要に応じてお客様に連絡を行うため</li>
                         <li>・会計監査上の確認作業を行うため</li>
-                        <br />
                       </ul>
 
                       <h4>個人情報の安全対策(法20条)</h4>
@@ -649,6 +657,7 @@
                       <p>
                         弊社の個人情報の取扱いに関するお問合せは、下記までお問い合せください。
                       </p>
+                      <br />
 
                       <address>
                         <p>社名 和風居酒屋　源</p>
