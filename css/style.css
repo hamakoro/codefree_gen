@@ -1530,6 +1530,7 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.stor
     left: 0;
     padding-left: 0px;
     padding: 1.9rem 0 1.7rem 2rem;
+    z-index: 1;
   }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p {
