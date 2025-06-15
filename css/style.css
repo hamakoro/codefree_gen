@@ -976,7 +976,7 @@ section#recommend.sec1 div.inner div.fade-in-up div.section_title p {
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
-  padding-bottom: 13rem;
+  padding-bottom: 12.8rem;
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
@@ -1300,7 +1300,7 @@ section#news.sec3 div.inner div.fade-in-up div.news_card_box {
   display: -ms-flexbox;
   display: flex;
   gap: 6rem;
-  padding-top: 6.6rem;
+  padding-top: 7rem;
 }
 @media screen and (max-width: 767px) {
   section#news.sec3 div.inner div.fade-in-up div.news_card_box {
@@ -1615,7 +1615,7 @@ section#contact.sec5 div.inner {
   }
 }
 section#contact.sec5 div.inner div.fade-in-up p.contact_text {
-  padding: 3.1rem 0 3.5rem;
+  padding: 3.3rem 0 3.2rem;
   font-size: 2rem;
 }
 @media screen and (max-width: 767px) {
