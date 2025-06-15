@@ -30,6 +30,7 @@ $(function () {
     autoplaySpeed: 3000,
     speed: 3000,
     arrows: false,
+    pauseOnHover: false,
   });
 });
 
@@ -137,7 +138,6 @@ $(window).on("scroll", function () {
 });
 
 // トップに戻るボタン
-// トップに戻るボタン
 $(document).ready(function () {
   $(".to-top").hide(); // 初期状態で非表示にする
   $(window).trigger("scroll"); // スクロールイベントを強制的に実行
@@ -152,10 +152,10 @@ $(window).on("scroll", function () {
   const shouldShow = scrollY > fvHeight;
 
   if (shouldShow && !isToTopVisible) {
-    $(".to-top").stop(true, true).fadeIn(400);
+    $(".to-top").stop(true, true).fadeIn(100);
     isToTopVisible = true;
   } else if (!shouldShow && isToTopVisible) {
-    $(".to-top").stop(true, true).fadeOut(400);
+    $(".to-top").stop(true, true).fadeOut(200);
     isToTopVisible = false;
   }
 });
@@ -164,8 +164,8 @@ $(".to-top").on("click", function (e) {
   e.preventDefault();
   // isBackClicked のフラグは不要になるため削除
   isToTopVisible = false; // クリックで隠すのでfalseにする
-  $(this).fadeOut(400); // ボタン自体を隠す
-  $("html, body").animate({ scrollTop: 0 }, 1200, function () {
+  $(this).fadeOut(300); // ボタン自体を隠す
+  $("html, body").animate({ scrollTop: 0 }, 500, function () {
     // スクロール完了後に再度スクロールイベントをトリガーし、表示条件を再評価させる
     $(window).trigger("scroll");
   });
