@@ -152,7 +152,7 @@ $(window).on("scroll", function () {
   const shouldShow = scrollY > fvHeight;
 
   if (shouldShow && !isToTopVisible) {
-    $(".to-top").stop(true, true).fadeIn(100);
+    $(".to-top").stop(true, true).fadeIn(200);
     isToTopVisible = true;
   } else if (!shouldShow && isToTopVisible) {
     $(".to-top").stop(true, true).fadeOut(200);
@@ -169,4 +169,9 @@ $(".to-top").on("click", function (e) {
     // スクロール完了後に再度スクロールイベントをトリガーし、表示条件を再評価させる
     $(window).trigger("scroll");
   });
+});
+new SimpleBar(document.querySelector('.privacy_textbox'), {
+  autoHide: false,
+  scrollbarMinSize: 30,
+  scrollbarMaxSize: 30
 });

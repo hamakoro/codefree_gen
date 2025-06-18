@@ -30,7 +30,11 @@ body {
     display: none;
   }
   .sm_only {
-    display: none;
+    display: block;
+  }
+
+  .tb_only {
+    display: block; /* この範囲で改行を無効にする */
   }
 
   @media screen and (min-width: 768px) and (max-width: 950px) {
@@ -46,6 +50,9 @@ body {
     }
     .sp_only {
       display: block;
+    }
+    .sm_only {
+      display: none;
     }
   }
 }
@@ -148,7 +155,7 @@ header {
     align-items: center;
     transition: 0.3s;
     @include mq($sm) {
-      height: 5.8rem;
+      height: 5rem;
     }
     &:hover {
       opacity: 0.6;
@@ -374,11 +381,10 @@ section.fv_sec1 {
     top: 42.7%;
     left: 5.8%;
     @include mq($sm) {
-      top: 40%;
-      left: 20%;
-      @media screen and (max-width: 345px) {
-        left: 15%;
-      }
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
     }
     h2 {
       font-size: 4rem;
@@ -477,10 +483,10 @@ section#about.fv_sec2 {
 #recommend
 ============================*/
 section#recommend.sec1 {
-  padding-top: 8rem;
+  padding: 8rem 0;
   background-color: $sub_color;
   @include mq($sm) {
-    padding: 5rem 0 0.5rem;
+    padding: 5rem 0 5.4rem;
   }
   div.inner {
     div.fade-in-up {
@@ -496,9 +502,18 @@ section#recommend.sec1 {
       }
       div.fade-in-up {
         div.recommend_container {
-          padding-bottom: 12.8rem;
+          margin-bottom: 12.8rem;
+
           @include mq($sm) {
-            padding-bottom: 5rem;
+            margin-bottom: 5rem;
+          }
+
+          &.last-recommend {
+            margin-bottom: 4.8rem;
+
+            @include mq($sm) {
+              margin-bottom: 0rem;
+            }
           }
           div.recommend {
             position: relative;
@@ -661,7 +676,15 @@ section#recommend.sec1 {
       }
     }
   }
+  .recommend_container.last-recommend {
+    margin-bottom: 0;
+
+    @include mq($sm) {
+      margin-bottom: 0;
+    }
+  }
 }
+
 /*============================
 #course
 ============================*/
@@ -1364,23 +1387,44 @@ section#contact.sec5 {
         @include mq($sm) {
           padding: 1rem 1rem 2rem;
         }
-        div.privacy_textbox {
-          overflow-y: scroll;
+        div.privacy_textbox[data-simplebar] {
           height: 280px;
           padding: 3rem 4rem 3rem 3rem;
+          position: relative;
+
           @include mq($sm) {
             padding: 2rem 3rem 2rem 2rem;
             height: 290px;
           }
-          &::-webkit-scrollbar {
-            width: 10px;
+
+          // スクロールバーの背景
+
+          .simplebar-track.simplebar-vertical {
             background-color: #e3e3e3;
+            width: 10px;
+            right: 0;
+            top: 0;
+            bottom: 0;
           }
-          &::-webkit-scrollbar-thumb {
-            background-color: #9b9b9b;
-            @include mq($sm) {
-              height: 30px;
-            }
+
+          .simplebar-scrollbar {
+            width: 10px !important;
+            height: 30px !important;
+            top: 0 !important;
+            background-color: #9b9b9b !important; // これで直接色をつける
+          }
+
+          .simplebar-scrollbar:before {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 30px;
+            background-color: #9b9b9b !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            transform: none !important;
+            opacity: 1 !important;
+            display: none !important;
           }
           div.privacy_text {
             font-size: 1.8rem;
