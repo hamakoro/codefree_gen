@@ -24,6 +24,10 @@
       rel="stylesheet"
     />
     <!---------------------------------スタイルシート-------------------------------------->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -170,16 +174,18 @@
                   <div class="recommend_title">
                     <h3>日本酒ソムリエが<br />提案するペアリング</h3>
                     <p class="recommend_textbox">
-                      10,000種類以上ある日本酒から<br>
-                      ソムリエがお料理に合わせて<br>
-                      ペアリングを提案いたします。
+                      10,000種類以上ある日本酒から<br
+                        class="tb_only sm_only"
+                      />ソムリエがお料理に合わせて<br
+                        class="tb_only sm_only"
+                      />ペアリングを提案いたします。
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="fade-in-up">
-              <div class="recommend_container">
+              <div class="recommend_container last-recommend">
                 <div class="recommend">
                   <div class="recommend_img">
                     <picture>
@@ -197,11 +203,13 @@
                   </div>
                   <div class="recommend_title">
                     <h3>
-                      季節を感じるお部屋で<br class="tb_only">特別な空間を
+                      季節を感じるお部屋で<br class="tb_only" />特別な空間を
                     </h3>
                     <p class="recommend_textbox">
-                      四季折々の植物が楽しめるお部屋で<br class="tb_only sm_only">
-                      ワンランク上の特別な空間を<br class="tb_only sm_only">
+                      四季折々の植物が楽しめるお部屋で<br
+                        class="tb_only sm_only"
+                      />
+                      ワンランク上の特別な空間を<br class="tb_only sm_only" />
                       ご提供いたします。
                     </p>
                   </div>
@@ -558,17 +566,21 @@
               <div class="privacy">
                 <h3>個人情報保護方針</h3>
                 <div class="privacy_box">
-                  <div class="privacy_textbox">
+                  <div
+                    class="privacy_textbox"
+                    data-simplebar
+                    data-simplebar-auto-hide="false"
+                  >
                     <div class="privacy_text">
                       <h4>個人情報取扱事業者の氏名又は名称(法24条1項1号)</h4>
                       <p>和風居酒屋　源</p>
-                      <br>
+                      <br />
 
                       <h4>個人情報の取り扱い</h4>
                       <p>
                         弊社は、個人情報保護に関連する法令を遵守し、お客様からご提供いただく個人情報を、細心の注意を払って取り扱っております。このプライバシーポリシーでは、当社におけるお客様の個人情報の取扱いについてご説明しております。
                       </p>
-                      <br>
+                      <br />
 
                       <h4>個人情報の利用目的(法18条、15条)</h4>
                       <p>
@@ -620,7 +632,7 @@
                       <p>
                         お客様の個人情報を安全に管理・運営するよう鋭意努力しており、個人情報への外部からの不正なアクセス、個人情報の紛失・毀損・破壊・改ざん・漏えい、社外への不正な流出などへの危険防止に対する合理的かつ適切な安全対策を行っています。また個人情報を取り扱う部門ごとに情報管理責任者を置き、個人情報の適切な管理に努めるとともに、情報セキュリティに関する規程を設けて社員への周知徹底を実施しています。
                       </p>
-                      <br>
+                      <br />
 
                       <h4>第三者への提供(法23条)</h4>
                       <p>
@@ -657,7 +669,7 @@
                       <p>
                         弊社の個人情報の取扱いに関するお問合せは、下記までお問い合せください。
                       </p>
-                      <br>
+                      <br />
 
                       <address>
                         <p>社名 和風居酒屋　源</p>
@@ -761,6 +773,7 @@
     <div class="scroll-btn">
       <img src="img/icon/arrows_top.svg" class="to-top" alt="トップへ" />
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="slick/slick.min.js"></script>
     <script src="js/script.js"></script>
