@@ -419,7 +419,10 @@ body .sp_only {
   display: none;
 }
 body .sm_only {
-  display: none;
+  display: block;
+}
+body .tb_only {
+  display: block; /* この範囲で改行を無効にする */
 }
 @media screen and (min-width: 768px) and (max-width: 950px) {
   body .tb_only {
@@ -432,6 +435,9 @@ body .sm_only {
   }
   body .sp_only {
     display: block;
+  }
+  body .sm_only {
+    display: none;
   }
 }
 
@@ -570,7 +576,7 @@ header.scrolled {
 }
 @media screen and (max-width: 767px) {
   .header_container a {
-    height: 5.8rem;
+    height: 5rem;
   }
 }
 .header_container a:hover {
@@ -828,13 +834,11 @@ section.fv_sec1 div.fv_title {
 }
 @media screen and (max-width: 767px) {
   section.fv_sec1 div.fv_title {
-    top: 40%;
-    left: 20%;
-  }
-}
-@media screen and (max-width: 767px) and (max-width: 345px) {
-  section.fv_sec1 div.fv_title {
-    left: 15%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    white-space: nowrap;
   }
 }
 section.fv_sec1 div.fv_title h2 {
@@ -957,12 +961,12 @@ section#about.fv_sec2 div.inner div.fv_textbox div.textbox p .fv_textbox__indent
 #recommend
 ============================*/
 section#recommend.sec1 {
-  padding-top: 8rem;
+  padding: 8rem 0;
   background-color: rgba(83, 7, 0, 0.1);
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 {
-    padding: 5rem 0 0.5rem;
+    padding: 5rem 0 5.4rem;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.section_title p {
@@ -976,11 +980,19 @@ section#recommend.sec1 div.inner div.fade-in-up div.section_title p {
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
-  padding-bottom: 12.8rem;
+  margin-bottom: 12.8rem;
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
-    padding-bottom: 5rem;
+    margin-bottom: 5rem;
+  }
+}
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container.last-recommend {
+  margin-bottom: 4.8rem;
+}
+@media screen and (max-width: 767px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container.last-recommend {
+    margin-bottom: 0rem;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend {
@@ -1169,6 +1181,14 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title p.recommend_textbox {
     padding-top: 1rem;
+  }
+}
+section#recommend.sec1 .recommend_container.last-recommend {
+  margin-bottom: 0;
+}
+@media screen and (max-width: 767px) {
+  section#recommend.sec1 .recommend_container.last-recommend {
+    margin-bottom: 0;
   }
 }
 
@@ -2001,35 +2021,50 @@ section#contact.sec5 div.inner div.privacy div.privacy_box {
     padding: 1rem 1rem 2rem;
   }
 }
-section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox {
-  overflow-y: scroll;
+section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] {
   height: 280px;
   padding: 3rem 4rem 3rem 3rem;
+  position: relative;
 }
 @media screen and (max-width: 767px) {
-  section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox {
+  section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] {
     padding: 2rem 3rem 2rem 2rem;
     height: 290px;
   }
 }
-section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox::-webkit-scrollbar {
-  width: 10px;
+section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] .simplebar-track.simplebar-vertical {
   background-color: #e3e3e3;
+  width: 10px;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
-section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox::-webkit-scrollbar-thumb {
-  background-color: #9b9b9b;
+section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] .simplebar-scrollbar {
+  width: 10px !important;
+  height: 30px !important;
+  top: 0 !important;
+  background-color: #9b9b9b !important;
 }
-@media screen and (max-width: 767px) {
-  section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox::-webkit-scrollbar-thumb {
-    height: 30px;
-  }
+section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] .simplebar-scrollbar:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 30px;
+  background-color: #9b9b9b !important;
+  border-radius: 0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  -webkit-transform: none !important;
+          transform: none !important;
+  opacity: 1 !important;
+  display: none !important;
 }
-section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox div.privacy_text {
+section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] div.privacy_text {
   font-size: 1.8rem;
   line-height: 1.722;
 }
 @media screen and (max-width: 767px) {
-  section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox div.privacy_text {
+  section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] div.privacy_text {
     font-size: 1.6rem;
     line-height: 2.063;
     font-weight: 500;
