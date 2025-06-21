@@ -42,6 +42,11 @@ body {
       display: none; /* この範囲で改行を無効にする */
     }
   }
+  @media screen and (min-width: 320px) and (max-width: 341px) {
+    .sm_only {
+      display: none; /* この範囲で改行を無効にする */
+    }
+  }
 
   // 768px以下（SP）
   @media screen and (max-width: 767px) {
@@ -50,9 +55,6 @@ body {
     }
     .sp_only {
       display: block;
-    }
-    .sm_only {
-      display: none;
     }
   }
 }
@@ -426,9 +428,9 @@ section#about.fv_sec2 {
       }
       div.fv_concept {
         line-height: 1.18;
-        padding-left: 5rem;
+        margin-left: 5rem;
         @include mq($sm) {
-          padding-left: unset;
+          margin-left: unset;
         }
         h2 {
           font-size: 3rem;
@@ -465,11 +467,11 @@ section#about.fv_sec2 {
             letter-spacing: 0.37rem;
           }
           .fv_textbox__indent {
-            padding-left: 2.3rem;
+            margin-left: 2.3rem;
             display: inline-block;
             letter-spacing: 0.69rem;
             @include mq($sm) {
-              padding-left: unset;
+              margin-left: unset;
               letter-spacing: 0.58rem;
             }
           }
@@ -492,11 +494,11 @@ section#recommend.sec1 {
     div.fade-in-up {
       div.section_title {
         p {
-          padding-bottom: 6.1rem;
+          margin-bottom: 6.1rem;
           letter-spacing: 0.6rem;
           @include mq($sm) {
             letter-spacing: 0.4rem;
-            padding-bottom: 3.8rem;
+            margin-bottom: 3.8rem;
           }
         }
       }
@@ -536,9 +538,9 @@ section#recommend.sec1 {
                 }
               }
               p {
-                padding-top: 2rem;
+                margin-top: 2rem;
                 @include mq($sm) {
-                  padding: 0.1rem 0 0.5rem 0;
+                  margin: 0.1rem 0 0.5rem 0;
                 }
               }
             }
@@ -559,7 +561,7 @@ section#recommend.sec1 {
                 position: static;
                 width: 100%;
                 height: auto;
-                padding: 23px 0 12px 20px;
+                padding: 2.3rem 2rem 1.2rem 2rem;
                 top: 0px;
               }
               @media screen and (max-width: 340px) {
@@ -614,10 +616,10 @@ section#recommend.sec1 {
               }
               p {
                 text-align: right;
-                padding-top: 2rem;
+                margin-top: 2rem;
                 @include mq($sm) {
                   text-align: left;
-                  padding: 4px 0 0 0;
+                  margin: 4px 0 0 0;
                 }
               }
             }
@@ -705,11 +707,11 @@ section#course.sec2 {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4rem;
-        padding-top: 6.8rem;
+        margin-top: 6.8rem;
         @include mq($sm) {
           grid-template-columns: 1fr;
           gap: 2rem;
-          padding-top: 3.8rem;
+          margin-top: 3.8rem;
         }
         div.modal_item {
           cursor: pointer;
@@ -798,12 +800,12 @@ section#news.sec3 {
       div.news_card_box {
         display: flex;
         gap: 6rem;
-        padding-top: 7rem;
+        margin-top: 7rem;
         @include mq($sm) {
           flex-direction: column;
           align-items: center;
           gap: 4.8rem;
-          padding-top: 3.2rem;
+          margin-top: 3.2rem;
         }
         div.news_textbox {
           width: 46.8%;
@@ -875,10 +877,10 @@ section#news.sec3 {
             font-family: "EB Garamond", serif;
             display: flex;
             justify-content: flex-end;
-            padding: 1.6rem 5.6rem 2.2rem;
+            margin: 1.6rem 5.6rem 2.2rem;
             position: relative;
             @include mq($sm) {
-              padding: 1.7rem 5.6rem 2.1rem;
+              margin: 1.7rem 5.6rem 2.1rem;
             }
             a.btn2 {
               position: relative;
@@ -928,12 +930,12 @@ section#access.sec4 {
         div.access {
           position: relative;
           display: flex;
-          padding-top: 6.8rem;
+          margin-top: 6.8rem;
           @include mq($sm) {
             position: static;
             flex-direction: column;
             gap: 1.8rem;
-            padding-top: 4rem;
+            margin-top: 4rem;
           }
           .map {
             width: 65.2%;
@@ -981,21 +983,21 @@ section#access.sec4 {
               font-size: 2rem;
             }
             address {
-              padding: 0.7rem 0 1.3rem;
+              margin: 0.7rem 0 1.3rem;
               @include mq($sm) {
-                padding: 0.9rem 0 1.3rem;
+                margin: 0.9rem 0 1.3rem;
               }
               span {
                 font-family: "Noto Serif JP", serif;
               }
             }
             p.store_tel {
-              padding-bottom: 1.4rem;
+              margin-bottom: 1.4rem;
               font-family: "Noto Serif JP", serif;
               pointer-events: auto;
               font-size: 1.6rem;
               @include mq($sm) {
-                padding-bottom: 1rem;
+                margin-bottom: 1rem;
               }
               a.tel_link {
                 font-size: 2.5rem;
@@ -1011,9 +1013,11 @@ section#access.sec4 {
             p.store_mail {
               font-size: 1.6rem;
               font-family: "Noto Serif JP", serif;
-              transition: all 0.4s ease;
-              &:hover {
-                opacity: 0.7;
+              a {
+                transition: all 0.4s ease;
+                &:hover {
+                  opacity: 0.7;
+                }
               }
               @include mq($sm) {
                 padding-bottom: 0px;
@@ -1049,10 +1053,10 @@ section#contact.sec5 {
     }
     div.fade-in-up {
       p.contact_text {
-        padding: 3.3rem 0 3.2rem;
+        margin: 3.3rem 0 3.2rem;
         font-size: 2rem;
         @include mq($sm) {
-          padding: 3.5rem 0 3rem;
+          margin: 3.5rem 0 3rem;
           line-height: 1.65;
         }
         @media screen and (max-width: 374px) {
@@ -1063,12 +1067,12 @@ section#contact.sec5 {
         display: flex;
         align-items: center;
         font-size: 2rem;
-        padding-bottom: 4.9rem;
+        margin-bottom: 4.9rem;
 
         @include mq($sm) {
           flex-direction: column;
           align-items: flex-start;
-          padding-bottom: 2.9rem;
+          margin-bottom: 2.9rem;
         }
 
         .label_title {
@@ -1137,6 +1141,7 @@ section#contact.sec5 {
             vertical-align: -2px;
             appearance: none;
             background: #fff;
+            cursor: pointer;
           }
 
           input[type="radio"]:checked:before {
@@ -1175,6 +1180,7 @@ section#contact.sec5 {
             vertical-align: -2px;
             appearance: none;
             background: #fff;
+            cursor: pointer;
           }
 
           input[type="radio"]:checked:before {
@@ -1258,10 +1264,10 @@ section#contact.sec5 {
       label {
         font-size: 2rem;
         line-height: 1.65;
-        padding-top: 0.3rem;
+        margin-top: 0.3rem;
 
         @include mq($sm) {
-          padding-top: 0;
+          margin-top: 0;
           @media screen and (max-width: 374px) {
             font-size: 1.7rem;
           }
@@ -1270,10 +1276,10 @@ section#contact.sec5 {
 
       // 内容入力欄
       .form-Content {
-        padding: 1rem 0 5rem;
+        margin: 1rem 0 5rem;
 
         @include mq($sm) {
-          padding: 0 0 32px;
+          margin: 0 0 32px;
         }
 
         textarea {
@@ -1370,15 +1376,15 @@ section#contact.sec5 {
       }
     }
     div.privacy {
-      padding-top: 4.5rem;
+      margin-top: 4.5rem;
       @include mq($sm) {
-        padding: 2.2rem 0 0px;
+        margin: 2.2rem 0 0px;
       }
       h3 {
         font-size: 2rem;
-        padding-bottom: 0.6rem;
+        margin-bottom: 0.6rem;
         @include mq($sm) {
-          padding-bottom: 0px;
+          margin-bottom: 0px;
         }
       }
       div.privacy_box {
@@ -1439,9 +1445,9 @@ section#contact.sec5 {
       }
       div.btn {
         text-align: center;
-        padding-top: 8rem;
+        margin-top: 8rem;
         @include mq($sm) {
-          padding-top: 5.1rem;
+          margin-top: 5.1rem;
         }
         button.btn2 {
           background: $main_color;
@@ -1568,7 +1574,7 @@ footer {
           display: flex;
           gap: 2.4rem;
           justify-content: center;
-          padding: 3rem 0 1.1rem;
+          margin: 3rem 0 1.1rem;
           line-height: 1.833;
           font-size: 1.8rem;
 
@@ -1656,11 +1662,22 @@ footer {
   }
 
   .to-top {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &.to-top--visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
     width: 68px;
     border-radius: 50%;
     cursor: pointer;
-    transition: opacity 0.3s ease;
     outline: none;
+
     @include mq($sm) {
       width: 50px;
     }
