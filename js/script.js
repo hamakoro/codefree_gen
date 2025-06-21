@@ -139,34 +139,31 @@ $(window).on("scroll", function () {
 
 // トップに戻るボタン
 $(document).ready(function () {
-  $(".to-top").hide(); // 初期状態で非表示にする
-  $(window).trigger("scroll"); // スクロールイベントを強制的に実行
+  $(".to-top").removeClass("to-top--visible"); // 初期状態で非表示に
+  $(window).trigger("scroll");
 });
-let isToTopVisible = false; // 現在の表示状態を記録
+
+let isToTopVisible = false;
 
 $(window).on("scroll", function () {
   const scrollY = $(this).scrollTop();
-  const fvHeight = $(".fv_sec1").outerHeight(); // ファーストビューセクションの高さ
-
-  // スクロール位置がファーストビューの高さより大きければ表示、そうでなければ非表示
+  const fvHeight = $(".fv_sec1").outerHeight();
   const shouldShow = scrollY > fvHeight;
 
   if (shouldShow && !isToTopVisible) {
-    $(".to-top").stop(true, true).fadeIn(200);
+    $(".to-top").addClass("to-top--visible");
     isToTopVisible = true;
   } else if (!shouldShow && isToTopVisible) {
-    $(".to-top").stop(true, true).fadeOut(200);
+    $(".to-top").removeClass("to-top--visible");
     isToTopVisible = false;
   }
 });
 
 $(".to-top").on("click", function (e) {
   e.preventDefault();
-  // isBackClicked のフラグは不要になるため削除
-  isToTopVisible = false; // クリックで隠すのでfalseにする
-  $(this).fadeOut(300); // ボタン自体を隠す
+  isToTopVisible = false;
+  $(this).removeClass("to-top--visible");
   $("html, body").animate({ scrollTop: 0 }, 500, function () {
-    // スクロール完了後に再度スクロールイベントをトリガーし、表示条件を再評価させる
     $(window).trigger("scroll");
   });
 });
