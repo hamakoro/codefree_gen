@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*! destyle.css v3.0.2 | MIT License | https://github.com/nicolas-cusan/destyle.css */
 /* Reset box-model and set borders */
 /* ============================================ */
@@ -419,19 +418,35 @@ body .sp_only {
   display: none;
 }
 body .sm_only {
-  display: block;
+  display: none;
 }
 body .tb_only {
-  display: block; /* この範囲で改行を無効にする */
+  display: block;
+}
+body .sp_indent {
+  display: block;
+}
+body .sm_indent {
+  display: none;
 }
 @media screen and (min-width: 768px) and (max-width: 950px) {
   body .tb_only {
-    display: none; /* この範囲で改行を無効にする */
+    display: none;
   }
 }
-@media screen and (min-width: 320px) and (max-width: 341px) {
+@media screen and (min-width: 300px) and (max-width: 375px) {
   body .sm_only {
-    display: none; /* この範囲で改行を無効にする */
+    display: block;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 355px) {
+  body .sp_indent {
+    display: none;
+  }
+}
+@media screen and (min-width: 352px) and (max-width: 375px) {
+  body .sm_indent {
+    display: inline;
   }
 }
 @media screen and (max-width: 767px) {
@@ -465,7 +480,7 @@ img {
   font-family: "Zen Old Mincho";
   margin-bottom: 0.6rem;
 }
-@media screen and (max-width: 345px) {
+@media screen and (max-width: 359px) {
   .inner .section_title h2 {
     font-size: 2.5rem;
   }
@@ -586,6 +601,13 @@ header.scrolled {
 }
 .header_container a h1.header_logo {
   font-size: 2rem;
+  position: relative;
+  top: 0.5rem;
+}
+@media screen and (max-width: 767px) {
+  .header_container a h1.header_logo {
+    top: 0;
+  }
 }
 
 .header_list {
@@ -594,6 +616,8 @@ header.scrolled {
   display: flex;
   gap: 2.2rem;
   font-size: 1.8rem;
+  line-height: 1.5;
+  position: relative;
 }
 @media screen and (max-width: 1000px) {
   .header_list {
@@ -607,6 +631,13 @@ header.scrolled {
 }
 
 .header_item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 8rem;
   position: relative;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
@@ -618,7 +649,7 @@ header.scrolled {
   width: 100%;
   height: 0.1rem;
   background-color: #fff;
-  bottom: 2.5rem;
+  bottom: 2rem;
   -webkit-transform: scale(0, 1);
           transform: scale(0, 1);
   -webkit-transform-origin: center top;
@@ -639,6 +670,11 @@ header.scrolled {
 .header_item a:hover::after {
   -webkit-transform: scale(1, 1);
           transform: scale(1, 1);
+}
+.header_item a span {
+  display: inline-block;
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
 }
 
 @media screen and (max-width: 767px) {
@@ -837,7 +873,7 @@ section.fv_sec1 div.fv_title {
 @media screen and (max-width: 767px) {
   section.fv_sec1 div.fv_title {
     top: 50%;
-    left: 50%;
+    left: 51%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     white-space: nowrap;
@@ -866,7 +902,7 @@ section#about.fv_sec2 {
   background-image: url(../img/section-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 13.4rem 0 11.3rem;
+  padding: 13rem 0 11.7rem;
 }
 @media screen and (max-width: 767px) {
   section#about.fv_sec2 {
@@ -1529,7 +1565,7 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.stor
   height: auto;
   background-color: #530700;
   right: 0;
-  top: 56.9%;
+  top: 50%;
   color: #fff;
   line-height: 1.563;
   z-index: -1;
@@ -1754,7 +1790,7 @@ section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 span {
 }
 @media screen and (max-width: 767px) and (max-width: 374px) {
   section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 span {
-    padding-left: 0rem;
+    padding-left: 0.5rem;
     font-size: 1.6rem;
   }
 }
@@ -1784,7 +1820,6 @@ section#contact.sec5 div.inner div.fade-in-up .contactbox label.type1 input[type
   background: #000;
 }
 section#contact.sec5 div.inner div.fade-in-up .contactbox label.type2 {
-  font-size: 1.8rem;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -1794,11 +1829,13 @@ section#contact.sec5 div.inner div.fade-in-up .contactbox label.type2 {
   cursor: pointer;
 }
 section#contact.sec5 div.inner div.fade-in-up .contactbox label.type2 span {
+  font-size: 1.8rem;
   padding-left: 1.9rem;
 }
-@media screen and (max-width: 345px) {
+@media screen and (max-width: 374px) {
   section#contact.sec5 div.inner div.fade-in-up .contactbox label.type2 span {
-    padding-left: 0rem;
+    padding-left: 0.5rem;
+    font-size: 1.6rem;
   }
 }
 section#contact.sec5 div.inner div.fade-in-up .contactbox label.type2 input[type=radio] {
@@ -1874,11 +1911,11 @@ section#contact.sec5 div.inner div.fade-in-up .form-Course::after {
   content: "";
   position: absolute;
   right: 20px;
-  top: 28%;
+  top: 51%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  width: 19px;
-  height: 11px;
+  width: 20px;
+  height: 13px;
   background-color: #530700;
   -webkit-clip-path: polygon(0 0, 100% 0, 50% 100%);
           clip-path: polygon(0 0, 100% 0, 50% 100%);
@@ -1886,7 +1923,7 @@ section#contact.sec5 div.inner div.fade-in-up .form-Course::after {
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 div.inner div.fade-in-up .form-Course::after {
-    top: 52%;
+    top: 72%;
   }
 }
 section#contact.sec5 div.inner div.fade-in-up label {
@@ -1936,6 +1973,12 @@ section#contact.sec5 div.inner div.fade-in-up .form-checkbox ul {
     grid-template-rows: repeat(4, auto);
     row-gap: 0px;
     padding-top: 6px;
+  }
+}
+@media screen and (max-width: 767px) and (max-width: 304px) {
+  section#contact.sec5 div.inner div.fade-in-up .form-checkbox ul {
+    row-gap: 5px;
+    padding-top: 5px;
   }
 }
 section#contact.sec5 div.inner div.fade-in-up .form-checkbox ul li label.check {
@@ -1993,7 +2036,7 @@ section#contact.sec5 div.inner div.fade-in-up .form-checkbox ul li label.check s
 }
 @media screen and (max-width: 767px) and (max-width: 345px) {
   section#contact.sec5 div.inner div.fade-in-up .form-checkbox ul li label.check span.check_text {
-    padding-left: 0.5rem;
+    padding-left: 0.3rem;
   }
 }
 section#contact.sec5 div.inner div.fade-in-up .form-checkbox ul li label.check,
@@ -2137,7 +2180,7 @@ footer div.inner div.footer_container {
 }
 @media screen and (max-width: 767px) {
   footer div.inner div.footer_container {
-    padding: 5rem 0px 3rem;
+    padding: 5rem 0px 3.7rem;
   }
 }
 footer div.inner div.footer_container p.footer_ {
@@ -2263,7 +2306,7 @@ footer div.inner div.footer_container nav.footer_nav ul.footer_sns {
 }
 @media screen and (max-width: 767px) {
   footer div.inner div.footer_container nav.footer_nav ul.footer_sns {
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 }
 footer div.inner div.footer_container nav.footer_nav ul.footer_sns li a {
@@ -2282,7 +2325,7 @@ footer div.copyright {
 footer div.copyright p {
   padding: 3rem 0;
   color: #fff;
-  font-size: 2.1rem;
+  font-size: 2rem;
   line-height: 1.65;
   font-family: "EB Garamond", serif;
 }
