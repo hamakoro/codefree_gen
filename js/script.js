@@ -112,17 +112,38 @@ $("a.scroll-link[href^='#']").on("click", function (e) {
 });
 
 //ヘッダー背景
-$(window).on("scroll", function () {
-  const aboutOffset = $("#about").offset().top;
-  const triggerPosition = aboutOffset - 130;
+$(function () {
+  $("body").addClass("js-enabled");
 
-  const scroll = $(window).scrollTop();
+  function updateHeaderOnScroll() {
+    const $about = $("#about");
+    if ($about.length === 0) return;
 
-  if (scroll >= triggerPosition) {
-    $("header").addClass("scrolled");
-  } else {
-    $("header").removeClass("scrolled");
+    const aboutOffset = $about.offset().top;
+    const triggerPosition = aboutOffset - 130;
+    const scroll = $(window).scrollTop();
+
+    if (scroll >= triggerPosition) {
+      $("header").addClass("scrolled");
+    } else {
+      $("header").removeClass("scrolled");
+    }
   }
+
+  // スクロールイベントで随時判定
+  $(window).on("scroll", updateHeaderOnScroll);
+
+  // ページ完全読み込み後に初回判定（環境依存防止）
+  $(window).on("load", function () {
+    // 初期で hash が #about の場合、誤スクロール防止（開発用）
+    if (location.hash === "#about") {
+      history.replaceState(null, null, " ");
+      $(window).scrollTop(0);
+    }
+
+    // レイアウト描画完了後に安全に実行
+    requestAnimationFrame(updateHeaderOnScroll);
+  });
 });
 
 //セクションスクロール
