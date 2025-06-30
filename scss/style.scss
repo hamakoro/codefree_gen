@@ -143,9 +143,11 @@ header {
   text-align: center;
   transition: background-color 0.3s ease;
   background-color: transparent; // 初期状態の背景色
+
   @include mq($sm) {
     height: 5rem;
   }
+
   &.scrolled {
     background-color: rgb(83, 7, 0); // スクロール後の背景色
   }
