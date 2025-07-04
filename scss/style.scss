@@ -510,6 +510,12 @@ section#about.fv_sec2 {
               letter-spacing: 0.58rem;
             }
           }
+          .fv_textbox__indent-pc {
+            @include mq($sm) {
+              margin-left: unset;
+              letter-spacing: 0.58rem;
+            }
+          }
         }
       }
     }
@@ -569,7 +575,7 @@ section#recommend.sec1 {
               p {
                 margin-top: 2rem;
                 @include mq($sm) {
-                  margin: 0.1rem 0 0.5rem 0;
+                  margin: 0.3rem 0 0.4rem 0;
                 }
               }
             }
@@ -579,7 +585,7 @@ section#recommend.sec1 {
               width: 54.35%;
               height: auto;
               color: #fff;
-              top: 43%;
+              top: 42.8%;
               right: 0;
               z-index: -1;
               padding: 5rem 0.5rem 4.2rem 22rem;
@@ -591,7 +597,7 @@ section#recommend.sec1 {
                 width: 100%;
                 height: auto;
                 padding: 2.3rem 2rem 1.2rem 2rem;
-                top: 0px;
+                top: 0;
               }
               @media screen and (max-width: 340px) {
                 padding: 1.5rem 0.5rem 1rem 1rem;
@@ -606,7 +612,7 @@ section#recommend.sec1 {
                 @include mq($sm) {
                   font-size: 2rem;
                   font-weight: 600;
-                  padding-top: 0px;
+                  padding-top: 0rem;
                   line-height: 1.32;
                 }
               }
@@ -629,7 +635,7 @@ section#recommend.sec1 {
             @include mq($sm) {
               position: static;
               flex-direction: column;
-              gap: 6px;
+              gap: 0.6rem;
             }
             div.recommend_img {
               max-width: 65.3%;
@@ -639,10 +645,10 @@ section#recommend.sec1 {
               }
               p {
                 text-align: right;
-                margin-top: 2rem;
+                margin-top: 2.2rem;
                 @include mq($sm) {
                   text-align: left;
-                  margin: 4px 0 0 0;
+                  margin: 0.4rem 0 0 0;
                 }
               }
             }
@@ -666,7 +672,7 @@ section#recommend.sec1 {
                 color: #fff;
                 top: 260px;
                 left: 0;
-                padding-left: 0px;
+                padding-left: 0rem;
                 padding: 2rem 2rem 1rem 2rem;
               }
               @media screen and (max-width: 340px) {
@@ -682,8 +688,8 @@ section#recommend.sec1 {
                 }
                 @include mq($sm) {
                   font-size: 2rem;
-                  padding-right: 0px;
-                  padding-top: 0px;
+                  padding-right: 0rem;
+                  padding-top: 0rem;
                   line-height: 1.32;
                 }
               }
@@ -816,19 +822,19 @@ section#news.sec3 {
   padding: 7.8rem 0 8rem;
   background-color: $sub_color;
   @include mq($sm) {
-    padding: 5.5rem 0rem 5.1rem;
+    padding: 5rem 0rem 5.1rem;
   }
   div.inner {
     div.fade-in-up {
       div.news_card_box {
         display: flex;
         gap: 6rem;
-        margin-top: 7rem;
+        margin-top: 6.8rem;
         @include mq($sm) {
           flex-direction: column;
           align-items: center;
           gap: 4.8rem;
-          margin-top: 3.2rem;
+          margin-top: 3.6rem;
         }
         div.news_textbox {
           width: 46.8%;
@@ -1079,7 +1085,7 @@ section#contact.sec5 {
         margin: 3.3rem 0 3.2rem;
         font-size: 2rem;
         @include mq($sm) {
-          margin: 3.5rem 0 3rem;
+          margin: 3.4rem 0 2.9rem;
           line-height: 1.65;
         }
         @media screen and (max-width: 374px) {
@@ -1381,7 +1387,7 @@ section#contact.sec5 {
 
               span.check_text {
                 font-size: 1.8rem;
-                padding-left: 1.6rem;
+                padding-left: 1.4rem;
 
                 @include mq($sm) {
                   font-size: 1.6rem;
@@ -1412,7 +1418,7 @@ section#contact.sec5 {
         font-size: 2rem;
         margin-bottom: 0.6rem;
         @include mq($sm) {
-          margin-bottom: 0px;
+          margin-bottom: -0.3rem;
         }
       }
       div.privacy_box {
@@ -1423,11 +1429,11 @@ section#contact.sec5 {
         }
         div.privacy_textbox[data-simplebar] {
           height: 280px;
-          padding: 3rem 4rem 3rem 3rem;
+          padding: 3rem 5rem 3rem 3rem;
           position: relative;
 
           @include mq($sm) {
-            padding: 2rem 3rem 2rem 2rem;
+            padding: 2rem 4rem 2rem 2rem;
             height: 290px;
           }
 
@@ -1475,7 +1481,7 @@ section#contact.sec5 {
         text-align: center;
         margin-top: 8rem;
         @include mq($sm) {
-          margin-top: 5.1rem;
+          margin-top: 5.4rem;
         }
         button.btn2 {
           background: $main_color;
