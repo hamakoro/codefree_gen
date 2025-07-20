@@ -45,7 +45,7 @@ body {
     display: none;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 950px) {
+  @media screen and (min-width: 768px) and (max-width: 971px) {
     .tb_only {
       display: none;
     }
@@ -87,6 +87,9 @@ img {
   max-width: 98rem;
   margin: auto;
   padding-inline: 3rem;
+  @media screen and (max-width: 345px) {
+    padding-inline: 1.5rem;
+  }
   .section_title {
     text-align: center;
     h2 {
@@ -118,6 +121,12 @@ img {
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
+  overflow-y: scroll;
+}
+
+body.no-scroll {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0px);
 }
 
 .fade-in-up {
@@ -188,8 +197,11 @@ header {
     h1.header_logo {
       font-size: 2rem;
       position: relative;
-      top: 0.5rem;
+      @media screen and (max-width: 1000px) {
+        font-size: 1.8rem;
+      }
       @include mq($sm) {
+        font-size: 2rem;
         top: 0;
       }
     }
@@ -204,6 +216,7 @@ header {
   position: relative;
   @media screen and (max-width: 1000px) {
     gap: 1rem;
+    font-size: 1.6rem;
   }
   @include mq($sm) {
     gap: 0;
@@ -223,7 +236,7 @@ header {
     width: 100%;
     height: 0.1rem;
     background-color: #fff;
-    bottom: 2rem;
+    bottom: 2.5rem;
     transform: scale(0, 1);
     transform-origin: center top;
     transition: transform 0.3s;
@@ -232,15 +245,11 @@ header {
     }
   }
   &:hover {
-    opacity: 0.6;
+    opacity: 1;
 
     &::after {
       transform: scale(1, 1);
     }
-  }
-  span {
-    display: inline-block;
-    transform: translateY(5px); // ← 視覚的に下げる
   }
 }
 // -------------------------------SP版ハンバーガー-----------------------------------//
@@ -528,190 +537,220 @@ section#about.fv_sec2 {
 section#recommend.sec1 {
   padding: 8rem 0;
   background-color: $sub_color;
+
   @include mq($sm) {
-    padding: 5rem 0 5.4rem;
+    padding: 5rem 0;
   }
+
   div.inner {
     div.fade-in-up {
       div.section_title {
         p {
           margin-bottom: 6.1rem;
           letter-spacing: 0.6rem;
+
           @include mq($sm) {
             letter-spacing: 0.4rem;
             margin-bottom: 3.8rem;
           }
         }
       }
+
       div.fade-in-up {
         div.recommend_container {
-          margin-bottom: 12.8rem;
+          margin-bottom: 8rem;
 
           @include mq($sm) {
             margin-bottom: 5rem;
           }
 
           &.last-recommend {
-            margin-bottom: 4.8rem;
+            margin-bottom: 0rem;
+          }
+
+          /* --- recommend --- */
+          div.recommend {
+            display: flex;
 
             @include mq($sm) {
-              margin-bottom: 0rem;
-            }
-          }
-          div.recommend {
-            position: relative;
-            @include mq($sm) {
               flex-direction: column;
-              gap: 0.6rem;
+              position: static;
             }
+
             div.recommend_img {
               max-width: 65.3%;
               margin: 0;
-              @media screen and (max-width: 942px) {
-              }
+
               @include mq($sm) {
                 max-width: 100%;
               }
+
               p {
                 margin-top: 2rem;
+                text-align: left;
+                line-height: 1.563;
                 @include mq($sm) {
-                  margin: 0.3rem 0 0.4rem 0;
+                  margin: 0.5rem 0 0.6rem;
                 }
               }
             }
+
             div.recommend_title {
-              position: absolute;
+              flex: 1;
               background-color: $main_color;
-              width: 54.35%;
-              height: auto;
               color: #fff;
-              top: 42.8%;
-              right: 0;
-              z-index: -1;
-              padding: 5rem 0.5rem 4.2rem 22rem;
-              @media screen and (max-width: 865px) {
-                padding: 4.5rem 0.5rem 3rem 16.5rem;
-              }
-              @include mq($sm) {
-                position: static;
-                width: 100%;
-                height: auto;
-                padding: 2.3rem 2rem 1.2rem 2rem;
+              padding: 5rem 2rem 4.2rem 4rem;
+              margin-top: 15rem;
+              position: relative;
+
+              &::before {
+                content: "";
+                position: absolute;
                 top: 0;
-              }
-              @media screen and (max-width: 340px) {
-                padding: 1.5rem 0.5rem 1rem 1rem;
-              }
-              h3 {
-                font-size: 2.5rem;
-                font-weight: 600;
-                line-height: 1.32;
-                @media screen and (max-width: 865px) {
-                  font-size: 2.2rem;
-                }
+                left: -180px;
+                width: 100%;
+                height: 100%;
+                background-color: $main_color;
+                z-index: -1;
                 @include mq($sm) {
-                  font-size: 2rem;
-                  font-weight: 600;
-                  padding-top: 0rem;
-                  line-height: 1.32;
+                  content: none; // スマホ以下は非表示にする
                 }
               }
-              p.recommend_textbox {
-                padding-top: 1.7rem;
-                line-height: 1.563;
-                font-weight: 400;
-                @media screen and (max-width: 898px) {
-                }
-                @include mq($sm) {
-                  padding-block: 0.8rem 0rem;
-                }
-              }
-            }
-          }
-          div.recommend_list_reverse {
-            display: flex;
-            flex-direction: row-reverse;
-            position: relative;
-            @include mq($sm) {
-              position: static;
-              flex-direction: column;
-              gap: 0.6rem;
-            }
-            div.recommend_img {
-              max-width: 65.3%;
-              margin: 0;
-              @include mq($sm) {
-                max-width: 100%;
-              }
-              p {
-                text-align: right;
-                margin-top: 2.2rem;
-                @include mq($sm) {
-                  text-align: left;
-                  margin: 0.4rem 0 0 0;
-                }
-              }
-            }
-            div.recommend_title {
-              position: absolute;
-              background-color: $main_color;
-              width: 54%;
-              height: auto;
-              color: #fff;
-              top: 42%;
-              left: 0;
-              z-index: -1;
-              padding: 5rem 18.5rem 4.2rem 4rem;
-              @media screen and (max-width: 898px) {
-                padding: 4.5rem 12.5rem 3rem 2rem;
-              }
+
               @include mq($sm) {
                 position: static;
                 width: 100%;
-                height: auto;
-                color: #fff;
-                top: 260px;
-                left: 0;
-                padding-left: 0rem;
-                padding: 2rem 2rem 1rem 2rem;
+                padding: 2.3rem 2rem 1.2rem 2rem;
+                margin-top: 0;
               }
+
               @media screen and (max-width: 340px) {
                 padding: 1.5rem 0.5rem 1rem 1rem;
               }
+
               h3 {
                 font-size: 2.5rem;
                 font-weight: 600;
                 line-height: 1.32;
-                white-space: nowrap;
-                @media screen and (max-width: 865px) {
-                  font-size: 2.2rem;
+                @media screen and (max-width: 980px) {
+                  font-size: 2rem;
                 }
+
                 @include mq($sm) {
                   font-size: 2rem;
-                  padding-right: 0rem;
-                  padding-top: 0rem;
                   line-height: 1.32;
                 }
               }
+
               p.recommend_textbox {
                 padding-top: 1.7rem;
                 line-height: 1.563;
                 font-weight: 400;
+
                 @include mq($sm) {
                   padding-top: 1rem;
                 }
               }
             }
-          }
+          } /* --- end recommend --- */
+
+          /* --- recommend_list_reverse --- */
+          div.recommend_list_reverse {
+            display: flex;
+            flex-direction: row-reverse;
+
+            @include mq($sm) {
+              flex-direction: column;
+              position: static;
+            }
+
+            div.recommend_img {
+              max-width: 65.3%;
+              margin: 0;
+
+              @include mq($sm) {
+                max-width: 100%;
+              }
+
+              p {
+                margin-top: 2rem;
+                text-align: right;
+                line-height: 1.563;
+                @include mq($sm) {
+                  margin: 0.5rem 0 0.6rem;
+                  text-align: left;
+                }
+              }
+            }
+
+            div.recommend_title {
+              flex: 1;
+              background-color: $main_color;
+              color: #fff;
+              padding: 5rem 0.5rem 4.2rem 4rem;
+              margin-top: 15rem;
+              position: relative;
+              left: 0;
+              right: auto;
+              top: 42%;
+              @media screen and (max-width: 980px) {
+              padding: 5rem 0.5rem 4.2rem 2rem;
+              }
+
+              &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: -180px;
+                width: 100%;
+                height: 100%;
+                background-color: $main_color;
+                z-index: -1;
+                @include mq($sm) {
+                  content: none; // スマホ以下は非表示にする
+                }
+              }
+
+              @include mq($sm) {
+                position: static;
+                width: 100%;
+                padding: 2rem 2rem 1rem 2rem;
+                margin-top: 0;
+                top: auto;
+                right: auto;
+              }
+
+              @media screen and (max-width: 340px) {
+                padding: 1.5rem 0.5rem 1rem 1rem;
+              }
+
+              h3 {
+                font-size: 2.5rem;
+                font-weight: 600;
+                line-height: 1.32;
+                @media screen and (max-width: 980px) {
+                  font-size: 2rem;
+                }
+
+                @include mq($sm) {
+                  font-size: 2rem;
+                  line-height: 1.32;
+                }
+              }
+
+              p.recommend_textbox {
+                padding-top: 1.7rem;
+                line-height: 1.563;
+                font-weight: 400;
+
+                @include mq($sm) {
+                  padding-top: 1rem;
+                }
+              }
+            }
+          } /* --- end recommend_list_reverse --- */
         }
       }
-    }
-  }
-  .recommend_container.last-recommend {
-    margin-bottom: 0;
-
-    @include mq($sm) {
-      margin-bottom: 0;
     }
   }
 }
@@ -735,7 +774,7 @@ section#course.sec2 {
       div.sec2_modal {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 4rem;
+        gap: 4.4%;
         margin-top: 6.8rem;
         @include mq($sm) {
           grid-template-columns: 1fr;
@@ -766,20 +805,21 @@ section#course.sec2 {
 }
 
 .modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-}
 
-.modal-overlay.active {
-  display: flex;
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .modal-content {
@@ -788,20 +828,24 @@ section#course.sec2 {
   max-width: 450px;
   text-align: center;
   position: relative;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
   @include mq($sm) {
     margin: 0 3rem;
   }
 }
-
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
 .close-btn {
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: -4.11px;
+  right: 2.79px;
   background: transparent;
-  width: 15px;
   border: none;
   cursor: pointer;
   color: #000;
+  z-index: -1;
 }
 
 .modal-text1 {
@@ -811,18 +855,14 @@ section#course.sec2 {
   margin-left: 0;
 }
 
-body.no-scroll {
-  overflow: hidden;
-}
-
 /*============================
 #news
 ============================*/
 section#news.sec3 {
-  padding: 7.8rem 0 8rem;
+  padding: 8rem 0 8rem;
   background-color: $sub_color;
   @include mq($sm) {
-    padding: 5rem 0rem 5.1rem;
+    padding: 5rem 0rem;
   }
   div.inner {
     div.fade-in-up {
@@ -833,7 +873,7 @@ section#news.sec3 {
         @include mq($sm) {
           flex-direction: column;
           align-items: center;
-          gap: 4.8rem;
+          gap: 4.4rem;
           margin-top: 3.6rem;
         }
         div.news_textbox {
@@ -848,7 +888,7 @@ section#news.sec3 {
             color: #fff;
             background-color: $main_color;
             line-height: 1.65;
-            padding: 0.8rem 0 0.9rem 2rem;
+            padding: 1rem 0 0.9rem 2rem;
           }
           ul.news_list {
             font-size: 1.8rem;
@@ -860,6 +900,7 @@ section#news.sec3 {
                 display: flex;
                 gap: 5.9rem;
                 transition: all 0.3s ease;
+                padding: 2rem 0 1.25rem;
                 &:hover {
                   opacity: 0.6;
                 }
@@ -868,20 +909,18 @@ section#news.sec3 {
                 }
                 @include mq($sm) {
                   gap: 0.9rem;
+                  padding: 2rem 0 1.3rem;
                 }
                 p.news_text1_23 {
                   font-size: 1.6rem;
-                  padding: 2.7rem 0 3.7rem;
+                  margin-top: 0.8rem;
                 }
                 p.news_text2_30 {
-                  padding: 3rem 0 1.2rem;
+                  margin-top: 1rem;
                 }
                 p.news_text1 {
-                  padding: 1.8rem 0 3.7rem;
                   font-size: 1.6rem;
-                }
-                p.news_text2 {
-                  padding: 2rem 0 1.3rem;
+                  margin-top: -0.3rem;
                 }
               }
             }
@@ -902,35 +941,35 @@ section#news.sec3 {
             }
           }
           div.btn {
-            font-size: 2rem;
-            font-family: "EB Garamond", serif;
-            display: flex;
-            justify-content: flex-end;
-            margin: 1.6rem 5.6rem 2.2rem;
             position: relative;
+            text-align: right;
+            margin: 1.9rem 2rem 1.8rem;
             @include mq($sm) {
-              margin: 1.7rem 5.6rem 2.1rem;
+              margin: 1.7rem 2rem 2rem;
             }
-            a.btn2 {
+            a.btn_box {
+              display: inline-block;
               position: relative;
+              padding: 0 1rem 1.5rem 0.3rem;
+              cursor: pointer;
               &:hover {
-                .text,
+                p,
                 .arrow {
                   animation: shakeRight 0.4s ease;
                 }
               }
-              span.text {
-                position: relative;
-                display: inline-block; // ← これ追加！
+              p {
+                font-size: 2rem;
+                font-family: "EB Garamond", serif;
+                line-height: 1;
                 color: $main_color;
+                padding-right: 2.5rem;
+                line-height: 1;
               }
-              span.arrow {
+              img.arrow {
                 position: absolute;
-                top: 1px;
-                right: -38px;
-                img {
-                  width: 80px;
-                }
+                right: 0;
+                top: 1.05rem;
               }
             }
           }
@@ -943,7 +982,7 @@ section#news.sec3 {
 #access
 ============================*/
 section#access.sec4 {
-  padding: 8.2rem 0 14rem;
+  padding: 8.2rem 0 8rem;
   background-image: url(../img/access-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -956,66 +995,71 @@ section#access.sec4 {
   div.inner {
     div.fade-in-up {
       div.sec4_access {
+        margin-top: 6.8rem;
+        @include mq($sm) {
+          margin-top: 3.8rem;
+        }
         div.access {
-          position: relative;
           display: flex;
-          margin-top: 6.8rem;
           @include mq($sm) {
             position: static;
             flex-direction: column;
             gap: 1.8rem;
-            margin-top: 4rem;
           }
           .map {
             width: 65.2%;
-            aspect-ratio: 3 / 2;
-            z-index: 99;
             @include mq($sm) {
               width: 100%;
               height: auto;
-              aspect-ratio: 315 / 300;
             }
             iframe {
               width: 100%;
-              height: 100%;
+              height: auto;
+              aspect-ratio: 3 / 2;
+              @include mq($sm) {
+                aspect-ratio: 315 / 300;
+              }
             }
           }
 
           div.store_name {
-            position: absolute;
-            width: 54.4%;
-            height: auto;
+            flex: 1;
             background-color: $main_color;
-            right: 0;
-            top: 50%;
             color: #fff;
-            line-height: 1.563;
+            padding: 4.6rem 2rem 4.2rem 4rem;
+            margin-top: 20rem;
+            position: relative;
             z-index: -1;
-            padding-block: 4.9rem 4.2rem;
-            padding-inline: 22rem 0.5rem;
-            @media screen and (max-width: 942px) {
-              padding-left: 17.5rem;
-              padding-top: 3rem;
+            @media screen and (max-width: 830px) {
+              padding: 4.6rem 0.5rem 4.2rem 2rem;
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: -180px;
+              width: 100%;
+              height: 100%;
+              background-color: $main_color;
+              z-index: -1;
+              @include mq($sm) {
+                content: none; // スマホ以下は非表示にする
+              }
             }
             @include mq($sm) {
               position: static;
               width: 100%;
               height: auto;
               color: #fff;
-              top: 26rem;
-              left: 0;
-              padding-left: 0px;
-              padding: 1.9rem 0 1.7rem 2rem;
+              padding: 1.9rem 2rem;
               z-index: 1;
+              margin-top: 0rem;
             }
             p {
               font-size: 2rem;
             }
             address {
-              margin: 0.7rem 0 1.3rem;
-              @include mq($sm) {
-                margin: 0.9rem 0 1.3rem;
-              }
+              line-height: 1.563;
               span {
                 font-family: "Noto Serif JP", serif;
               }
@@ -1025,14 +1069,19 @@ section#access.sec4 {
               font-family: "Noto Serif JP", serif;
               pointer-events: auto;
               font-size: 1.6rem;
+              margin: 0.4rem 0 1.5rem;
               @include mq($sm) {
-                margin-bottom: 1rem;
+                margin: 1.4rem 0 1rem;
               }
               a.tel_link {
                 font-size: 2.5rem;
                 line-height: 1;
                 display: inline-block;
+                @media screen and (max-width: 830px) {
+                  font-size: 2rem;
+                }
                 @include mq($sm) {
+                  font-size: 2.5rem;
                   pointer-events: auto;
                   transition: 0.5s;
                   cursor: pointer;
@@ -1042,6 +1091,9 @@ section#access.sec4 {
             p.store_mail {
               font-size: 1.6rem;
               font-family: "Noto Serif JP", serif;
+              @media screen and (max-width: 830px) {
+                font-size: 1.5rem;
+              }
               a {
                 transition: all 0.4s ease;
                 &:hover {
@@ -1067,14 +1119,10 @@ section#contact.sec5 {
   padding: 8rem 3rem;
   background-color: $sub_color;
   @include mq($sm) {
-    padding: 5.5rem 3rem 4.8rem;
-    @media screen and (max-width: 345px) {
-      padding: 5rem 1.5rem 4.8rem;
-    }
+    padding: 5rem 0;
   }
   div.inner {
-    max-width: 800px;
-    padding-inline: unset;
+    max-width: 860px;
     div.section_title h2 {
       @include mq($sm) {
         letter-spacing: 0;
@@ -1118,7 +1166,7 @@ section#contact.sec5 {
           font-size: 1.6rem;
           background: #fff;
           width: 78.8%;
-          padding: 1.3rem 0 1.2rem 2rem;
+          padding: 1.3rem 2rem 1.2rem;
           line-height: 1.563;
 
           @include mq($sm) {
@@ -1318,7 +1366,8 @@ section#contact.sec5 {
           max-width: 800px;
           height: 200px;
           padding: 2rem;
-
+          min-width: 100%; /* カンプサイズ以下にしない */
+          resize: vertical; /* 高さのみリサイズ可能にする */
           @include mq($sm) {
             width: 100%;
           }
@@ -1425,7 +1474,7 @@ section#contact.sec5 {
         padding: 1rem;
         background: #fff;
         @include mq($sm) {
-          padding: 1rem 1rem 2rem;
+          padding: 1rem 1rem 2.3rem;
         }
         div.privacy_textbox[data-simplebar] {
           height: 280px;
@@ -1528,7 +1577,7 @@ footer {
     }
 
     div.footer_container {
-      padding: 8rem 0 6.7rem;
+      padding: 8rem 0 6rem;
 
       @include mq($sm) {
         padding: 5rem 0px 3.7rem;
@@ -1540,7 +1589,7 @@ footer {
         padding-bottom: 2.3rem;
 
         @include mq($sm) {
-          padding-bottom: 1.7rem;
+          padding-bottom: 1.5rem;
         }
 
         a {
@@ -1608,7 +1657,7 @@ footer {
           display: flex;
           gap: 2.4rem;
           justify-content: center;
-          margin: 3rem 0 1.1rem;
+          margin: 3rem 0 1.6rem;
           line-height: 1.833;
           font-size: 1.8rem;
 
@@ -1653,13 +1702,15 @@ footer {
           li {
             a {
               transition: 0.3s;
+              display: inline-block;
+              padding: 1rem 1.5rem 1rem;
 
               &:hover {
                 opacity: 0.6;
               }
 
               img {
-                padding: 1.5rem;
+                display: block;
               }
             }
           }

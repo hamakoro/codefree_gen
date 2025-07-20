@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! destyle.css v3.0.2 | MIT License | https://github.com/nicolas-cusan/destyle.css */
 /* Reset box-model and set borders */
 /* ============================================ */
@@ -429,7 +430,7 @@ body .sp_indent {
 body .sm_indent {
   display: none;
 }
-@media screen and (min-width: 768px) and (max-width: 950px) {
+@media screen and (min-width: 768px) and (max-width: 971px) {
   body .tb_only {
     display: none;
   }
@@ -469,6 +470,11 @@ img {
   margin: auto;
   padding-inline: 3rem;
 }
+@media screen and (max-width: 345px) {
+  .inner {
+    padding-inline: 1.5rem;
+  }
+}
 .inner .section_title {
   text-align: center;
 }
@@ -506,6 +512,12 @@ img {
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
+  overflow-y: scroll;
+}
+
+body.no-scroll {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0px);
 }
 
 .fade-in-up {
@@ -602,10 +614,15 @@ header.scrolled {
 .header_container a h1.header_logo {
   font-size: 2rem;
   position: relative;
-  top: 0.5rem;
+}
+@media screen and (max-width: 1000px) {
+  .header_container a h1.header_logo {
+    font-size: 1.8rem;
+  }
 }
 @media screen and (max-width: 767px) {
   .header_container a h1.header_logo {
+    font-size: 2rem;
     top: 0;
   }
 }
@@ -622,6 +639,7 @@ header.scrolled {
 @media screen and (max-width: 1000px) {
   .header_list {
     gap: 1rem;
+    font-size: 1.6rem;
   }
 }
 @media screen and (max-width: 767px) {
@@ -649,7 +667,7 @@ header.scrolled {
   width: 100%;
   height: 0.1rem;
   background-color: #fff;
-  bottom: 2rem;
+  bottom: 2.5rem;
   -webkit-transform: scale(0, 1);
           transform: scale(0, 1);
   -webkit-transform-origin: center top;
@@ -665,16 +683,11 @@ header.scrolled {
   }
 }
 .header_item a:hover {
-  opacity: 0.6;
+  opacity: 1;
 }
 .header_item a:hover::after {
   -webkit-transform: scale(1, 1);
           transform: scale(1, 1);
-}
-.header_item a span {
-  display: inline-block;
-  -webkit-transform: translateY(5px);
-          transform: translateY(5px);
 }
 
 @media screen and (max-width: 767px) {
@@ -1010,7 +1023,7 @@ section#recommend.sec1 {
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 {
-    padding: 5rem 0 5.4rem;
+    padding: 5rem 0;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.section_title p {
@@ -1024,7 +1037,11 @@ section#recommend.sec1 div.inner div.fade-in-up div.section_title p {
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
-  margin-bottom: 12.8rem;
+  margin-bottom: 8rem;
+  /* --- recommend --- */
+  /* --- end recommend --- */
+  /* --- recommend_list_reverse --- */
+  /* --- end recommend_list_reverse --- */
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container {
@@ -1032,15 +1049,12 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container.last-recommend {
-  margin-bottom: 4.8rem;
-}
-@media screen and (max-width: 767px) {
-  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container.last-recommend {
-    margin-bottom: 0rem;
-  }
+  margin-bottom: 0rem;
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend {
-  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend {
@@ -1048,7 +1062,7 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    gap: 0.6rem;
+    position: static;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_img {
@@ -1062,35 +1076,45 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_img p {
   margin-top: 2rem;
+  text-align: left;
+  line-height: 1.563;
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_img p {
-    margin: 0.3rem 0 0.4rem 0;
+    margin: 0.5rem 0 0.6rem;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title {
-  position: absolute;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   background-color: #530700;
-  width: 54.35%;
-  height: auto;
   color: #fff;
-  top: 42.8%;
-  right: 0;
-  z-index: -1;
-  padding: 5rem 0.5rem 4.2rem 22rem;
+  padding: 5rem 2rem 4.2rem 4rem;
+  margin-top: 15rem;
+  position: relative;
 }
-@media screen and (max-width: 865px) {
-  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title {
-    padding: 4.5rem 0.5rem 3rem 16.5rem;
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -180px;
+  width: 100%;
+  height: 100%;
+  background-color: #530700;
+  z-index: -1;
+}
+@media screen and (max-width: 767px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title::before {
+    content: none;
   }
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title {
     position: static;
     width: 100%;
-    height: auto;
     padding: 2.3rem 2rem 1.2rem 2rem;
-    top: 0;
+    margin-top: 0;
   }
 }
 @media screen and (max-width: 340px) {
@@ -1103,16 +1127,14 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
   font-weight: 600;
   line-height: 1.32;
 }
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 980px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title h3 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title h3 {
     font-size: 2rem;
-    font-weight: 600;
-    padding-top: 0rem;
     line-height: 1.32;
   }
 }
@@ -1123,7 +1145,7 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend div.recommend_title p.recommend_textbox {
-    padding-block: 0.8rem 0rem;
+    padding-top: 1rem;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse {
@@ -1134,16 +1156,14 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
   -webkit-box-direction: reverse;
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
-  position: relative;
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse {
-    position: static;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    gap: 0.6rem;
+    position: static;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_img {
@@ -1156,41 +1176,57 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_img p {
+  margin-top: 2rem;
   text-align: right;
-  margin-top: 2.2rem;
+  line-height: 1.563;
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_img p {
+    margin: 0.5rem 0 0.6rem;
     text-align: left;
-    margin: 0.4rem 0 0 0;
   }
 }
 section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title {
-  position: absolute;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   background-color: #530700;
-  width: 54%;
-  height: auto;
   color: #fff;
-  top: 42%;
+  padding: 5rem 0.5rem 4.2rem 4rem;
+  margin-top: 15rem;
+  position: relative;
   left: 0;
-  z-index: -1;
-  padding: 5rem 18.5rem 4.2rem 4rem;
+  right: auto;
+  top: 42%;
 }
-@media screen and (max-width: 898px) {
+@media screen and (max-width: 980px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title {
-    padding: 4.5rem 12.5rem 3rem 2rem;
+    padding: 5rem 0.5rem 4.2rem 2rem;
+  }
+}
+section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -180px;
+  width: 100%;
+  height: 100%;
+  background-color: #530700;
+  z-index: -1;
+}
+@media screen and (max-width: 767px) {
+  section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title::before {
+    content: none;
   }
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title {
     position: static;
     width: 100%;
-    height: auto;
-    color: #fff;
-    top: 260px;
-    left: 0;
-    padding-left: 0rem;
     padding: 2rem 2rem 1rem 2rem;
+    margin-top: 0;
+    top: auto;
+    right: auto;
   }
 }
 @media screen and (max-width: 340px) {
@@ -1202,18 +1238,15 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
   font-size: 2.5rem;
   font-weight: 600;
   line-height: 1.32;
-  white-space: nowrap;
 }
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 980px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title h3 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title h3 {
     font-size: 2rem;
-    padding-right: 0rem;
-    padding-top: 0rem;
     line-height: 1.32;
   }
 }
@@ -1225,14 +1258,6 @@ section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_con
 @media screen and (max-width: 767px) {
   section#recommend.sec1 div.inner div.fade-in-up div.fade-in-up div.recommend_container div.recommend_list_reverse div.recommend_title p.recommend_textbox {
     padding-top: 1rem;
-  }
-}
-section#recommend.sec1 .recommend_container.last-recommend {
-  margin-bottom: 0;
-}
-@media screen and (max-width: 767px) {
-  section#recommend.sec1 .recommend_container.last-recommend {
-    margin-bottom: 0;
   }
 }
 
@@ -1256,7 +1281,7 @@ section#course.sec2 {
 section#course.sec2 div.inner div.fade-in-up div.sec2_modal {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4rem;
+  gap: 4.4%;
   margin-top: 6.8rem;
 }
 @media screen and (max-width: 767px) {
@@ -1290,26 +1315,27 @@ section#course.sec2 div.inner div.fade-in-up div.sec2_modal div.modal_item p.tex
 }
 
 .modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
-
 .modal-overlay.active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .modal-content {
@@ -1318,6 +1344,12 @@ section#course.sec2 div.inner div.fade-in-up div.sec2_modal div.modal_item p.tex
   max-width: 450px;
   text-align: center;
   position: relative;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
 }
 @media screen and (max-width: 767px) {
   .modal-content {
@@ -1325,15 +1357,20 @@ section#course.sec2 div.inner div.fade-in-up div.sec2_modal div.modal_item p.tex
   }
 }
 
+.modal-overlay.active .modal-content {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
 .close-btn {
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: -4.11px;
+  right: 2.79px;
   background: transparent;
-  width: 15px;
   border: none;
   cursor: pointer;
   color: #000;
+  z-index: -1;
 }
 
 .modal-text1 {
@@ -1343,20 +1380,16 @@ section#course.sec2 div.inner div.fade-in-up div.sec2_modal div.modal_item p.tex
   margin-left: 0;
 }
 
-body.no-scroll {
-  overflow: hidden;
-}
-
 /*============================
 #news
 ============================*/
 section#news.sec3 {
-  padding: 7.8rem 0 8rem;
+  padding: 8rem 0 8rem;
   background-color: rgba(83, 7, 0, 0.1);
 }
 @media screen and (max-width: 767px) {
   section#news.sec3 {
-    padding: 5rem 0rem 5.1rem;
+    padding: 5rem 0rem;
   }
 }
 section#news.sec3 div.inner div.fade-in-up div.news_card_box {
@@ -1375,7 +1408,7 @@ section#news.sec3 div.inner div.fade-in-up div.news_card_box {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    gap: 4.8rem;
+    gap: 4.4rem;
     margin-top: 3.6rem;
   }
 }
@@ -1394,7 +1427,7 @@ section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox h3
   color: #fff;
   background-color: #530700;
   line-height: 1.65;
-  padding: 0.8rem 0 0.9rem 2rem;
+  padding: 1rem 0 0.9rem 2rem;
 }
 section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul.news_list {
   font-size: 1.8rem;
@@ -1411,6 +1444,7 @@ section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul
   gap: 5.9rem;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  padding: 2rem 0 1.25rem;
 }
 section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul.news_list li.news_item a:hover {
   opacity: 0.6;
@@ -1423,21 +1457,19 @@ section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul
 @media screen and (max-width: 767px) {
   section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul.news_list li.news_item a {
     gap: 0.9rem;
+    padding: 2rem 0 1.3rem;
   }
 }
 section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul.news_list li.news_item a p.news_text1_23 {
   font-size: 1.6rem;
-  padding: 2.7rem 0 3.7rem;
+  margin-top: 0.8rem;
 }
 section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul.news_list li.news_item a p.news_text2_30 {
-  padding: 3rem 0 1.2rem;
+  margin-top: 1rem;
 }
 section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul.news_list li.news_item a p.news_text1 {
-  padding: 1.8rem 0 3.7rem;
   font-size: 1.6rem;
-}
-section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul.news_list li.news_item a p.news_text2 {
-  padding: 2rem 0 1.3rem;
+  margin-top: -0.3rem;
 }
 @-webkit-keyframes shakeRight {
   0% {
@@ -1476,49 +1508,45 @@ section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox ul
   }
 }
 section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn {
-  font-size: 2rem;
-  font-family: "EB Garamond", serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  margin: 1.6rem 5.6rem 2.2rem;
   position: relative;
+  text-align: right;
+  margin: 1.9rem 2rem 1.8rem;
 }
 @media screen and (max-width: 767px) {
   section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn {
-    margin: 1.7rem 5.6rem 2.1rem;
+    margin: 1.7rem 2rem 2rem;
   }
 }
-section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn2 {
+section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn_box {
+  display: inline-block;
   position: relative;
+  padding: 0 1rem 1.5rem 0.3rem;
+  cursor: pointer;
 }
-section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn2:hover .text,
-section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn2:hover .arrow {
+section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn_box:hover p,
+section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn_box:hover .arrow {
   -webkit-animation: shakeRight 0.4s ease;
           animation: shakeRight 0.4s ease;
 }
-section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn2 span.text {
-  position: relative;
-  display: inline-block;
+section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn_box p {
+  font-size: 2rem;
+  font-family: "EB Garamond", serif;
+  line-height: 1;
   color: #530700;
+  padding-right: 2.5rem;
+  line-height: 1;
 }
-section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn2 span.arrow {
+section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn_box img.arrow {
   position: absolute;
-  top: 1px;
-  right: -38px;
-}
-section#news.sec3 div.inner div.fade-in-up div.news_card_box div.news_textbox div.btn a.btn2 span.arrow img {
-  width: 80px;
+  right: 0;
+  top: 1.05rem;
 }
 
 /*============================
 #access
 ============================*/
 section#access.sec4 {
-  padding: 8.2rem 0 14rem;
+  padding: 8.2rem 0 8rem;
   background-image: url(../img/access-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -1531,12 +1559,18 @@ section#access.sec4 {
     background-size: cover;
   }
 }
+section#access.sec4 div.inner div.fade-in-up div.sec4_access {
+  margin-top: 6.8rem;
+}
+@media screen and (max-width: 767px) {
+  section#access.sec4 div.inner div.fade-in-up div.sec4_access {
+    margin-top: 3.8rem;
+  }
+}
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 6.8rem;
 }
 @media screen and (max-width: 767px) {
   section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access {
@@ -1546,42 +1580,56 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 1.8rem;
-    margin-top: 4rem;
   }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access .map {
   width: 65.2%;
-  aspect-ratio: 3/2;
-  z-index: 99;
 }
 @media screen and (max-width: 767px) {
   section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access .map {
     width: 100%;
     height: auto;
-    aspect-ratio: 315/300;
   }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access .map iframe {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 3/2;
+}
+@media screen and (max-width: 767px) {
+  section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access .map iframe {
+    aspect-ratio: 315/300;
+  }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name {
-  position: absolute;
-  width: 54.4%;
-  height: auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   background-color: #530700;
-  right: 0;
-  top: 50%;
   color: #fff;
-  line-height: 1.563;
+  padding: 4.6rem 2rem 4.2rem 4rem;
+  margin-top: 20rem;
+  position: relative;
   z-index: -1;
-  padding-block: 4.9rem 4.2rem;
-  padding-inline: 22rem 0.5rem;
 }
-@media screen and (max-width: 942px) {
+@media screen and (max-width: 830px) {
   section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name {
-    padding-left: 17.5rem;
-    padding-top: 3rem;
+    padding: 4.6rem 0.5rem 4.2rem 2rem;
+  }
+}
+section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -180px;
+  width: 100%;
+  height: 100%;
+  background-color: #530700;
+  z-index: -1;
+}
+@media screen and (max-width: 767px) {
+  section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name::before {
+    content: none;
   }
 }
 @media screen and (max-width: 767px) {
@@ -1590,23 +1638,16 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.stor
     width: 100%;
     height: auto;
     color: #fff;
-    top: 26rem;
-    left: 0;
-    padding-left: 0px;
-    padding: 1.9rem 0 1.7rem 2rem;
+    padding: 1.9rem 2rem;
     z-index: 1;
+    margin-top: 0rem;
   }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p {
   font-size: 2rem;
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name address {
-  margin: 0.7rem 0 1.3rem;
-}
-@media screen and (max-width: 767px) {
-  section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name address {
-    margin: 0.9rem 0 1.3rem;
-  }
+  line-height: 1.563;
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name address span {
   font-family: "Noto Serif JP", serif;
@@ -1616,10 +1657,11 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.stor
   font-family: "Noto Serif JP", serif;
   pointer-events: auto;
   font-size: 1.6rem;
+  margin: 0.4rem 0 1.5rem;
 }
 @media screen and (max-width: 767px) {
   section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel {
-    margin-bottom: 1rem;
+    margin: 1.4rem 0 1rem;
   }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel a.tel_link {
@@ -1627,8 +1669,14 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.stor
   line-height: 1;
   display: inline-block;
 }
+@media screen and (max-width: 830px) {
+  section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel a.tel_link {
+    font-size: 2rem;
+  }
+}
 @media screen and (max-width: 767px) {
   section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_tel a.tel_link {
+    font-size: 2.5rem;
     pointer-events: auto;
     -webkit-transition: 0.5s;
     transition: 0.5s;
@@ -1638,6 +1686,11 @@ section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.stor
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_mail {
   font-size: 1.6rem;
   font-family: "Noto Serif JP", serif;
+}
+@media screen and (max-width: 830px) {
+  section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_mail {
+    font-size: 1.5rem;
+  }
 }
 section#access.sec4 div.inner div.fade-in-up div.sec4_access div.access div.store_name p.store_mail a {
   -webkit-transition: all 0.4s ease;
@@ -1663,17 +1716,11 @@ section#contact.sec5 {
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 {
-    padding: 5.5rem 3rem 4.8rem;
-  }
-}
-@media screen and (max-width: 767px) and (max-width: 345px) {
-  section#contact.sec5 {
-    padding: 5rem 1.5rem 4.8rem;
+    padding: 5rem 0;
   }
 }
 section#contact.sec5 div.inner {
-  max-width: 800px;
-  padding-inline: unset;
+  max-width: 860px;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 div.inner div.section_title h2 {
@@ -1734,7 +1781,7 @@ section#contact.sec5 div.inner div.fade-in-up .contactbox .input_text {
   font-size: 1.6rem;
   background: #fff;
   width: 78.8%;
-  padding: 1.3rem 0 1.2rem 2rem;
+  padding: 1.3rem 2rem 1.2rem;
   line-height: 1.563;
 }
 @media screen and (max-width: 767px) {
@@ -1961,6 +2008,8 @@ section#contact.sec5 div.inner div.fade-in-up .form-Content textarea {
   max-width: 800px;
   height: 200px;
   padding: 2rem;
+  min-width: 100%; /* カンプサイズ以下にしない */
+  resize: vertical; /* 高さのみリサイズ可能にする */
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 div.inner div.fade-in-up .form-Content textarea {
@@ -2073,7 +2122,7 @@ section#contact.sec5 div.inner div.privacy div.privacy_box {
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 div.inner div.privacy div.privacy_box {
-    padding: 1rem 1rem 2rem;
+    padding: 1rem 1rem 2.3rem;
   }
 }
 section#contact.sec5 div.inner div.privacy div.privacy_box div.privacy_textbox[data-simplebar] {
@@ -2182,7 +2231,7 @@ footer div.inner {
   }
 }
 footer div.inner div.footer_container {
-  padding: 8rem 0 6.7rem;
+  padding: 8rem 0 6rem;
 }
 @media screen and (max-width: 767px) {
   footer div.inner div.footer_container {
@@ -2196,7 +2245,7 @@ footer div.inner div.footer_container p.footer_ {
 }
 @media screen and (max-width: 767px) {
   footer div.inner div.footer_container p.footer_ {
-    padding-bottom: 1.7rem;
+    padding-bottom: 1.5rem;
   }
 }
 footer div.inner div.footer_container p.footer_ a {
@@ -2272,7 +2321,7 @@ footer div.inner div.footer_container nav.footer_nav ul.footer_list.pc_only {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 3rem 0 1.1rem;
+  margin: 3rem 0 1.6rem;
   line-height: 1.833;
   font-size: 1.8rem;
 }
@@ -2318,12 +2367,14 @@ footer div.inner div.footer_container nav.footer_nav ul.footer_sns {
 footer div.inner div.footer_container nav.footer_nav ul.footer_sns li a {
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  display: inline-block;
+  padding: 1rem 1.5rem 1rem;
 }
 footer div.inner div.footer_container nav.footer_nav ul.footer_sns li a:hover {
   opacity: 0.6;
 }
 footer div.inner div.footer_container nav.footer_nav ul.footer_sns li a img {
-  padding: 1.5rem;
+  display: block;
 }
 footer div.copyright {
   background: #530700;
