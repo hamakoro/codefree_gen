@@ -35,53 +35,72 @@ $(function () {
 });
 
 // モーダル関連の要素
-const modal = document.getElementById("modal");
-const modalImage = document.getElementById("modalImage");
-const modalText1 = document.getElementById("modalText1");
-const modalText2 = document.getElementById("modalText2");
-const closeBtn = document.getElementById("closeModal");
+  const modal = document.getElementById("modal");
+  const modalImage = document.getElementById("modalImage");
+  const modalText1 = document.getElementById("modalText1");
+  const modalText2 = document.getElementById("modalText2");
+  const closeBtn = document.getElementById("closeModal");
+  const modalItems = document.querySelectorAll(".modal_item");
+  const body = document.body;
 
-const modalItems = document.querySelectorAll(".modal_item");
+  // スクロールバーの幅を取得
+  function getScrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+  }
 
-// body要素を取得しておく
-const body = document.body;
-
-modalItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    // HTML内のdata属性から取得
-    const fullSrc = item.getAttribute("data-full");
-    const title = item.getAttribute("data-title");
-    const price = item.getAttribute("data-price");
-
-    // モーダルにセット
+  // モーダルを開く
+  function openModal(fullSrc, title, price) {
+    // モーダル内の内容を設定
     modalImage.src = fullSrc;
     modalImage.alt = title;
     modalText1.textContent = title;
-    modalText2.textContent = price;
+    modalText2.textContent = price || "";
 
-    // モーダルを表示
-    modal.classList.add("active");
+    // スクロールバー幅をCSS変数としてセット（ズレ防止）
+    const scrollbarWidth = getScrollbarWidth();
+    document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
 
-    // ★追加: モーダル表示時にbodyにno-scrollクラスを追加
+    // bodyスクロールを止める＋モーダル表示
     body.classList.add("no-scroll");
-  });
-});
-
-// 閉じるボタン
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("active");
-  // ★追加: モーダル非表示時にbodyからno-scrollクラスを削除
-  body.classList.remove("no-scroll");
-});
-
-// 背景クリックでも閉じる
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("active");
-    // ★追加: モーダル非表示時にbodyからno-scrollクラスを削除
-    body.classList.remove("no-scroll");
+    modal.classList.add("active");
   }
-});
+
+  // モーダルを閉じる
+  function closeModalWithAnimation() {
+    modal.classList.remove("active");
+    body.classList.remove("no-scroll");
+
+    // CSS変数をリセット
+    document.documentElement.style.removeProperty('--scrollbar-width');
+
+    // 内容を遅れて消す（アニメーション完了後）
+    setTimeout(() => {
+      modalImage.src = "";
+      modalImage.alt = "";
+      modalText1.textContent = "";
+      modalText2.textContent = "";
+    }, 400); // ←CSSのtransitionと同じ時間に
+  }
+
+  // 各モーダルアイテムのクリックイベント
+  modalItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const fullSrc = item.getAttribute("data-full");
+      const title = item.getAttribute("data-title");
+      const price = item.getAttribute("data-price");
+      openModal(fullSrc, title, price);
+    });
+  });
+
+  // ×ボタンで閉じる
+  closeBtn.addEventListener("click", closeModalWithAnimation);
+
+  // 背景クリックで閉じる
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModalWithAnimation();
+    }
+  });
 
 //スクロールリンク
 $("a.scroll-link[href^='#']").on("click", function (e) {
