@@ -29,9 +29,6 @@ body {
   .sp_only {
     display: none;
   }
-  .sm_only {
-    display: none;
-  }
 
   .tb_only {
     display: block;
@@ -41,21 +38,11 @@ body {
     display: block;
   }
 
-  .sm_indent {
-    display: none;
-  }
-
   @media screen and (min-width: 768px) and (max-width: 971px) {
     .tb_only {
       display: none;
     }
   }
-  @media screen and (min-width: 300px) and (max-width: 375px) {
-    .sm_only {
-      display: block;
-    }
-  }
-
   @media screen and (min-width: 300px) and (max-width: 355px) {
     .sp_indent {
       display: none;
@@ -121,13 +108,13 @@ img {
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
-  overflow-y: scroll;
 }
 
 body.no-scroll {
   overflow: hidden;
   padding-right: var(--scrollbar-width, 0px);
 }
+
 
 .fade-in-up {
   opacity: 0;
@@ -422,7 +409,7 @@ section.fv_sec1 {
       height: auto;
     }
   }
-  div.fv_title {
+  .fv_title {
     position: absolute;
     top: 42.7%;
     left: 5.8%;
@@ -461,16 +448,16 @@ section#about.fv_sec2 {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  div.inner {
+  .inner {
     padding-inline: unset;
-    div.fv_textbox {
+    .fv_textbox {
       writing-mode: vertical-rl;
       margin: auto;
       @include mq($sm) {
         display: flex;
         align-items: center;
       }
-      div.fv_concept {
+      .fv_concept {
         line-height: 1.18;
         margin-left: 5rem;
         @include mq($sm) {
@@ -496,7 +483,7 @@ section#about.fv_sec2 {
           }
         }
       }
-      div.textbox {
+      .textbox {
         line-height: 1.37;
         @include mq($sm) {
           line-height: 1.6;
@@ -542,9 +529,9 @@ section#recommend.sec1 {
     padding: 5rem 0;
   }
 
-  div.inner {
-    div.fade-in-up {
-      div.section_title {
+  .inner {
+    .fade-in-up {
+      .section_title {
         p {
           margin-bottom: 6.1rem;
           letter-spacing: 0.6rem;
@@ -556,8 +543,8 @@ section#recommend.sec1 {
         }
       }
 
-      div.fade-in-up {
-        div.recommend_container {
+      .fade-in-up {
+        .recommend_container {
           margin-bottom: 8rem;
 
           @include mq($sm) {
@@ -569,7 +556,7 @@ section#recommend.sec1 {
           }
 
           /* --- recommend --- */
-          div.recommend {
+          .recommend {
             display: flex;
 
             @include mq($sm) {
@@ -577,7 +564,7 @@ section#recommend.sec1 {
               position: static;
             }
 
-            div.recommend_img {
+            .recommend_img {
               max-width: 65.3%;
               margin: 0;
 
@@ -595,7 +582,7 @@ section#recommend.sec1 {
               }
             }
 
-            div.recommend_title {
+            .recommend_title {
               flex: 1;
               background-color: $main_color;
               color: #fff;
@@ -655,7 +642,7 @@ section#recommend.sec1 {
           } /* --- end recommend --- */
 
           /* --- recommend_list_reverse --- */
-          div.recommend_list_reverse {
+          .recommend_list_reverse {
             display: flex;
             flex-direction: row-reverse;
 
@@ -664,7 +651,7 @@ section#recommend.sec1 {
               position: static;
             }
 
-            div.recommend_img {
+            .recommend_img {
               max-width: 65.3%;
               margin: 0;
 
@@ -683,7 +670,7 @@ section#recommend.sec1 {
               }
             }
 
-            div.recommend_title {
+            .recommend_title {
               flex: 1;
               background-color: $main_color;
               color: #fff;
@@ -694,7 +681,7 @@ section#recommend.sec1 {
               right: auto;
               top: 42%;
               @media screen and (max-width: 980px) {
-              padding: 5rem 0.5rem 4.2rem 2rem;
+                padding: 5rem 0.5rem 4.2rem 2rem;
               }
 
               &::before {
@@ -769,9 +756,9 @@ section#course.sec2 {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  div.inner {
-    div.fade-in-up {
-      div.sec2_modal {
+  .inner {
+    .fade-in-up {
+      .sec2_modal {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4.4%;
@@ -781,7 +768,7 @@ section#course.sec2 {
           gap: 2rem;
           margin-top: 3.8rem;
         }
-        div.modal_item {
+        .modal_item {
           cursor: pointer;
           transition: all 0.3s ease;
           &:hover {
@@ -864,9 +851,9 @@ section#news.sec3 {
   @include mq($sm) {
     padding: 5rem 0rem;
   }
-  div.inner {
-    div.fade-in-up {
-      div.news_card_box {
+  .inner {
+    .fade-in-up {
+      .news_card_box {
         display: flex;
         gap: 6rem;
         margin-top: 6.8rem;
@@ -876,7 +863,7 @@ section#news.sec3 {
           gap: 4.4rem;
           margin-top: 3.6rem;
         }
-        div.news_textbox {
+        .news_textbox {
           width: 46.8%;
           background-color: #fff;
           @include mq($sm) {
@@ -940,7 +927,7 @@ section#news.sec3 {
               transform: translateX(0);
             }
           }
-          div.btn {
+          .btn {
             position: relative;
             text-align: right;
             margin: 1.9rem 2rem 1.8rem;
@@ -992,14 +979,14 @@ section#access.sec4 {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  div.inner {
-    div.fade-in-up {
-      div.sec4_access {
+  .inner {
+    .fade-in-up {
+      .sec4_access {
         margin-top: 6.8rem;
         @include mq($sm) {
           margin-top: 3.8rem;
         }
-        div.access {
+        .access {
           display: flex;
           @include mq($sm) {
             position: static;
@@ -1022,7 +1009,7 @@ section#access.sec4 {
             }
           }
 
-          div.store_name {
+          .store_name {
             flex: 1;
             background-color: $main_color;
             color: #fff;
@@ -1121,14 +1108,14 @@ section#contact.sec5 {
   @include mq($sm) {
     padding: 5rem 0;
   }
-  div.inner {
+  .inner {
     max-width: 860px;
-    div.section_title h2 {
+    .section_title h2 {
       @include mq($sm) {
         letter-spacing: 0;
       }
     }
-    div.fade-in-up {
+    .fade-in-up {
       p.contact_text {
         margin: 3.3rem 0 3.2rem;
         font-size: 2rem;
@@ -1367,7 +1354,7 @@ section#contact.sec5 {
           height: 200px;
           padding: 2rem;
           min-width: 100%; /* カンプサイズ以下にしない */
-          resize: vertical; /* 高さのみリサイズ可能にする */
+          resize: none; /* 高さのみリサイズ可能にする */
           @include mq($sm) {
             width: 100%;
           }
@@ -1458,7 +1445,7 @@ section#contact.sec5 {
         }
       }
     }
-    div.privacy {
+    .privacy {
       margin-top: 4.5rem;
       @include mq($sm) {
         margin: 2.2rem 0 0px;
@@ -1470,13 +1457,13 @@ section#contact.sec5 {
           margin-bottom: -0.3rem;
         }
       }
-      div.privacy_box {
+      .privacy_box {
         padding: 1rem;
         background: #fff;
         @include mq($sm) {
           padding: 1rem 1rem 2.3rem;
         }
-        div.privacy_textbox[data-simplebar] {
+        .privacy_textbox[data-simplebar] {
           height: 280px;
           padding: 3rem 5rem 3rem 3rem;
           position: relative;
@@ -1515,7 +1502,7 @@ section#contact.sec5 {
             opacity: 1 !important;
             display: none !important;
           }
-          div.privacy_text {
+          .privacy_text {
             font-size: 1.8rem;
             line-height: 1.722;
             @include mq($sm) {
@@ -1526,7 +1513,7 @@ section#contact.sec5 {
           }
         }
       }
-      div.btn {
+      .btn {
         text-align: center;
         margin-top: 8rem;
         @include mq($sm) {
@@ -1569,18 +1556,18 @@ footer {
     background-repeat: no-repeat;
   }
 
-  div.inner {
+  .inner {
     max-width: 722px;
     padding-inline: 0rem;
     @include mq($sm) {
       padding-inline: 3rem;
     }
 
-    div.footer_container {
+    .footer_container {
       padding: 8rem 0 6rem;
 
       @include mq($sm) {
-        padding: 5rem 0px 3.7rem;
+        padding: 5rem 0px 2.7rem;
       }
 
       p.footer_ {
@@ -1697,7 +1684,7 @@ footer {
           align-items: center;
           justify-content: center;
           @include mq($sm) {
-            padding-top: 1rem;
+            margin-top: 2rem;
           }
           li {
             a {
@@ -1719,7 +1706,7 @@ footer {
     }
   }
 
-  div.copyright {
+  .copyright {
     background: $main_color;
 
     p {
