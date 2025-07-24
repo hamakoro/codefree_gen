@@ -115,7 +115,6 @@ body.no-scroll {
   padding-right: var(--scrollbar-width, 0px);
 }
 
-
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
@@ -1352,9 +1351,10 @@ section#contact.sec5 {
           width: 100%;
           max-width: 800px;
           height: 200px;
+          min-height: 200px;
           padding: 2rem;
-          min-width: 100%; /* カンプサイズ以下にしない */
-          resize: none; /* 高さのみリサイズ可能にする */
+          min-width: 100%;
+          resize: vertical;
           @include mq($sm) {
             width: 100%;
           }
