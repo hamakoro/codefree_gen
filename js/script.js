@@ -35,72 +35,97 @@ $(function () {
 });
 
 // モーダル関連の要素
-  const modal = document.getElementById("modal");
-  const modalImage = document.getElementById("modalImage");
-  const modalText1 = document.getElementById("modalText1");
-  const modalText2 = document.getElementById("modalText2");
-  const closeBtn = document.getElementById("closeModal");
-  const modalItems = document.querySelectorAll(".modal_item");
-  const body = document.body;
+const modal = document.getElementById("modal");
+const modalImage = document.getElementById("modalImage");
+const modalText1 = document.getElementById("modalText1");
+const modalText2 = document.getElementById("modalText2");
+const closeBtn = document.getElementById("closeModal");
+const modalItems = document.querySelectorAll(".modal_item");
+const backToTopBtn = document.querySelector("#backToTop .to-top");
 
-  // スクロールバーの幅を取得
-  function getScrollbarWidth() {
-    return window.innerWidth - document.documentElement.clientWidth;
-  }
+const body = document.body;
 
-  // モーダルを開く
-  function openModal(fullSrc, title, price) {
-    // モーダル内の内容を設定
-    modalImage.src = fullSrc;
-    modalImage.alt = title;
-    modalText1.textContent = title;
-    modalText2.textContent = price || "";
+// スクロールバーの幅を取得
+function getScrollbarWidth() {
+  return window.innerWidth - document.documentElement.clientWidth;
+}
 
-    // スクロールバー幅をCSS変数としてセット（ズレ防止）
-    const scrollbarWidth = getScrollbarWidth();
-    document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+// モーダルを開く
+function openModal(fullSrc, title, price) {
+  // モーダル内の内容を設定
+  modalImage.src = fullSrc;
+  modalImage.alt = title;
+  modalText1.textContent = title;
+  modalText2.textContent = price || "";
 
-    // bodyスクロールを止める＋モーダル表示
-    body.classList.add("no-scroll");
-    modal.classList.add("active");
-  }
+  // スクロールバー幅をCSS変数としてセット（ズレ防止）
+  const scrollbarWidth = getScrollbarWidth();
+  document.documentElement.style.setProperty(
+    "--scrollbar-width",
+    `${scrollbarWidth}px`
+  );
 
-  // モーダルを閉じる
-  function closeModalWithAnimation() {
-    modal.classList.remove("active");
-    body.classList.remove("no-scroll");
+  // ★ここから：スクロールを完全に固定
+  scrollY = window.scrollY;
+  body.style.position = "fixed";
+  body.style.top = `-${scrollY}px`;
+  body.style.left = "0";
+  body.style.right = "0";
+  body.style.width = "100%";
 
-    // CSS変数をリセット
-    document.documentElement.style.removeProperty('--scrollbar-width');
+  // bodyスクロールを止める＋モーダル表示
+  body.classList.add("no-scroll");
+  modal.classList.add("active");
+  // ★スクロールを元に戻す
+  body.style.position = "";
+  body.style.top = "";
+  body.style.left = "";
+  body.style.right = "";
+  body.style.width = "";
+  window.scrollTo(0, scrollY);
 
-    // 内容を遅れて消す（アニメーション完了後）
-    setTimeout(() => {
-      modalImage.src = "";
-      modalImage.alt = "";
-      modalText1.textContent = "";
-      modalText2.textContent = "";
-    }, 400); // ←CSSのtransitionと同じ時間に
-  }
+  // トップに戻るボタンを非表示
+  if (backToTopBtn) backToTopBtn.classList.remove("to-top--visible");
+}
 
-  // 各モーダルアイテムのクリックイベント
-  modalItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      const fullSrc = item.getAttribute("data-full");
-      const title = item.getAttribute("data-title");
-      const price = item.getAttribute("data-price");
-      openModal(fullSrc, title, price);
-    });
+// モーダルを閉じる
+function closeModalWithAnimation() {
+  modal.classList.remove("active");
+  body.classList.remove("no-scroll");
+
+  // CSS変数をリセット
+  document.documentElement.style.removeProperty("--scrollbar-width");
+
+  // トップに戻るボタンを再表示
+  if (backToTopBtn) backToTopBtn.classList.add("to-top--visible");
+  // 内容を遅れて消す（アニメーション完了後）
+  setTimeout(() => {
+    modalImage.src = "";
+    modalImage.alt = "";
+    modalText1.textContent = "";
+    modalText2.textContent = "";
+  }, 400); // ←CSSのtransitionと同じ時間に
+}
+
+// 各モーダルアイテムのクリックイベント
+modalItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const fullSrc = item.getAttribute("data-full");
+    const title = item.getAttribute("data-title");
+    const price = item.getAttribute("data-price");
+    openModal(fullSrc, title, price);
   });
+});
 
-  // ×ボタンで閉じる
-  closeBtn.addEventListener("click", closeModalWithAnimation);
+// ×ボタンで閉じる
+closeBtn.addEventListener("click", closeModalWithAnimation);
 
-  // 背景クリックで閉じる
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeModalWithAnimation();
-    }
-  });
+// 背景クリックで閉じる
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    closeModalWithAnimation();
+  }
+});
 
 //スクロールリンク
 $("a.scroll-link[href^='#']").on("click", function (e) {
@@ -139,7 +164,7 @@ $(function () {
     if ($about.length === 0) return;
 
     const aboutOffset = $about.offset().top;
-    const triggerPosition = aboutOffset - 130;
+    const triggerPosition = aboutOffset - 80;
     const scroll = $(window).scrollTop();
 
     if (scroll >= triggerPosition) {
@@ -207,8 +232,8 @@ $(".to-top").on("click", function (e) {
     $(window).trigger("scroll");
   });
 });
-new SimpleBar(document.querySelector('.privacy_textbox'), {
+new SimpleBar(document.querySelector(".privacy_textbox"), {
   autoHide: false,
   scrollbarMinSize: 30,
-  scrollbarMaxSize: 30
+  scrollbarMaxSize: 30,
 });
