@@ -33,9 +33,8 @@ $(function () {
     pauseOnHover: false,
   });
 });
-
-// モーダル関連の要素
 const modal = document.getElementById("modal");
+const modalContent = document.querySelector(".modal-content");
 const modalImage = document.getElementById("modalImage");
 const modalText1 = document.getElementById("modalText1");
 const modalText2 = document.getElementById("modalText2");
@@ -43,71 +42,40 @@ const closeBtn = document.getElementById("closeModal");
 const modalItems = document.querySelectorAll(".modal_item");
 const backToTopBtn = document.querySelector("#backToTop .to-top");
 
-const body = document.body;
+// body-scroll-lockの関数読み込み
+const { disableBodyScroll, enableBodyScroll } = bodyScrollLock;
 
-// スクロールバーの幅を取得
-function getScrollbarWidth() {
-  return window.innerWidth - document.documentElement.clientWidth;
-}
-
-// モーダルを開く
 function openModal(fullSrc, title, price) {
-  // モーダル内の内容を設定
   modalImage.src = fullSrc;
   modalImage.alt = title;
   modalText1.textContent = title;
   modalText2.textContent = price || "";
 
-  // スクロールバー幅をCSS変数としてセット（ズレ防止）
-  const scrollbarWidth = getScrollbarWidth();
-  document.documentElement.style.setProperty(
-    "--scrollbar-width",
-    `${scrollbarWidth}px`
-  );
-
-  // ★ここから：スクロールを完全に固定
-  scrollY = window.scrollY;
-  body.style.position = "fixed";
-  body.style.top = `-${scrollY}px`;
-  body.style.left = "0";
-  body.style.right = "0";
-  body.style.width = "100%";
-
-  // bodyスクロールを止める＋モーダル表示
-  body.classList.add("no-scroll");
   modal.classList.add("active");
-  // ★スクロールを元に戻す
-  body.style.position = "";
-  body.style.top = "";
-  body.style.left = "";
-  body.style.right = "";
-  body.style.width = "";
-  window.scrollTo(0, scrollY);
 
-  // トップに戻るボタンを非表示
+  // モーダルコンテンツのスクロールをロック（背景はスクロール禁止）
+  disableBodyScroll(modalContent);
+
   if (backToTopBtn) backToTopBtn.classList.remove("to-top--visible");
 }
 
-// モーダルを閉じる
-function closeModalWithAnimation() {
+function closeModal() {
   modal.classList.remove("active");
-  body.classList.remove("no-scroll");
 
-  // CSS変数をリセット
-  document.documentElement.style.removeProperty("--scrollbar-width");
+  // スクロールロック解除
+  enableBodyScroll(modalContent);
 
-  // トップに戻るボタンを再表示
   if (backToTopBtn) backToTopBtn.classList.add("to-top--visible");
-  // 内容を遅れて消す（アニメーション完了後）
+
+  // クリアは必要に応じて
   setTimeout(() => {
     modalImage.src = "";
     modalImage.alt = "";
     modalText1.textContent = "";
     modalText2.textContent = "";
-  }, 400); // ←CSSのtransitionと同じ時間に
+  }, 400);
 }
 
-// 各モーダルアイテムのクリックイベント
 modalItems.forEach((item) => {
   item.addEventListener("click", () => {
     const fullSrc = item.getAttribute("data-full");
@@ -117,13 +85,11 @@ modalItems.forEach((item) => {
   });
 });
 
-// ×ボタンで閉じる
-closeBtn.addEventListener("click", closeModalWithAnimation);
+closeBtn.addEventListener("click", closeModal);
 
-// 背景クリックで閉じる
 modal.addEventListener("click", (e) => {
   if (e.target === modal) {
-    closeModalWithAnimation();
+    closeModal();
   }
 });
 
@@ -164,7 +130,7 @@ $(function () {
     if ($about.length === 0) return;
 
     const aboutOffset = $about.offset().top;
-    const triggerPosition = aboutOffset - 80;
+    const triggerPosition = aboutOffset - 0;
     const scroll = $(window).scrollTop();
 
     if (scroll >= triggerPosition) {

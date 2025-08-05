@@ -420,9 +420,6 @@ body .sp_only {
 body .tb_only {
   display: block;
 }
-body .sp_indent {
-  display: block;
-}
 body .sm_indent {
   display: none;
 }
@@ -431,11 +428,6 @@ body .indent {
 }
 @media screen and (min-width: 768px) and (max-width: 971px) {
   body .tb_only {
-    display: none;
-  }
-}
-@media screen and (min-width: 300px) and (max-width: 355px) {
-  body .sp_indent {
     display: none;
   }
 }
@@ -516,6 +508,7 @@ html {
 body.no-scroll {
   overflow: hidden;
   padding-right: var(--scrollbar-width, 0px);
+  width: 100%;
 }
 
 .fade-in-up {
@@ -1072,13 +1065,18 @@ section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .reco
 section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend .recommend_img {
   max-width: 65.3%;
   margin: 0;
-  padding-bottom: 5rem;
+  padding-bottom: 5.5rem;
 }
 @media screen and (max-width: 767px) {
   section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend .recommend_img {
     max-width: 100%;
     padding-bottom: 0rem;
   }
+}
+section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend .recommend_img img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend .recommend_img p {
   margin-top: 2rem;
@@ -1159,6 +1157,11 @@ section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .reco
     font-size: 1.6rem;
   }
 }
+@media screen and (max-width: 345px) {
+  section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend .recommend_title p.recommend_textbox {
+    font-size: 1.5rem;
+  }
+}
 section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend_list_reverse {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1193,6 +1196,11 @@ section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .reco
     max-width: 100%;
     padding-bottom: 0rem;
   }
+}
+section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend_list_reverse .recommend_img img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend_list_reverse .recommend_img p {
   margin-top: 2rem;
@@ -1284,6 +1292,11 @@ section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .reco
     font-size: 1.6rem;
   }
 }
+@media screen and (max-width: 345px) {
+  section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend_list_reverse .recommend_title p.recommend_textbox {
+    font-size: 1.5rem;
+  }
+}
 
 /*============================
 #course
@@ -1337,8 +1350,6 @@ section#course.sec2 .inner .fade-in-up .sec2_modal .modal_item p.text1 {
     padding-top: 1rem;
   }
 }
-section#course.sec2 .inner .fade-in-up .sec2_modal .modal_item picture,
-section#course.sec2 .inner .fade-in-up .sec2_modal .modal_item source,
 section#course.sec2 .inner .fade-in-up .sec2_modal .modal_item img.modal {
   width: 100%;
   height: auto;
@@ -1631,7 +1642,7 @@ section#access.sec4 .inner .fade-in-up .sec4_access .access {
 }
 section#access.sec4 .inner .fade-in-up .sec4_access .access .map {
   width: 65.2%;
-  padding-bottom: 6.6rem;
+  padding-bottom: 5.7rem;
 }
 @media screen and (max-width: 767px) {
   section#access.sec4 .inner .fade-in-up .sec4_access .access .map {
@@ -1703,7 +1714,7 @@ section#access.sec4 .inner .fade-in-up .sec4_access .access .store_name address 
   font-family: "Noto Serif JP", serif;
 }
 section#access.sec4 .inner .fade-in-up .sec4_access .access .store_name p.store_tel {
-  margin-bottom: 1.9rem;
+  margin-bottom: 1.3rem;
   font-family: "Noto Serif JP", serif;
   pointer-events: auto;
   font-size: 1.6rem;
