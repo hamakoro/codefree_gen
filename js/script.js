@@ -33,64 +33,78 @@ $(function () {
     pauseOnHover: false,
   });
 });
-const modal = document.getElementById("modal");
-const modalContent = document.querySelector(".modal-content");
-const modalImage = document.getElementById("modalImage");
-const modalText1 = document.getElementById("modalText1");
-const modalText2 = document.getElementById("modalText2");
-const closeBtn = document.getElementById("closeModal");
-const modalItems = document.querySelectorAll(".modal_item");
-const backToTopBtn = document.querySelector("#backToTop .to-top");
+$(function() {
+  const $modal = $("#modal");
+  const $modalContent = $(".modal-content");
+  const $modalImage = $("#modalImage");
+  const $modalText1 = $("#modalText1");
+  const $modalText2 = $("#modalText2");
+  const $closeBtn = $("#closeModal");
+  const $modalItems = $(".modal_item");
+  const $backToTopBtn = $("#backToTop .to-top");
 
-// body-scroll-lockの関数読み込み
-const { disableBodyScroll, enableBodyScroll } = bodyScrollLock;
+  // body-scroll-lock の関数
+  const { disableBodyScroll, enableBodyScroll } = window.bodyScrollLock;
 
-function openModal(fullSrc, title, price) {
-  modalImage.src = fullSrc;
-  modalImage.alt = title;
-  modalText1.textContent = title;
-  modalText2.textContent = price || "";
+  function openModal(fullSrc, title, price) {
+    $modalImage.attr({
+      src: fullSrc,
+      alt: title
+    });
+    $modalText1.text(title);
+    $modalText2.text(price || "");
 
-  modal.classList.add("active");
+    $modal.addClass("active");
 
-  // モーダルコンテンツのスクロールをロック（背景はスクロール禁止）
-  disableBodyScroll(modalContent);
+    // モーダルコンテンツだけスクロール可にして背景は固定
+    disableBodyScroll($modalContent[0]);
 
-  if (backToTopBtn) backToTopBtn.classList.remove("to-top--visible");
-}
+    if ($backToTopBtn.length) {
+      $backToTopBtn.removeClass("to-top--visible");
+    }
+  }
 
-function closeModal() {
-  modal.classList.remove("active");
+  function closeModal() {
+    $modal.removeClass("active");
 
-  // スクロールロック解除
-  enableBodyScroll(modalContent);
+    // 背景スクロール解除
+    enableBodyScroll($modalContent[0]);
 
-  if (backToTopBtn) backToTopBtn.classList.add("to-top--visible");
+    if ($backToTopBtn.length) {
+      $backToTopBtn.addClass("to-top--visible");
+    }
 
-  // クリアは必要に応じて
-  setTimeout(() => {
-    modalImage.src = "";
-    modalImage.alt = "";
-    modalText1.textContent = "";
-    modalText2.textContent = "";
-  }, 400);
-}
+    setTimeout(() => {
+      $modalImage.attr({ src: "", alt: "" });
+      $modalText1.text("");
+      $modalText2.text("");
+    }, 400);
+  }
 
-modalItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const fullSrc = item.getAttribute("data-full");
-    const title = item.getAttribute("data-title");
-    const price = item.getAttribute("data-price");
+  // モーダル開く
+  $modalItems.on("click", function() {
+    const fullSrc = $(this).data("full");
+    const title = $(this).data("title");
+    const price = $(this).data("price");
     openModal(fullSrc, title, price);
   });
-});
 
-closeBtn.addEventListener("click", closeModal);
+  // 閉じるボタン
+  $closeBtn.on("click", closeModal);
 
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    closeModal();
-  }
+  // 背景クリック
+  $modal.on("click", function(e) {
+    if ($(e.target).is($modal)) {
+      closeModal();
+    }
+  });
+
+  // ESCキーで閉じる
+  $(document).on("keydown", function(e) {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
 });
 
 //スクロールリンク
