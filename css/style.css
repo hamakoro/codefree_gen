@@ -1412,7 +1412,7 @@ section#course.sec2 .inner .fade-in-up .sec2_modal .modal_item img.modal {
   border: none;
   cursor: pointer;
   color: #000;
-  z-index: -1;
+  z-index: 10;
 }
 
 .modal-text1 {
