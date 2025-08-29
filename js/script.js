@@ -33,6 +33,8 @@ $(function () {
     pauseOnHover: false,
   });
 });
+
+// モーダルウィンドウ
 $(function() {
   const $modal = $("#modal");
   const $modalContent = $(".modal-content");
@@ -42,9 +44,10 @@ $(function() {
   const $closeBtn = $("#closeModal");
   const $modalItems = $(".modal_item");
   const $backToTopBtn = $("#backToTop .to-top");
+  let scrollY; // ← 追加
 
-  // body-scroll-lock の関数
-  const { disableBodyScroll, enableBodyScroll } = window.bodyScrollLock;
+  // ここは不要になる（body-scroll-lock削除）
+  // const { disableBodyScroll, enableBodyScroll } = window.bodyScrollLock;
 
   function openModal(fullSrc, title, price) {
     $modalImage.attr({
@@ -54,10 +57,13 @@ $(function() {
     $modalText1.text(title);
     $modalText2.text(price || "");
 
-    $modal.addClass("active");
+    // ① スクロール位置を保存して body 固定
+    scrollY = window.scrollY || window.pageYOffset;
+    $("body").addClass("no-scroll").css({
+      top: `-${scrollY}px`
+    });
 
-    // モーダルコンテンツだけスクロール可にして背景は固定
-    disableBodyScroll($modalContent[0]);
+    $modal.addClass("active");
 
     if ($backToTopBtn.length) {
       $backToTopBtn.removeClass("to-top--visible");
@@ -67,8 +73,12 @@ $(function() {
   function closeModal() {
     $modal.removeClass("active");
 
-    // 背景スクロール解除
-    enableBodyScroll($modalContent[0]);
+    // ② body の固定解除 & スクロール位置を復帰
+    $("body").removeClass("no-scroll").removeAttr("style");
+    window.scrollTo({
+      top: scrollY,
+      behavior: "instant" // iPhoneではauto扱い、他ブラウザなら即復帰
+    });
 
     if ($backToTopBtn.length) {
       $backToTopBtn.addClass("to-top--visible");
