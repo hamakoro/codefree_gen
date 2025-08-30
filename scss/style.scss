@@ -18,7 +18,7 @@ $sm: 767px;
 
 body {
   font-family: "Zen Old Mincho";
-  line-height: 1.8;
+  line-height: 1.833;
   margin: 0;
   font-weight: 500;
   font-size: 1.6rem;
@@ -42,7 +42,7 @@ body {
     display: none;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 971px) {
+  @media screen and (min-width: 768px) and (max-width: 984px) {
     .tb_only {
       display: none;
     }
@@ -70,8 +70,6 @@ body {
     }
   }
 }
-
-
 
 img {
   width: 100%;
@@ -119,9 +117,9 @@ html {
 }
 
 body.no-scroll {
-  overflow: hidden;
-  padding-right: var(--scrollbar-width, 0px);
+  position: fixed;
   width: 100%;
+  overflow: hidden;
 }
 
 .fade-in-up {
@@ -175,29 +173,30 @@ header {
     justify-content: flex-start;
     align-items: center;
   }
-  a {
-    display: inline-block;
-    height: 8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s;
-    @include mq($sm) {
-      height: 5rem;
-    }
-    &:hover {
-      opacity: 0.6;
-    }
 
-    h1.header_logo {
+  h1.header_logo {
+    font-size: 2rem;
+    position: relative;
+    line-height: 1.65;
+    @media screen and (max-width: 1000px) {
+      font-size: 1.8rem;
+    }
+    @include mq($sm) {
       font-size: 2rem;
-      position: relative;
-      @media screen and (max-width: 1000px) {
-        font-size: 1.8rem;
-      }
+      top: 0;
+    }
+    a {
+      display: inline-block;
+      height: 8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.3s;
       @include mq($sm) {
-        font-size: 2rem;
-        top: 0;
+        height: 5rem;
+      }
+      &:hover {
+        opacity: 0.6;
       }
     }
   }
@@ -207,7 +206,6 @@ header {
   display: flex;
   gap: 2.2rem;
   font-size: 1.8rem;
-  line-height: 1.5;
   position: relative;
   @media screen and (max-width: 1000px) {
     gap: 1rem;
@@ -530,7 +528,7 @@ section#about.fv_sec2 {
 #recommend
 ============================*/
 section#recommend.sec1 {
-  padding: 8rem 0;
+  padding: 8rem 0 7.5rem;
   background-color: $sub_color;
 
   @include mq($sm) {
@@ -650,7 +648,7 @@ section#recommend.sec1 {
                 line-height: 1.563;
                 font-weight: 400;
                 @media screen and (max-width: 860px) {
-                  font-size: 1.4rem;
+                  font-size: 1.3rem;
                 }
                 @include mq($sm) {
                   padding-top: 1rem;
@@ -761,7 +759,7 @@ section#recommend.sec1 {
                 line-height: 1.563;
                 font-weight: 400;
                 @media screen and (max-width: 860px) {
-                  font-size: 1.4rem;
+                  font-size: 1.3rem;
                 }
                 @include mq($sm) {
                   padding-top: 1rem;
@@ -911,7 +909,7 @@ section#news.sec3 {
         @include mq($sm) {
           flex-direction: column;
           align-items: center;
-          gap: 4.4rem;
+          gap: 4.7rem;
           margin-top: 3.6rem;
         }
         .news_textbox {
@@ -931,7 +929,7 @@ section#news.sec3 {
           ul.news_list {
             font-size: 1.8rem;
             padding: 0 2rem;
-            line-height: 1.38;
+            line-height: 1.389;
             @media screen and (max-width: 345px) {
               font-size: 1.6rem;
             }
@@ -941,7 +939,7 @@ section#news.sec3 {
                 display: flex;
                 gap: 5.9rem;
                 transition: all 0.3s ease;
-                padding: 2rem 0 1.25rem;
+                padding: 2rem 0 1.2rem;
                 &:hover {
                   opacity: 0.6;
                 }
@@ -950,18 +948,18 @@ section#news.sec3 {
                 }
                 @include mq($sm) {
                   gap: 0.9rem;
-                  padding: 2rem 0 1.3rem;
                 }
                 p.news_text1_23 {
                   font-size: 1.6rem;
-                  margin-top: 0.8rem;
+                  line-height: 2.063;
                 }
                 p.news_text2_30 {
                   margin-top: 1rem;
                 }
                 p.news_text1 {
                   font-size: 1.6rem;
-                  margin-top: -0.3rem;
+                  margin-top: -0.8rem;
+                  line-height: 2.063;
                 }
               }
             }
@@ -986,7 +984,7 @@ section#news.sec3 {
             text-align: right;
             padding: 1.9rem 2rem 1.8rem;
             @include mq($sm) {
-              padding: 1.7rem 2rem 2rem;
+              padding: 1.9rem 2rem 1.8rem;
             }
             a.btn_box {
               display: inline-block;
@@ -1072,7 +1070,6 @@ section#access.sec4 {
             color: #fff;
             padding: 4.9rem 0.5rem 4.2rem 4rem;
             position: relative;
-            z-index: -1;
             @media screen and (max-width: 830px) {
               padding: 4.6rem 0.5rem 4.2rem 2rem;
             }
@@ -1114,6 +1111,7 @@ section#access.sec4 {
               font-family: "Noto Serif JP", serif;
               pointer-events: auto;
               font-size: 1.6rem;
+              line-height: 1.563;
               @include mq($sm) {
                 margin: 1.4rem 0 1rem;
               }
@@ -1163,7 +1161,7 @@ section#contact.sec5 {
   padding: 8rem 3rem;
   background-color: $sub_color;
   @include mq($sm) {
-    padding: 5rem 0;
+    padding: 5rem 0 4.8rem;
   }
   .inner {
     max-width: 860px;
@@ -1174,8 +1172,9 @@ section#contact.sec5 {
     }
     .fade-in-up {
       p.contact_text {
-        margin: 3.3rem 0 3.2rem;
+        margin: 3.3rem 0 4rem;
         font-size: 2rem;
+        line-height: 1.65;
         @include mq($sm) {
           margin: 3.4rem 0 2.9rem;
           line-height: 1.65;
@@ -1193,7 +1192,7 @@ section#contact.sec5 {
         @include mq($sm) {
           flex-direction: column;
           align-items: flex-start;
-          margin-bottom: 2.9rem;
+          margin-bottom: 3rem;
         }
 
         .label_title {
@@ -1228,7 +1227,7 @@ section#contact.sec5 {
           display: flex;
           gap: 56px;
           @include mq($sm) {
-            gap: 0px;
+            gap: 12px;
           }
         }
         // ラジオボタン type1
@@ -1243,9 +1242,9 @@ section#contact.sec5 {
 
           span {
             padding-left: 2.2rem;
+            line-height: 1.389;
             @include mq($sm) {
               padding-left: 1.9rem;
-              padding-right: 1.2rem;
               @media screen and (max-width: 374px) {
                 padding-left: 0.5rem;
                 font-size: 1.6rem;
@@ -1351,11 +1350,12 @@ section#contact.sec5 {
           appearance: none;
           background-color: #fff;
           color: #333;
-          padding: 10px 20px;
+          padding: 13px 10px 14px 20px;
           width: 100%;
           font-size: 1.8rem;
           cursor: pointer;
           margin-left: 40px;
+          line-height: 1.389;
           @include mq($sm) {
             margin-left: 0;
           }
@@ -1383,8 +1383,6 @@ section#contact.sec5 {
       label {
         font-size: 2rem;
         line-height: 1.65;
-        margin-top: 0.3rem;
-
         @include mq($sm) {
           margin-top: 0;
           @media screen and (max-width: 374px) {
@@ -1420,21 +1418,22 @@ section#contact.sec5 {
       .form-checkbox {
         p {
           font-size: 2rem;
+          line-height: 1.65;
         }
         ul {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          row-gap: 4px;
-          padding-top: 4px;
+          row-gap: 7px;
+          margin-top: 9px;
 
           @include mq($sm) {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(4, auto);
             row-gap: 0px;
-            padding-top: 6px;
+            margin-top: 7px;
             @media screen and (max-width: 304px) {
               row-gap: 5px;
-              padding-top: 5px;
+              margin-top: 5px;
             }
           }
 
@@ -1452,7 +1451,6 @@ section#contact.sec5 {
                 display: inline-block;
                 width: 20px;
                 height: 20px;
-                margin-right: 8px;
                 background: #fff;
                 position: relative;
 
@@ -1481,7 +1479,7 @@ section#contact.sec5 {
 
               span.check_text {
                 font-size: 1.8rem;
-                padding-left: 1.4rem;
+                padding-left: 2.2rem;
                 @media screen and (max-width: 800px) {
                   font-size: 1.6rem;
                 }
@@ -1489,6 +1487,7 @@ section#contact.sec5 {
                 @include mq($sm) {
                   font-size: 1.6rem;
                   padding-left: 1rem;
+                  line-height: 1.563;
                   @media screen and (max-width: 345px) {
                     padding-left: 0.3rem;
                   }
@@ -1502,6 +1501,11 @@ section#contact.sec5 {
             label.check .checkbox-style {
               cursor: pointer;
             }
+            @include mq($sm) {
+              label.check {
+                align-items: normal;
+              }
+            }
           }
         }
       }
@@ -1509,13 +1513,14 @@ section#contact.sec5 {
     .privacy {
       margin-top: 4.5rem;
       @include mq($sm) {
-        margin: 2.2rem 0 0px;
+        margin-top: 2.5rem;
       }
       h3 {
         font-size: 2rem;
         margin-bottom: 0.6rem;
+        line-height: 1.65;
         @include mq($sm) {
-          margin-bottom: -0.3rem;
+          margin-bottom: 0.2rem;
         }
       }
       .privacy_box {
@@ -1571,6 +1576,9 @@ section#contact.sec5 {
               line-height: 2.063;
               font-weight: 500;
             }
+            .blank_line {
+              margin-top: 3.3rem;
+            }
           }
         }
       }
@@ -1578,7 +1586,7 @@ section#contact.sec5 {
         text-align: center;
         margin-top: 8rem;
         @include mq($sm) {
-          margin-top: 5.4rem;
+          margin-top: 5rem;
         }
         button.btn2 {
           background: $main_color;
@@ -1589,6 +1597,7 @@ section#contact.sec5 {
           max-width: 300px; // ← 大きい画面では300pxまで
           transition: 0.5s;
           border: 1px solid $main_color;
+          line-height: 1.65;
           @include mq($sm) {
             max-width: 315px;
           }
@@ -1634,10 +1643,10 @@ footer {
       p.footer_ {
         font-size: 2rem;
         border-bottom: 1px solid #000;
-        padding-bottom: 2.3rem;
-
+        padding-bottom: 3rem;
+        line-height: 1.65;
         @include mq($sm) {
-          padding-bottom: 1.5rem;
+          padding-bottom: 2rem;
         }
 
         a {
@@ -1677,7 +1686,7 @@ footer {
         ul.footer_list1 {
           @include mq($sm) {
             padding-top: 2rem;
-            gap: 2rem;
+            gap: 2.4rem;
           }
         }
 
@@ -1820,5 +1829,3 @@ footer {
     }
   }
 }
-
-

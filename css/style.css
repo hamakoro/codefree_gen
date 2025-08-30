@@ -406,7 +406,7 @@ th {
 
 body {
   font-family: "Zen Old Mincho";
-  line-height: 1.8;
+  line-height: 1.833;
   margin: 0;
   font-weight: 500;
   font-size: 1.6rem;
@@ -426,7 +426,7 @@ body .sm_indent {
 body .indent {
   display: none;
 }
-@media screen and (min-width: 768px) and (max-width: 971px) {
+@media screen and (min-width: 768px) and (max-width: 984px) {
   body .tb_only {
     display: none;
   }
@@ -506,9 +506,9 @@ html {
 }
 
 body.no-scroll {
-  overflow: hidden;
-  padding-right: var(--scrollbar-width, 0px);
+  position: fixed;
   width: 100%;
+  overflow: hidden;
 }
 
 .fade-in-up {
@@ -579,7 +579,23 @@ header.scrolled {
             align-items: center;
   }
 }
-.header_container a {
+.header_container h1.header_logo {
+  font-size: 2rem;
+  position: relative;
+  line-height: 1.65;
+}
+@media screen and (max-width: 1000px) {
+  .header_container h1.header_logo {
+    font-size: 1.8rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header_container h1.header_logo {
+    font-size: 2rem;
+    top: 0;
+  }
+}
+.header_container h1.header_logo a {
   display: inline-block;
   height: 8rem;
   display: -webkit-box;
@@ -595,27 +611,12 @@ header.scrolled {
   transition: 0.3s;
 }
 @media screen and (max-width: 767px) {
-  .header_container a {
+  .header_container h1.header_logo a {
     height: 5rem;
   }
 }
-.header_container a:hover {
+.header_container h1.header_logo a:hover {
   opacity: 0.6;
-}
-.header_container a h1.header_logo {
-  font-size: 2rem;
-  position: relative;
-}
-@media screen and (max-width: 1000px) {
-  .header_container a h1.header_logo {
-    font-size: 1.8rem;
-  }
-}
-@media screen and (max-width: 767px) {
-  .header_container a h1.header_logo {
-    font-size: 2rem;
-    top: 0;
-  }
 }
 
 .header_list {
@@ -624,7 +625,6 @@ header.scrolled {
   display: flex;
   gap: 2.2rem;
   font-size: 1.8rem;
-  line-height: 1.5;
   position: relative;
 }
 @media screen and (max-width: 1000px) {
@@ -1009,7 +1009,7 @@ section#about.fv_sec2 .inner .fv_textbox .textbox p .fv_textbox__indent {
 #recommend
 ============================*/
 section#recommend.sec1 {
-  padding: 8rem 0;
+  padding: 8rem 0 7.5rem;
   background-color: rgba(83, 7, 0, 0.1);
 }
 @media screen and (max-width: 767px) {
@@ -1148,7 +1148,7 @@ section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .reco
 }
 @media screen and (max-width: 860px) {
   section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend .recommend_title p.recommend_textbox {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
 @media screen and (max-width: 767px) {
@@ -1283,7 +1283,7 @@ section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .reco
 }
 @media screen and (max-width: 860px) {
   section#recommend.sec1 .inner .fade-in-up .fade-in-up .recommend_container .recommend_list_reverse .recommend_title p.recommend_textbox {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
 @media screen and (max-width: 767px) {
@@ -1458,7 +1458,7 @@ section#news.sec3 .inner .fade-in-up .news_card_box {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    gap: 4.4rem;
+    gap: 4.7rem;
     margin-top: 3.6rem;
   }
 }
@@ -1482,7 +1482,7 @@ section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox h3.news_title 
 section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list {
   font-size: 1.8rem;
   padding: 0 2rem;
-  line-height: 1.38;
+  line-height: 1.389;
 }
 @media screen and (max-width: 345px) {
   section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list {
@@ -1499,7 +1499,7 @@ section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list l
   gap: 5.9rem;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  padding: 2rem 0 1.25rem;
+  padding: 2rem 0 1.2rem;
 }
 section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list li.news_item a:hover {
   opacity: 0.6;
@@ -1512,19 +1512,19 @@ section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list l
 @media screen and (max-width: 767px) {
   section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list li.news_item a {
     gap: 0.9rem;
-    padding: 2rem 0 1.3rem;
   }
 }
 section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list li.news_item a p.news_text1_23 {
   font-size: 1.6rem;
-  margin-top: 0.8rem;
+  line-height: 2.063;
 }
 section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list li.news_item a p.news_text2_30 {
   margin-top: 1rem;
 }
 section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox ul.news_list li.news_item a p.news_text1 {
   font-size: 1.6rem;
-  margin-top: -0.3rem;
+  margin-top: -0.8rem;
+  line-height: 2.063;
 }
 @-webkit-keyframes shakeRight {
   0% {
@@ -1569,7 +1569,7 @@ section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox .btn {
 }
 @media screen and (max-width: 767px) {
   section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox .btn {
-    padding: 1.7rem 2rem 2rem;
+    padding: 1.9rem 2rem 1.8rem;
   }
 }
 section#news.sec3 .inner .fade-in-up .news_card_box .news_textbox .btn a.btn_box {
@@ -1669,7 +1669,6 @@ section#access.sec4 .inner .fade-in-up .sec4_access .access .store_name {
   color: #fff;
   padding: 4.9rem 0.5rem 4.2rem 4rem;
   position: relative;
-  z-index: -1;
 }
 @media screen and (max-width: 830px) {
   section#access.sec4 .inner .fade-in-up .sec4_access .access .store_name {
@@ -1718,6 +1717,7 @@ section#access.sec4 .inner .fade-in-up .sec4_access .access .store_name p.store_
   font-family: "Noto Serif JP", serif;
   pointer-events: auto;
   font-size: 1.6rem;
+  line-height: 1.563;
 }
 @media screen and (max-width: 767px) {
   section#access.sec4 .inner .fade-in-up .sec4_access .access .store_name p.store_tel {
@@ -1776,7 +1776,7 @@ section#contact.sec5 {
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 {
-    padding: 5rem 0;
+    padding: 5rem 0 4.8rem;
   }
 }
 section#contact.sec5 .inner {
@@ -1788,8 +1788,9 @@ section#contact.sec5 .inner {
   }
 }
 section#contact.sec5 .inner .fade-in-up p.contact_text {
-  margin: 3.3rem 0 3.2rem;
+  margin: 3.3rem 0 4rem;
   font-size: 2rem;
+  line-height: 1.65;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .fade-in-up p.contact_text {
@@ -1821,7 +1822,7 @@ section#contact.sec5 .inner .fade-in-up .contactbox {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    margin-bottom: 2.9rem;
+    margin-bottom: 3rem;
   }
 }
 section#contact.sec5 .inner .fade-in-up .contactbox .label_title {
@@ -1875,7 +1876,7 @@ section#contact.sec5 .inner .fade-in-up .contactbox .radio_btn {
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .fade-in-up .contactbox .radio_btn {
-    gap: 0px;
+    gap: 12px;
   }
 }
 section#contact.sec5 .inner .fade-in-up .contactbox label.type1 {
@@ -1894,11 +1895,11 @@ section#contact.sec5 .inner .fade-in-up .contactbox label.type1 {
 }
 section#contact.sec5 .inner .fade-in-up .contactbox label.type1 span {
   padding-left: 2.2rem;
+  line-height: 1.389;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .fade-in-up .contactbox label.type1 span {
     padding-left: 1.9rem;
-    padding-right: 1.2rem;
   }
 }
 @media screen and (max-width: 767px) and (max-width: 374px) {
@@ -2009,11 +2010,12 @@ section#contact.sec5 .inner .fade-in-up .form-Course select {
           appearance: none;
   background-color: #fff;
   color: #333;
-  padding: 10px 20px;
+  padding: 13px 10px 14px 20px;
   width: 100%;
   font-size: 1.8rem;
   cursor: pointer;
   margin-left: 40px;
+  line-height: 1.389;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .fade-in-up .form-Course select {
@@ -2041,7 +2043,6 @@ section#contact.sec5 .inner .fade-in-up .form-Course::after {
 section#contact.sec5 .inner .fade-in-up label {
   font-size: 2rem;
   line-height: 1.65;
-  margin-top: 0.3rem;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .fade-in-up label {
@@ -2078,25 +2079,26 @@ section#contact.sec5 .inner .fade-in-up .form-Content textarea {
 }
 section#contact.sec5 .inner .fade-in-up .form-checkbox p {
   font-size: 2rem;
+  line-height: 1.65;
 }
 section#contact.sec5 .inner .fade-in-up .form-checkbox ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  row-gap: 4px;
-  padding-top: 4px;
+  row-gap: 7px;
+  margin-top: 9px;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .fade-in-up .form-checkbox ul {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, auto);
     row-gap: 0px;
-    padding-top: 6px;
+    margin-top: 7px;
   }
 }
 @media screen and (max-width: 767px) and (max-width: 304px) {
   section#contact.sec5 .inner .fade-in-up .form-checkbox ul {
     row-gap: 5px;
-    padding-top: 5px;
+    margin-top: 5px;
   }
 }
 section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check {
@@ -2115,7 +2117,6 @@ section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check .checkb
   display: inline-block;
   width: 20px;
   height: 20px;
-  margin-right: 8px;
   background: #fff;
   position: relative;
 }
@@ -2144,7 +2145,7 @@ section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check input:c
 }
 section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check span.check_text {
   font-size: 1.8rem;
-  padding-left: 1.4rem;
+  padding-left: 2.2rem;
 }
 @media screen and (max-width: 800px) {
   section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check span.check_text {
@@ -2155,6 +2156,7 @@ section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check span.ch
   section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check span.check_text {
     font-size: 1.6rem;
     padding-left: 1rem;
+    line-height: 1.563;
   }
 }
 @media screen and (max-width: 767px) and (max-width: 345px) {
@@ -2167,21 +2169,29 @@ section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check .check_
 section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check .checkbox-style {
   cursor: pointer;
 }
+@media screen and (max-width: 767px) {
+  section#contact.sec5 .inner .fade-in-up .form-checkbox ul li label.check {
+    -webkit-box-align: normal;
+        -ms-flex-align: normal;
+            align-items: normal;
+  }
+}
 section#contact.sec5 .inner .privacy {
   margin-top: 4.5rem;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .privacy {
-    margin: 2.2rem 0 0px;
+    margin-top: 2.5rem;
   }
 }
 section#contact.sec5 .inner .privacy h3 {
   font-size: 2rem;
   margin-bottom: 0.6rem;
+  line-height: 1.65;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .privacy h3 {
-    margin-bottom: -0.3rem;
+    margin-bottom: 0.2rem;
   }
 }
 section#contact.sec5 .inner .privacy .privacy_box {
@@ -2242,13 +2252,16 @@ section#contact.sec5 .inner .privacy .privacy_box .privacy_textbox[data-simpleba
     font-weight: 500;
   }
 }
+section#contact.sec5 .inner .privacy .privacy_box .privacy_textbox[data-simplebar] .privacy_text .blank_line {
+  margin-top: 3.3rem;
+}
 section#contact.sec5 .inner .privacy .btn {
   text-align: center;
   margin-top: 8rem;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .privacy .btn {
-    margin-top: 5.4rem;
+    margin-top: 5rem;
   }
 }
 section#contact.sec5 .inner .privacy .btn button.btn2 {
@@ -2261,6 +2274,7 @@ section#contact.sec5 .inner .privacy .btn button.btn2 {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   border: 1px solid #530700;
+  line-height: 1.65;
 }
 @media screen and (max-width: 767px) {
   section#contact.sec5 .inner .privacy .btn button.btn2 {
@@ -2309,11 +2323,12 @@ footer .inner .footer_container {
 footer .inner .footer_container p.footer_ {
   font-size: 2rem;
   border-bottom: 1px solid #000;
-  padding-bottom: 2.3rem;
+  padding-bottom: 3rem;
+  line-height: 1.65;
 }
 @media screen and (max-width: 767px) {
   footer .inner .footer_container p.footer_ {
-    padding-bottom: 1.5rem;
+    padding-bottom: 2rem;
   }
 }
 footer .inner .footer_container p.footer_ a {
@@ -2357,7 +2372,7 @@ footer .inner .footer_container nav.footer_nav ul.footer_list3 {
 @media screen and (max-width: 767px) {
   footer .inner .footer_container nav.footer_nav ul.footer_list1 {
     padding-top: 2rem;
-    gap: 2rem;
+    gap: 2.4rem;
   }
 }
 @media screen and (max-width: 767px) {
