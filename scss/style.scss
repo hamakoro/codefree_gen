@@ -54,7 +54,7 @@ body {
     }
   }
 
-  @media screen and (min-width: 376px) and (max-width: 529px) {
+  @media screen and (min-width: 380px) and (max-width: 529px) {
     .indent {
       display: block;
     }
@@ -601,7 +601,7 @@ section#recommend.sec1 {
               flex: 1;
               background-color: $main_color;
               color: #fff;
-              padding: 5rem 2rem 4.2rem 4rem;
+              padding: 5rem 1.8rem 4.2rem 4rem;
               position: relative;
 
               &::before {
@@ -1115,6 +1115,12 @@ section#access.sec4 {
               @include mq($sm) {
                 margin: 1.4rem 0 1rem;
               }
+
+              @media (min-width: 768px) {
+                a[href^="tel:"] {
+                  pointer-events: none;
+                }
+              }
               a.tel_link {
                 font-size: 2.5rem;
                 line-height: 1;
@@ -1158,7 +1164,7 @@ section#access.sec4 {
 #contact
 ============================*/
 section#contact.sec5 {
-  padding: 8rem 3rem;
+  padding: 8rem 0;
   background-color: $sub_color;
   @include mq($sm) {
     padding: 5rem 0 4.8rem;
@@ -1196,19 +1202,13 @@ section#contact.sec5 {
         }
 
         .label_title {
-          width: 21.25%;
-          @media screen and (max-width: 942px) {
-            width: 31%;
-          }
-          @include mq($sm) {
-            width: 50%;
-          }
+          width: 17rem;
         }
 
         .input_text {
           font-size: 1.6rem;
           background: #fff;
-          width: 78.8%;
+          flex: 1;
           padding: 1.3rem 2rem 1.2rem;
           line-height: 1.563;
 
@@ -1351,7 +1351,7 @@ section#contact.sec5 {
           background-color: #fff;
           color: #333;
           padding: 13px 10px 14px 20px;
-          width: 78.8%;
+          flex: 1;
           font-size: 1.8rem;
           cursor: pointer;
           line-height: 1.389;
@@ -1429,7 +1429,9 @@ section#contact.sec5 {
             grid-template-rows: repeat(4, auto);
             row-gap: 0px;
             margin-top: 10px;
-            @media screen and (max-width: 304px) {
+            @media screen and (max-width: 340px) {
+              display: grid;
+              grid-template-columns: 1fr;
               row-gap: 5px;
               margin-top: 5px;
             }
@@ -1638,7 +1640,7 @@ footer {
         padding: 5rem 0px 2.7rem;
       }
 
-      p.footer_ {
+      p.footer {
         font-size: 2rem;
         border-bottom: 1px solid #000;
         padding-bottom: 3rem;
@@ -1658,9 +1660,11 @@ footer {
 
       nav.footer_nav {
         font-size: 2rem;
-
         @include mq($sm) {
           font-size: 1.8rem;
+          @media screen and (max-width: 345px) {
+            font-size: 1.6rem;
+          }
         }
 
         ul.footer_list1,
