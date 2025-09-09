@@ -1203,6 +1203,7 @@ section#contact.sec5 {
 
         .label_title {
           width: 17rem;
+          flex-shrink: 0;
         }
 
         .input_text {
@@ -1640,7 +1641,7 @@ footer {
         padding: 5rem 0px 2.7rem;
       }
 
-      p.footer {
+      p.footer_title {
         font-size: 2rem;
         border-bottom: 1px solid #000;
         padding-bottom: 3rem;

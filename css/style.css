@@ -2320,22 +2320,22 @@ footer .inner .footer_container {
     padding: 5rem 0px 2.7rem;
   }
 }
-footer .inner .footer_container p.footer {
+footer .inner .footer_container p.footer_title {
   font-size: 2rem;
   border-bottom: 1px solid #000;
   padding-bottom: 3rem;
   line-height: 1.65;
 }
 @media screen and (max-width: 767px) {
-  footer .inner .footer_container p.footer {
+  footer .inner .footer_container p.footer_title {
     padding-bottom: 2rem;
   }
 }
-footer .inner .footer_container p.footer a {
+footer .inner .footer_container p.footer_title a {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-footer .inner .footer_container p.footer a:hover {
+footer .inner .footer_container p.footer_title a:hover {
   opacity: 0.6;
 }
 footer .inner .footer_container nav.footer_nav {
