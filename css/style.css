@@ -1832,6 +1832,8 @@ section#contact.sec5 .inner .fade-in-up .contactbox {
 }
 section#contact.sec5 .inner .fade-in-up .contactbox .label_title {
   width: 17rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 section#contact.sec5 .inner .fade-in-up .contactbox .input_text {
   font-size: 1.6rem;
@@ -2313,7 +2315,7 @@ footer .inner {
   }
 }
 footer .inner .footer_container {
-  padding: 8rem 0 6rem;
+  padding: 8rem 0 5.7rem;
 }
 @media screen and (max-width: 767px) {
   footer .inner .footer_container {
